@@ -1,7 +1,3 @@
-# Otter Pop Theme
+# The website of Shane Hogle
 
-The world's greatest Jekyll theme.
-
-Example: <http://tybenz.com>
-
-![](http://jekyllthemes.org/thumbnails/otter-pop.png)
+Theme from: http://tybenz.com/otter-pop
