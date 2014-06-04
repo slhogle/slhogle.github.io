@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shane Hogle</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="/css/pygments.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="sidebar">
+
+<a> <img src="/img/shane.jpg" alt="me" width="300"> </a>
+
+    <ul class="nav">
+      <div class="nav-inner">
+        <li><a href="/"><span class="icon doc"></span>blog</a></li>
+        <li><a href="/about"><span class="icon info"></span>about</a></li>
+        <li><a href="/projects"><span class="icon code"></span>projects</a></li>
+        <li><a href="https://impactstory.org/ShaneHogle"><span class="icon impact"></span>impact story</a></li>
+        <li><a href="http://twitter.com/slhogle"><span class="icon twitter"></span>twitter</a></li>
+      </div>
+    </ul>
+  </div>
+  <div class="wrapper">
+    <!--<h1><marquee scrolldelay="60">otter pop - the world's greatest jekyll theme</marquee></h1>-->
+    <h1>Nucleotide content of first and second position in a fastq formatted file</h1>
+
+    <div class="post-body">
+      <p>So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:
+<div class="highlight"><pre><code class="bash">sudo gem install bio-faster
+sudo gem update bio</code></pre></div>
+<p>You can use input as a gnu zipped file. Call it like<br />
+<div class="highlight"><pre><code class="bash">zcat test.fastq.gz <span class="p">|</span> ruby fastq_reader.rb</code></pre></div>
+<p>Now for the script.<br />
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="nb">require</span> <span class="s1">&#39;bio&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;bio-faster&#39;</span>
+<span class="kp">include</span> <span class="no">Bio</span>
+<span class="n">ary_bp1</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+<span class="n">ary_bp2</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+<span class="n">counts_bp1</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">counts_bp2</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fastq</span> <span class="o">=</span> <span class="no">Bio</span><span class="o">::</span><span class="no">Faster</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:stdin</span><span class="p">)</span> <span class="c1"># if stdin then you can pipe output from zcat -ex) zcat test.fastq.gz | ruby fastq_reader.rb</span>
+<span class="n">fastq</span><span class="o">.</span><span class="n">each_record</span> <span class="k">do</span> <span class="o">|</span><span class="n">sequence_header</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">quality</span><span class="o">|</span>
+  <span class="n">seq</span> <span class="o">=</span> <span class="no">Bio</span><span class="o">::</span><span class="no">Sequence</span><span class="o">.</span><span class="n">auto</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="n">ary_bp1</span> <span class="o">&lt;&lt;</span> <span class="n">sequence</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+  <span class="n">ary_bp2</span> <span class="o">&lt;&lt;</span> <span class="n">sequence</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="k">end</span>
+<span class="n">ary_bp1</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">base</span><span class="o">|</span> <span class="n">counts_bp1</span><span class="o">[</span><span class="n">base</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="n">ary_bp2</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">base</span><span class="o">|</span> <span class="n">counts_bp2</span><span class="o">[</span><span class="n">base</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="nb">puts</span> <span class="n">counts_bp1</span>
+<span class="nb">puts</span> <span class="n">counts_bp2</span></code></pre></div>
+
+    </div>
+  </div>
+</body>
+</html>

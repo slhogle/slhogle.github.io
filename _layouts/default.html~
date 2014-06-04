@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <title>Shane Hogle</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <link href="/css/pygments.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div class="sidebar">
@@ -19,7 +14,7 @@
     <ul class="nav">
       <div class="nav-inner">
         <li><a href="/"><span class="icon doc"></span>blog</a></li>
-        <li><a href="/about"><span class="icon info"></span>about</a></li>
+        <li><a href="about"><span class="icon info"></span>about</a></li>
         <li><a href="/projects"><span class="icon code"></span>projects</a></li>
         <li><a href="https://impactstory.org/ShaneHogle"><span class="icon impact"></span>impact story</a></li>
         <li><a href="http://twitter.com/slhogle"><span class="icon twitter"></span>twitter</a></li>
@@ -27,12 +22,10 @@
     </ul>
   </div>
   <div class="wrapper">
-    <!--<h1><marquee scrolldelay="60">otter pop - the world's greatest jekyll theme</marquee></h1>-->
-    <h1>{{ page.title }}</h1>
+   
+    <h1>shane hogle - marine microbial ecology + bioinformatics</h1>
 
-    <div class="post-body">
-      {{ content }}
-    </div>
+    {{ content }}
   </div>
 </body>
 </html>

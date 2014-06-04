@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shane hogle</title>
+    <description>shane hogle</description>
+    <link>http://slhogle.github.io/</link>
+    <atom:link href="http://slhogle.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    
+      
+        <item>
+          <title>New publication out in Metallomics!</title>
+          <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>bowtie and samtools</title>
+          <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px groove yellow;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Process substitution in Bash shell</title>
+          <pubDate>Wed, 16 Apr 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px dotted red;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Nucleotide content of first and second position in a fastq formatted file</title>
+          <pubDate>Tue, 15 Apr 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px outset aqua;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Useful Unix Commands for Processing Sequence Files: Part 1</title>
+          <pubDate>Mon, 14 Apr 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Output sequences from a fasta formatted file that match a list of sequence IDs</title>
+          <pubDate>Tue, 11 Mar 2014 00:00:00 -0700</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px groove yellow;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Poster at Ocean Sciences Meeting 2014</title>
+          <pubDate>Fri, 21 Feb 2014 00:00:00 -0800</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px dotted red;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Search a hash with the entries from an array</title>
+          <pubDate>Tue, 18 Feb 2014 00:00:00 -0800</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px outset aqua;</category>
+        </item>
+      
+    
+      
+        <item>
+          <title>Bioinformatics Notebook</title>
+          <pubDate>Tue, 18 Feb 2014 00:00:00 -0800</pubDate>
+          <link></link>
+          <guid isPermaLink="true"></guid>
+          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
+        </item>
+      
+    
+  </channel>
+</rss>

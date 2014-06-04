@@ -28,10 +28,17 @@
   </div>
   <div class="wrapper">
     <!--<h1><marquee scrolldelay="60">otter pop - the world's greatest jekyll theme</marquee></h1>-->
-    <h1>{{ page.title }}</h1>
+    <h1>Process substitution in Bash shell</h1>
 
     <div class="post-body">
-      {{ content }}
+      <p>Say you want to use join to find and count the differences in two files each containing lines of biological sequence but those files are not sorted.</p>
+<p>You could do</p>
+<div class="highlight"><pre><code class="bash">sort seqfile1 &gt; seqfile1.sorted
+sort seqfile2 <span class="p">|</span> join -v 2 - seqfile1.sorted <span class="p">|</span> wc -l</code></pre></div>
+<p>This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2</p>
+<p>One can also do this using process substitution</p>
+<div class="highlight"><pre><code class="bash">join -v 2 &lt;<span class="o">(</span>sort seqfile1<span class="o">)</span> &lt;<span class="o">(</span>sort seqfile2<span class="o">)</span>  <span class="p">|</span> wc -l</code></pre></div>
+
     </div>
   </div>
 </body>

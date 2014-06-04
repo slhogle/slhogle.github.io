@@ -1,7 +1,10 @@
 pygments: true
-permalink: /otter-pop/:year/:month/:day/:title
+#permalink: /otter-pop/:year/:month/:day/:title
 markdown: rdiscount
 exclude: ['.git']
-name: "Otter Pop"
-description: "The world's greated jekyll theme"
-url: http://tybenz.com/otter-pop
+name: "shane hogle"
+email: shane.hogle@gmail.com
+twitter: slhogle
+github: slhogle
+description: "shane hogle"
+url: http://slhogle.github.io/

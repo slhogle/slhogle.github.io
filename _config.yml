@@ -1,10 +1,10 @@
-pygments: true
+highlighter: pygments
 #permalink: /otter-pop/:year/:month/:day/:title
 markdown: rdiscount
 exclude: ['.git']
-name: "shane lahman hogle"
+name: "shane hogle"
 email: shane.hogle@gmail.com
 twitter: slhogle
-gitbub: slhogle
-description: "marine microbial ecology, biogeochemistry, bioinformatics"
+github: slhogle
+description: "shane hogle"
 url: http://slhogle.github.io/

@@ -1,0 +1,47 @@
+---
+layout: post
+title: Output sequences from a fasta formatted file that match a list of sequence
+  IDs
+categories:
+- Bioinformatics Notebook
+- Bioruby
+- Ruby
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>You need <a title="bioruby" href="http://bioruby.org/" target="_blank">bioruby</a> for this one. Bioruby is quite easy to install on unix systems. I use Ubuntu...</p>
+<p>[code language="ruby"]<br />
+#!/usr/bin/env ruby<br />
+require 'bio'<br />
+include Bio</p>
+<p>usage = &lt;&lt;USAGE<br />
+######################################################################</p>
+<p>Usage: fasta_extracta.rb seqlist.txt fasta_infile.fasta</p>
+<p>Output all sequences from file fasta_infile.fasta<br />
+with ids matching those in seqlist.txt file (one entry per line)</p>
+<p>######################################################################</p>
+<p>USAGE<br />
+if ARGV.size == 0<br />
+  print usage<br />
+	exit 1<br />
+end</p>
+<p>id_file = ARGV[0]<br />
+seq_file = ARGV[1]</p>
+<p>ids = Array.new<br />
+File.new(id_file, 'r').each { |line| ids &lt;&lt; line.chop }<br />
+File.open(id_file+'_fasta_extracted', 'w') do |file|<br />
+  Bio::FlatFile.auto(seq_file).each do |item|<br />
+    ids.each do |id|<br />
+      if item.definition =~ /#{id}/<br />
+        seq = Bio::FastaFormat.new('&gt; '+item.definition+&quot;\n&quot;+item.data)<br />
+        file.puts seq<br />
+      end<br />
+    end<br />
+  end<br />
+end<br />
+[/code]</p>
