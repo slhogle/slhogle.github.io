@@ -1,6 +1,6 @@
 highlighter: pygments
 #permalink: /otter-pop/:year/:month/:day/:title
-markdown: rdiscount
+markdown: kramdown
 exclude: ['.git']
 name: "shane hogle"
 email: shane.hogle@gmail.com
