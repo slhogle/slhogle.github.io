@@ -4,7 +4,7 @@ title:
 permalink: /publications/
 ---
 
-__Hogle SL__, Dupont CL, Barbeau KA. Trace metal aquisition in the marine Roseobacter clade. _ISME J._ submitted
+__Hogle SL__, Dupont CL, Barbeau KA. Ecology, evolution, and biogeochemical impact of trace metal acquisition strategies in the marine Roseobacter lineage. _ISME J._ submitted
 
 Dupont CL, McCrow JP, Valas R, Moustafa A, Walworth N, Goodenough U, Roth R, __Hogle SL__, Bai J, Johnson ZI, Mann E, Palenik B, Barbeau KA, Venter JC, Allen AA. (2014). Genomes and gene expression across light and productivity gradients in eastern subtropical Pacific microbial communities. _ISME J._ 1(17):1751-7362/14 [LINK](http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2014198a.html)
 
