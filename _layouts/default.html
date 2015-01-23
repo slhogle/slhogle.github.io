@@ -1,31 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shane Hogle</title>
+<html>
+{% include head.html %}
+<body class="{% if site.animated %}animated fade-in-down{% endif %}">
+  <div class="site-wrap">
+    {% include header.html %}
 
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-  <div class="sidebar">
-
-<a> <img src="/img/shane.jpg" alt="me" width="300"> </a>
-
-    <ul class="nav">
-      <div class="nav-inner">
-        <li><a href="/"><span class="icon doc"></span>blog</a></li>
-        <li><a href="/about"><span class="icon info"></span>about</a></li>
-        <li><a href="/projects"><span class="icon code"></span>projects</a></li>
-        <li><a href="https://impactstory.org/ShaneHogle"><span class="icon impact"></span>impact story</a></li>
-        <li><a href="http://twitter.com/slhogle"><span class="icon twitter"></span>twitter</a></li>
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        {{ content }}
       </div>
-    </ul>
+    </div>
   </div>
-  <div class="wrapper">
-   
-    <h1>shane hogle - marine microbial ecology + bioinformatics</h1>
 
-    {{ content }}
-  </div>
+  {% include footer.html %}
 </body>
 </html>

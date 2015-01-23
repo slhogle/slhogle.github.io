@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nucleotide content of 1st and 2nd positions &#8211; Shane Hogle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Get the average nucleotide content of the first and second position in a .fastq file">
+    <meta name="author" content="Shane Hogle">
+    <meta name="keywords" content="bioinformatics_notebook">
+    <link rel="canonical" href="//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Nucleotide content of 1st and 2nd positions">
+    <meta property="og:description" content="Microbes + Biogeochemistry">
+    <meta property="og:url" content="//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/">
+    <meta property="og:site_name" content="Shane Hogle">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Shane Hogle</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+<a href="/publications/">Publications</a>
+<a href="/projects/">Projects</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Nucleotide content of 1st and 2nd positions</h1>
+  <span class="post-meta">Apr 15, 2014</span><br>
+  
+  <span class="post-meta small">1 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:</p>
+
+<div class="highlight"><pre><code class="bash">sudo gem install bio-faster
+sudo gem update bio</code></pre></div>
+
+<p>You can use input as a gnu zipped file. Call it like</p>
+
+<div class="highlight"><pre><code class="bash">zcat test.fastq.gz <span class="p">|</span> ruby fastq_reader.rb</code></pre></div>
+
+<p>Now for the script.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="nb">require</span> <span class="s1">&#39;bio&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;bio-faster&#39;</span>
+<span class="kp">include</span> <span class="no">Bio</span>
+<span class="n">ary_bp1</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+<span class="n">ary_bp2</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+<span class="n">counts_bp1</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">counts_bp2</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fastq</span> <span class="o">=</span> <span class="no">Bio</span><span class="o">::</span><span class="no">Faster</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:stdin</span><span class="p">)</span> <span class="c1"># if stdin then you can pipe output from zcat -ex) zcat test.fastq.gz | ruby fastq_reader.rb</span>
+<span class="n">fastq</span><span class="o">.</span><span class="n">each_record</span> <span class="k">do</span> <span class="o">|</span><span class="n">sequence_header</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">quality</span><span class="o">|</span>
+  <span class="n">seq</span> <span class="o">=</span> <span class="no">Bio</span><span class="o">::</span><span class="no">Sequence</span><span class="o">.</span><span class="n">auto</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="n">ary_bp1</span> <span class="o">&lt;&lt;</span> <span class="n">sequence</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+  <span class="n">ary_bp2</span> <span class="o">&lt;&lt;</span> <span class="n">sequence</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="k">end</span>
+<span class="n">ary_bp1</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">base</span><span class="o">|</span> <span class="n">counts_bp1</span><span class="o">[</span><span class="n">base</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="n">ary_bp2</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">base</span><span class="o">|</span> <span class="n">counts_bp2</span><span class="o">[</span><span class="n">base</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="nb">puts</span> <span class="n">counts_bp1</span>
+<span class="nb">puts</span> <span class="n">counts_bp2</span></code></pre></div>
+
+</article>
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

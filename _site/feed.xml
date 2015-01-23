@@ -1,100 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>shane hogle</title>
-    <description>shane hogle</description>
-    <link>http://slhogle.github.io/</link>
-    <atom:link href="http://slhogle.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <title>Shane Hogle</title>
+    <description>Microbes + Biogeochemistry</description>
+    <link>//</link>
+    <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
     
-      
-        <item>
-          <title>New publication out in Metallomics!</title>
-          <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
-        </item>
-      
+      <item>
+        <title>ASLO 2015 Talk</title>
+        <description>&lt;p&gt;I&amp;rsquo;m presenting about trace metal aquisition in the marine Roseobacter clade on Monday, February 23rd at 09:15.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Title:&lt;/strong&gt; EVOLUTION, ECOLOGY, AND MECHANISMS OF HEME UPTAKE IN THE MARINE ROSEOBACTER LINEAGE&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Abstract:&lt;/strong&gt; The sources, transformations, and ultimate fate of heme and hemoproteins in seawater are poorly understood. The marine Roseobacters, an abundant and cosmopolitan bacterial lineage, are frequently found in environmental niches where heme concentrations are likely to be greatest. Here we show that in the Roseobacter group, heme uptake genes represent the most common strategy for organic-iron acquisition and are highly conserved with respect to synteny, sequence similarity, and transcription factor binding. We also argue that Roseobacters specialized to use heme as an iron source after genome divergence by way of horizontal gene transfer. We show that heme uptake genes of a model Roseobacter, Ruegeria sp. TM1040, are co-transcribed as an operon and are upregulated under iron stress. The insertional inactivation of a predicted TonB dependent outer membrane receptor in the heme uptake operon results in the inability of TM1040 to grow on heme as an iron source. Our results identify and confirm genes responsible for heme uptake in a model Roseobacter strain and highlight heme uptake as the dominant organic-iron uptake pathway within the rest of the lineage.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2015 ASLO Aquatic Sciences Meeting - Grenada, Spain&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 037 THE MOLECULAR ECOLOGY OF METAL-MICROBE INTERACTIONS IN THE OCEAN ENVIRONMENT &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Day:&lt;/strong&gt; Monday 02/23/2015&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Type:&lt;/strong&gt; Oral&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Time:&lt;/strong&gt; 09:15&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Machuca (Floor-2)&lt;/p&gt;
+</description>
+        <pubDate>Wed, 10 Dec 2014 00:00:00 -0800</pubDate>
+        <link>//news/2014/12/10/ASLO-2015/</link>
+        <guid isPermaLink="true">//news/2014/12/10/ASLO-2015/</guid>
+      </item>
     
-      
-        <item>
-          <title>bowtie and samtools</title>
-          <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px groove yellow;</category>
-        </item>
-      
+      <item>
+        <title>New publication</title>
+        <description>&lt;p&gt;I participated in a &lt;a href=&quot;http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2014198a.html&quot;&gt;project&lt;/a&gt; examining the genomes and gene expression of prokaryotic and eukaryptic communities on a transect in the easter subtropical Pacific ocean while collaborating with scientists at the &lt;a href=&quot;http://www.jcvi.org/cms/home/&quot;&gt;J. Craig Venter Institute&lt;/a&gt;. There were a number of scientists from The &lt;a href=&quot;https://scripps.ucsd.edu/&quot;&gt;Scripps Institution of Oceanography&lt;/a&gt; involved as well.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0700</pubDate>
+        <link>//news/2014/10/21/new-publication-out-in-ISMEJ/</link>
+        <guid isPermaLink="true">//news/2014/10/21/new-publication-out-in-ISMEJ/</guid>
+      </item>
     
-      
-        <item>
-          <title>Process substitution in Bash shell</title>
-          <pubDate>Wed, 16 Apr 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px dotted red;</category>
-        </item>
-      
+      <item>
+        <title>Goldschmidt 2014 Poster</title>
+        <description>&lt;p&gt;I&amp;rsquo;m presenting a poster on Wednesday June 11th from 14:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/MECHANISMS_OF_TRACE_METAL_ASSIMILATION_IN_MARINE_ROSEOBACTERS/1045578&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Poster Title:&lt;/strong&gt; MECHANISMS OF TRACE METAL ASSIMILATION IN MARINE ROSEOBACTERS&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Abstract:&lt;/strong&gt; In the marine environment, Mn, Fe, Co, Ni, Cu, and Zn are arguably the most important bioactive trace metals. The are present as cofactors in enzymes, such as those involved in nitrate assimilation, and thus can indirectly influence the cycling of macronutrients in marine systems. The Roseobacter clade is an abundant group of marine bacteria with a global distribution. They have been isolated from diverse environments and appear to be well adapted to dynamic conditions and changing nutrient availability. The Roseobacter clade has been shown to be influential in the marine carbon, nitrogen, and sulfur cycles, but little is known as to how they influence the cyling of trace metals. Here we present case studies from bioinformatic genome mining and genetic analyses that point to molecular mechanisms of how the Roseobacter clade might influence the cycling of metals in their environments. We surveyed 42 marine Roseobacter genomes for the presence of uptake systemsfor oxidized, reduced, and chelated metal species. Systems for theacquisition of inorganic Mn, Fe, Co, Ni, Cu, and Zn were identified using sequence homology searches. Specific metal-chelates were assigned to predicted transporters and related components using sequence homology searches, genome neighborhood analysis, and Markov sequence clustering. We also report an unexpected putative role for tripartite ATP-independent periplasmic transporters in assimilation of metal chelates, particularly siderophores. Further, we describe the functional characterization of an outer membrane receptor required for heme uptake in a particular Roseobacterstrain, Ruegeria sp. TM1040, by insertional inactivation of a predicted TonB dependent transporter.Collectively, these findings refine the our knowledge of the specific metal compounds encountered and potentially utilized by microbes in marine environments.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2014 Goldschmidt Meeting - Sacramento, CA&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Poster Number:&lt;/strong&gt; 236&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 17e: Oceans and Atmosphere: Trace elements, microbes, and biogeochemical cycles in the ocean environment. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Day:&lt;/strong&gt; Wednesday 6/11/2014&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 14:00 - 17:00&lt;/p&gt;
+</description>
+        <pubDate>Thu, 05 Jun 2014 00:00:00 -0700</pubDate>
+        <link>//news/2014/06/05/Goldschmidt-2014-poster/</link>
+        <guid isPermaLink="true">//news/2014/06/05/Goldschmidt-2014-poster/</guid>
+      </item>
     
-      
-        <item>
-          <title>Nucleotide content of first and second position in a fastq formatted file</title>
-          <pubDate>Tue, 15 Apr 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px outset aqua;</category>
-        </item>
-      
+      <item>
+        <title>New publication</title>
+        <description>&lt;p&gt;I recently published a &lt;a href=&quot;http://pubs.rsc.org/en/content/articlelanding/2014/mt/c4mt00031e#!divAbstract&quot;&gt;review article&lt;/a&gt; with &lt;a href=&quot;http://scrippsscholars.ucsd.edu/kbarbeau&quot;&gt;Kathy Barbeau&lt;/a&gt; (my primary adviser) and &lt;a href=&quot;http://www.geomar.de/en/mitarbeiter/fb2/ch/mgledhill/&quot;&gt;Martha Gledhill&lt;/a&gt; about the biogeochemistry of heme in marine systems. Unfortunately, the paper is not in an open access journal. If you don&amp;rsquo;t have access and want to read it, message me for a copy.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 May 2014 00:00:00 -0700</pubDate>
+        <link>//news/2014/05/30/new-publication-out-in-metallomics/</link>
+        <guid isPermaLink="true">//news/2014/05/30/new-publication-out-in-metallomics/</guid>
+      </item>
     
-      
-        <item>
-          <title>Useful Unix Commands for Processing Sequence Files: Part 1</title>
-          <pubDate>Mon, 14 Apr 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
-        </item>
-      
+      <item>
+        <title>Bowtie and Samtools</title>
+        <description>&lt;p&gt;A little out of character for me as I usually work on environmental genomics. I&amp;rsquo;ve been working on RNAseq data from human stem cells subjected to different treatments of WNT signaling proteins. We are interested in looking for differential expression of certain genes under the different treatment conditions. One great tool for doing this is &lt;a href=&quot;http://bowtie-bio.sourceforge.net/index.shtml&quot;&gt;bowtie&lt;/a&gt; or &lt;a href=&quot;http://bowtie-bio.sourceforge.net/bowtie2/index.shtml&quot;&gt;bowtie2&lt;/a&gt;, which is a very fast and efficient short read aligner. In my case I am using bowtie (not bowtie2) to map the mRNA sequences to the human genome (version hg19). There are a variety of reasons to choose between bowtie and bowtie2 that I won&amp;rsquo;t go into here. By using a series of other tools in the bowtie family, the resulting mapping are compared to one another and we can search for differences between locations on the genome where mRNA sequences mapped.&lt;/p&gt;
+
+&lt;p&gt;Right now I&amp;rsquo;ll walk you through some commands I&amp;rsquo;ve used to take a bunch of sequence files and a reference database of the human genome and spit out coordinates of the human genome where these sequences mapped.&lt;/p&gt;
+
+&lt;p&gt;First off, Bowtie needs something called a genome index. You can either build this yourself or there are lots of prebuilt indexes &lt;a href=&quot;http://support.illumina.com/sequencing/sequencing_software/igenome.html&quot;&gt;here&lt;/a&gt;. Say you&amp;rsquo;re working on a genome that doesn&amp;rsquo;t have a prebuilt index. You can make one yourself just from the fasta files of that genome. For example&amp;hellip;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;./bowtie-build &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;* &amp;lt;reference_in&amp;gt; &amp;lt;ebwt_base&amp;gt;
+./bowtie-build -f chr1.fa,chr2.fa,chr3.fa,chr4.fa,chr5.fa... hg19&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;OK so now you&amp;rsquo;ve got your Bowtie-formatted genome index. In my case it is called &amp;ldquo;hg19.&amp;rdquo; You can map a variety of sequence file types to your genome index and these file types are indicated by different flags. In my case, I have a file of what&amp;rsquo;s called &amp;ldquo;raw sequences&amp;rdquo; this is one sequence per line with no header of any kind per sequence. To tell bowtie what kinds of sequences you need to use different flags: -r is for raw sequences, -f is for old fashioned fasta files, -q is for fastq files. If your sequences are raw or fasta formatted, bowtie gives them a default Phred quality score of 40.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw ~/FILEPATH/MYmRNAOUTPUT.sam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The -r flag tells bowtie to expect raw sequences, the -n flag denotes the maximum number of mismatches permitted in the &amp;ldquo;seed,&amp;rdquo; the -l flag denotes the &amp;ldquo;seed length&amp;rdquo;; i.e., the number of bases on the high-quality end of the read to which the -n ceiling applies, and the the -m flag tells bowtie to suppress all alignments for a particular read if more than X reportable alignments exist for it. The -S flag tells bowtie to write the output in SAM format. In our case we want bowtie to write out all alignments using a seed length of 50 bases allowing no more than 3 mismatches in those 50 bases, and if a sequence maps to more than one place in the reference genome under those -n and -l conditions to not report any of those alignments. In my experience these are good mapping conditions to start with.&lt;/p&gt;
+
+&lt;p&gt;SAM files are BIG. If you find yourself doing many of these kinds of bowtie analyses you will quickly see that the SAM files start to take up many gigabytes of disk space. A solution to the SAM size issue is to convert the SAM output from bowtie to BAM format. BAM is a binary format that takes up less space than the text content of SAM and can be passed to downstream tools later. Bowtie does not write to BAM format so you need to use SAMtools to do this. An efficient method that I like to use to get BAM format in one step is to pipe the output of bowtie to &lt;a href=&quot;http://samtools.sourceforge.net/&quot;&gt;Samtools&lt;/a&gt; like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; samtools view -bSF4 - &amp;gt; ~/FILEPATH/MYmRNAOUTPUT.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The first part of this is the same as above but omitting the output file name. We then use a pipe to send the output to samtools. We use the &amp;ldquo;view&amp;rdquo; mode to extract/print all or sub alignments in SAM or BAM format. The flags -bSF4 mean to output in bam format while expecting input to be in SAM format, while also omitting any alignments that have the &amp;ldquo;4&amp;rdquo; flag which indicates that the query sequence itself is unmapped to the reference genome. This output format is useful so the downstream analyses don&amp;rsquo;t get clogged up with unmapped reads.&lt;/p&gt;
+
+&lt;p&gt;Next post I&amp;rsquo;ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</guid>
+      </item>
     
-      
-        <item>
-          <title>Output sequences from a fasta formatted file that match a list of sequence IDs</title>
-          <pubDate>Tue, 11 Mar 2014 00:00:00 -0700</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px groove yellow;</category>
-        </item>
-      
+      <item>
+        <title>Process substitution with bash</title>
+        <description>&lt;p&gt;From &lt;a href=&quot;http://en.wikipedia.org/wiki/Process_substitution&quot;&gt;Wikipedia&lt;/a&gt; - &lt;em&gt;&amp;ldquo;Process substitution is a form of inter-process communication that allows the input or output of a command to appear as a file. The command is substituted in-line, where a file name would normally occur, by the command shell. This allows programs that normally only accept files to directly read from or write to another program.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Say you want to use join to find and count the differences in two files each containing lines of biological sequence but those files are not sorted.&lt;/p&gt;
+
+&lt;p&gt;You could do&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
+sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v 2 - seqfile1.sorted &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2&lt;/p&gt;
+
+&lt;p&gt;One can also do this using process substitution&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 16 Apr 2014 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</guid>
+      </item>
     
-      
-        <item>
-          <title>Poster at Ocean Sciences Meeting 2014</title>
-          <pubDate>Fri, 21 Feb 2014 00:00:00 -0800</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px dotted red;</category>
-        </item>
-      
+      <item>
+        <title>Nucleotide content of 1st and 2nd positions</title>
+        <description>&lt;p&gt;So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo gem install bio-faster
+sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can use input as a gnu zipped file. Call it like&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;zcat test.fastq.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ruby fastq_reader.rb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now for the script.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio-faster&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Faster&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# if stdin then you can pipe output from zcat -ex) zcat test.fastq.gz | ruby fastq_reader.rb&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each_record&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quality&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 15 Apr 2014 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</guid>
+      </item>
     
-      
-        <item>
-          <title>Search a hash with the entries from an array</title>
-          <pubDate>Tue, 18 Feb 2014 00:00:00 -0800</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; padding: 20px 30px; border: 2px outset aqua;</category>
-        </item>
-      
+      <item>
+        <title>Unix for fasta</title>
+        <description>&lt;p&gt;The syntax here is using the Bash shell in unix.&lt;/p&gt;
+
+&lt;p&gt;The following command counts the number of sequences in a fasta formatted file. The &amp;ldquo;|&amp;rdquo; operator is a pipe. This lets you stream the output from one command into another.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Extract position 2 through 8 on all sequences in a fasta file. The -v option for grep is the inversion option. This tells grep to only consider lines that are not fasta headers.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Counts how many unique text strings are in a file.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Exports counts of unique occurences in YOURFILE_pos2-8.fasta&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character &amp;ldquo;/t&amp;rdquo; It then will sort this in decreasing numerical order.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/^\s\+//&amp;#39;&lt;/span&gt; YOURFILE_unique_counts.output &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/\s\+/\t/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo;, &amp;ldquo;cat&amp;rdquo;, &amp;ldquo;sort&amp;rdquo;, and &amp;ldquo;uniq -c&amp;rdquo; to extract microRNA sequences from &lt;a href=&quot;./v19.fa&quot;&gt;mirbase Version 19&lt;/a&gt; and &lt;a href=&quot;./v20.fa&quot;&gt;Version 20&lt;/a&gt; and determine which sequences are in both versions. How many are shared in both versions?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v19.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v19_uniq.out
+grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v20.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v20_uniq.out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The &amp;ldquo;&amp;gt;&amp;rdquo; operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c &amp;ldquo;2&amp;rdquo; is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo; and &amp;ldquo;sort&amp;rdquo; to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use &amp;ldquo;join&amp;rdquo; to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;join -v 1 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
+join -v 2 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were &amp;ldquo;retired&amp;rdquo; from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the &amp;ldquo;unmatchable&amp;rdquo; ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 14 Apr 2014 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2014/04/14/unix-for-fasta/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/14/unix-for-fasta/</guid>
+      </item>
     
-      
-        <item>
-          <title>Bioinformatics Notebook</title>
-          <pubDate>Tue, 18 Feb 2014 00:00:00 -0800</pubDate>
-          <link></link>
-          <guid isPermaLink="true"></guid>
-          <category>color: inherit; display: block; margin-bottom: 10px; text-align: left; font-size: 18px; box-shadow: 0 0 0 1px white, 0 0 0 2px magenta; padding: 20px 30px; border: 1px solid red;</category>
-        </item>
-      
+      <item>
+        <title>Fasta extracta</title>
+        <description>&lt;p&gt;You need bioruby for this one. &lt;a href=&quot;http://bioruby.org/&quot;&gt;Bioruby&lt;/a&gt; is quite easy to install on unix systems. I use Ubuntu&amp;hellip; The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;_fasta_extracted&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FlatFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FastaFormat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;gt; &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 11 Mar 2014 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2014/03/11/fasta-extracta/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2014/03/11/fasta-extracta/</guid>
+      </item>
+    
+      <item>
+        <title>OSM 2014 Poster</title>
+        <description>&lt;p&gt;Hi friends,&lt;/p&gt;
+
+&lt;p&gt;Come hang out with me at my poster during the 2014 Ocean Sciences meeting in Honolulu, Hawaii. I&amp;rsquo;ll be standing by my poster on Monday the 24th from 16:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/AN_OUTER_MEMBRANE_RECEPTOR_CRITICAL_FOR_HEME_UTILIZATION_IN_A_MARINE_ROSEOBACTER/941097&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://www.eposters.net/poster/an-outer-membrane-receptor-critical-for-heme-utilization-in-a-marine-roseobacter&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2014 Ocean Sciences Meeting - Honolulu, Hawaii&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Poster Number:&lt;/strong&gt; 554&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Poster Title:&lt;/strong&gt; AN OUTER MEMBRANE RECEPTOR CRITICAL FOR HEME UTILIZATION IN A MARINE ROSEOBACTER&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 151: Microbial growth factors in the sea: Characterizing their importance at the molecular to ecosystem level&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Day:&lt;/strong&gt; Monday 2/24/2014&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 16:00 - 17:00&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Presentation Location:&lt;/strong&gt; Hawaii Convention Center&lt;/p&gt;
+</description>
+        <pubDate>Fri, 21 Feb 2014 00:00:00 -0800</pubDate>
+        <link>//news/2014/02/21/OSM-2014-poster/</link>
+        <guid isPermaLink="true">//news/2014/02/21/OSM-2014-poster/</guid>
+      </item>
     
   </channel>
 </rss>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fasta extracta &#8211; Shane Hogle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Output sequences from a fasta formatted file that match a list of sequence ids">
+    <meta name="author" content="Shane Hogle">
+    <meta name="keywords" content="bioinformatics_notebook">
+    <link rel="canonical" href="//bioinformatics_notebook/2014/03/11/fasta-extracta/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Fasta extracta">
+    <meta property="og:description" content="Microbes + Biogeochemistry">
+    <meta property="og:url" content="//bioinformatics_notebook/2014/03/11/fasta-extracta/">
+    <meta property="og:site_name" content="Shane Hogle">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Shane Hogle</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+<a href="/publications/">Publications</a>
+<a href="/projects/">Projects</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Fasta extracta</h1>
+  <span class="post-meta">Mar 11, 2014</span><br>
+  
+  <span class="post-meta small">1 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>You need bioruby for this one. <a href="http://bioruby.org/">Bioruby</a> is quite easy to install on unix systems. I use Ubuntu&hellip; The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="nb">require</span> <span class="s1">&#39;bio&#39;</span>
+<span class="kp">include</span> <span class="no">Bio</span>
+<span class="n">id_file</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="n">seq_file</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+<span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">id_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">ids</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="o">.</span><span class="n">chop</span> <span class="p">}</span>
+<span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">id_file</span><span class="o">+</span><span class="s1">&#39;_fasta_extracted&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="no">Bio</span><span class="o">::</span><span class="no">FlatFile</span><span class="o">.</span><span class="n">auto</span><span class="p">(</span><span class="n">seq_file</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+    <span class="n">ids</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">definition</span> <span class="o">=~</span> <span class="sr">/</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="sr">/</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="no">Bio</span><span class="o">::</span><span class="no">FastaFormat</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;&gt; &#39;</span><span class="o">+</span><span class="n">item</span><span class="o">.</span><span class="n">definition</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="n">seq</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+</article>
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
