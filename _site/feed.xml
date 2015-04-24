@@ -7,6 +7,42 @@
     <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Collecting top hits</title>
+        <description>&lt;p&gt;Many times in bioinformatics you&amp;rsquo;ll have searched many sequences against a database (for example hmmscan versus pfamA). Say you are interested in only retaining the highest scoring PFAM hits for each of your query sequences. Depending on your cutoff score and the number of expected protein domains, each sequence may have gotten hits to multiple different PFAMs. For example, feoB transporters have GTPase-like binding domains, and it is easy to mis-annotate other sequences with GTPase domains as feoB proteins. &lt;/p&gt;
+
+&lt;p&gt;To reduce a hmmscan output file to only the best scoring PFAMs you could use:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$3]++&amp;#39;&lt;/span&gt; MYOUTFILE.pfam  &amp;gt; MYBESTHITS.pfam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and you would get only the lines containing the PFAMs with highest full-sequence score.&lt;/p&gt;
+
+&lt;p&gt;This code takes advantage of the fact that the output of hmmscan is already ordered with the highest scoring domain first for each sequence. In short, after it sees the first unique &amp;ldquo;query name&amp;rdquo; entry it removes all subsequent lines that have that &amp;ldquo;query name&amp;rdquo; entry then moves on to the next. If the sequences weren&amp;rsquo;t sorted with highest scoring PFAMs appearing first this wouldn&amp;rsquo;t give you the top hits - it would just de-duplicate your file. To make this work on other kinds of files you would need to sort them based on whatever value you are interested in.&lt;/p&gt;
+
+&lt;p&gt;For example you could write:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort -rnk3 FILE &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$2]++&amp;#39;&lt;/span&gt; &amp;gt; OUT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This sorts FILE from highest to lowest (-r) based on column 3 (-k3) and orders it based on string numeric values (-n) then performs awk command on the output.&lt;/p&gt;
+
+&lt;p&gt;I learned this little trick off stackoverflow and it is &lt;a href=&quot;http://stackoverflow.com/questions/10842118/explain-this-duplicate-line-removing-order-retaining-one-line-awk-command&quot;&gt;explained there&lt;/a&gt; much betther than I can do, but I&amp;rsquo;ll take a crack at it anyways&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Basically, what it is doing with our hmmscan output is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read the current line as input&lt;/li&gt;
+&lt;li&gt;Index array x with the entry in the &amp;ldquo;query name&amp;rdquo; field. If it doesnt already exist create it. Arrays in awk are associative so they are like dictionaries in python.&lt;/li&gt;
+&lt;li&gt;Increment value of x[$3] but return the prior value, which will be zero if the &amp;ldquo;query name&amp;rdquo; entry has not been seen yet. This is called a postfix increment and is seen for example in C programming.&lt;/li&gt;
+&lt;li&gt;Negate the resulting operator so its value is TRUE when x[$3] is zero causing awk to perform the default function which is print the line&lt;/li&gt;
+&lt;li&gt;Actually increment so x[$3] is no longer zero. The next time the same entry in the &amp;ldquo;query name&amp;rdquo; field is seen, the value of x[$3] = 1.&lt;/li&gt;
+&lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 23 Apr 2015 00:00:00 -0700</pubDate>
+        <link>//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</link>
+        <guid isPermaLink="true">//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</guid>
+      </item>
+    
+      <item>
         <title>ASLO 2015 Talk</title>
         <description>&lt;p&gt;I&amp;rsquo;m presenting about trace metal aquisition in the marine Roseobacter clade on Monday, February 23rd at 09:15.&lt;/p&gt;
 
@@ -233,31 +269,6 @@ join -v 2 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&g
         <pubDate>Tue, 11 Mar 2014 00:00:00 -0700</pubDate>
         <link>//bioinformatics_notebook/2014/03/11/fasta-extracta/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/03/11/fasta-extracta/</guid>
-      </item>
-    
-      <item>
-        <title>OSM 2014 Poster</title>
-        <description>&lt;p&gt;Hi friends,&lt;/p&gt;
-
-&lt;p&gt;Come hang out with me at my poster during the 2014 Ocean Sciences meeting in Honolulu, Hawaii. I&amp;rsquo;ll be standing by my poster on Monday the 24th from 16:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/AN_OUTER_MEMBRANE_RECEPTOR_CRITICAL_FOR_HEME_UTILIZATION_IN_A_MARINE_ROSEOBACTER/941097&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://www.eposters.net/poster/an-outer-membrane-receptor-critical-for-heme-utilization-in-a-marine-roseobacter&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2014 Ocean Sciences Meeting - Honolulu, Hawaii&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Poster Number:&lt;/strong&gt; 554&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Poster Title:&lt;/strong&gt; AN OUTER MEMBRANE RECEPTOR CRITICAL FOR HEME UTILIZATION IN A MARINE ROSEOBACTER&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 151: Microbial growth factors in the sea: Characterizing their importance at the molecular to ecosystem level&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Day:&lt;/strong&gt; Monday 2/24/2014&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 16:00 - 17:00&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Location:&lt;/strong&gt; Hawaii Convention Center&lt;/p&gt;
-</description>
-        <pubDate>Fri, 21 Feb 2014 00:00:00 -0800</pubDate>
-        <link>//news/2014/02/21/OSM-2014-poster/</link>
-        <guid isPermaLink="true">//news/2014/02/21/OSM-2014-poster/</guid>
       </item>
     
   </channel>
