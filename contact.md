@@ -1,8 +1,10 @@
 ---
 layout: page
-title:
+title: 
 permalink: /contact/
 ---
+### Get in touch
+
 __Physical Address:__
 Shane Hogle
 Geosciences Research Division
@@ -21,6 +23,7 @@ __More about me and ways to connect:__
 
 * [Twitter](https://twitter.com/@slhogle)
 * [Impact Story](https://impactstory.org/ShaneHogle)
+* [ResearchGate](https://researchgate.net/profile/Shane_Hogle)
 * [Curriculum vitae (pdf)](/CV/ShaneHogleCV.pdf)
 * [Google Scholar](http://scholar.google.com/citations?user=WKVJzbgAAAAJ&hl=en&oi=ao)
 * [Figshare](http://figshare.com/authors/Shane_Hogle/525595)

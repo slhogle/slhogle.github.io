@@ -69,14 +69,14 @@
 
 <p>You could do</p>
 
-<div class="highlight"><pre><code class="bash">sort seqfile1 &gt; seqfile1.sorted
-sort seqfile2 <span class="p">|</span> join -v 2 - seqfile1.sorted <span class="p">|</span> wc -l</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sort seqfile1 &gt; seqfile1.sorted
+sort seqfile2 <span class="p">|</span> join -v <span class="m">2</span> - seqfile1.sorted <span class="p">|</span> wc -l</code></pre></div>
 
 <p>This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2</p>
 
 <p>One can also do this using process substitution</p>
 
-<div class="highlight"><pre><code class="bash">join -v 2 &lt;<span class="o">(</span>sort seqfile1<span class="o">)</span> &lt;<span class="o">(</span>sort seqfile2<span class="o">)</span>  <span class="p">|</span> wc -l</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">join -v <span class="m">2</span> &lt;<span class="o">(</span>sort seqfile1<span class="o">)</span> &lt;<span class="o">(</span>sort seqfile2<span class="o">)</span>  <span class="p">|</span> wc -l</code></pre></div>
 
 </article>
 

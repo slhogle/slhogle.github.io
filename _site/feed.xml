@@ -12,7 +12,7 @@
 
 &lt;p&gt;To reduce a hmmscan output file to only the best scoring PFAMs you could use:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$3]++&amp;#39;&lt;/span&gt; MYOUTFILE.pfam  &amp;gt; MYBESTHITS.pfam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$3]++&amp;#39;&lt;/span&gt; MYOUTFILE.pfam  &amp;gt; MYBESTHITS.pfam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;and you would get only the lines containing the PFAMs with highest full-sequence score.&lt;/p&gt;
 
@@ -20,7 +20,7 @@
 
 &lt;p&gt;For example you could write:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort -rnk3 FILE &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$2]++&amp;#39;&lt;/span&gt; &amp;gt; OUT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -rnk3 FILE &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$2]++&amp;#39;&lt;/span&gt; &amp;gt; OUT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This sorts FILE from highest to lowest (-r) based on column 3 (-k3) and orders it based on string numeric values (-n) then performs awk command on the output.&lt;/p&gt;
 
@@ -116,18 +116,18 @@
 
 &lt;p&gt;First off, Bowtie needs something called a genome index. You can either build this yourself or there are lots of prebuilt indexes &lt;a href=&quot;http://support.illumina.com/sequencing/sequencing_software/igenome.html&quot;&gt;here&lt;/a&gt;. Say you&amp;rsquo;re working on a genome that doesn&amp;rsquo;t have a prebuilt index. You can make one yourself just from the fasta files of that genome. For example&amp;hellip;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;./bowtie-build &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;* &amp;lt;reference_in&amp;gt; &amp;lt;ebwt_base&amp;gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./bowtie-build &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;* &amp;lt;reference_in&amp;gt; &amp;lt;ebwt_base&amp;gt;
 ./bowtie-build -f chr1.fa,chr2.fa,chr3.fa,chr4.fa,chr5.fa... hg19&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;OK so now you&amp;rsquo;ve got your Bowtie-formatted genome index. In my case it is called &amp;ldquo;hg19.&amp;rdquo; You can map a variety of sequence file types to your genome index and these file types are indicated by different flags. In my case, I have a file of what&amp;rsquo;s called &amp;ldquo;raw sequences&amp;rdquo; this is one sequence per line with no header of any kind per sequence. To tell bowtie what kinds of sequences you need to use different flags: -r is for raw sequences, -f is for old fashioned fasta files, -q is for fastq files. If your sequences are raw or fasta formatted, bowtie gives them a default Phred quality score of 40.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw ~/FILEPATH/MYmRNAOUTPUT.sam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; -l &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt; -m &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw ~/FILEPATH/MYmRNAOUTPUT.sam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The -r flag tells bowtie to expect raw sequences, the -n flag denotes the maximum number of mismatches permitted in the &amp;ldquo;seed,&amp;rdquo; the -l flag denotes the &amp;ldquo;seed length&amp;rdquo;; i.e., the number of bases on the high-quality end of the read to which the -n ceiling applies, and the the -m flag tells bowtie to suppress all alignments for a particular read if more than X reportable alignments exist for it. The -S flag tells bowtie to write the output in SAM format. In our case we want bowtie to write out all alignments using a seed length of 50 bases allowing no more than 3 mismatches in those 50 bases, and if a sequence maps to more than one place in the reference genome under those -n and -l conditions to not report any of those alignments. In my experience these are good mapping conditions to start with.&lt;/p&gt;
 
 &lt;p&gt;SAM files are BIG. If you find yourself doing many of these kinds of bowtie analyses you will quickly see that the SAM files start to take up many gigabytes of disk space. A solution to the SAM size issue is to convert the SAM output from bowtie to BAM format. BAM is a binary format that takes up less space than the text content of SAM and can be passed to downstream tools later. Bowtie does not write to BAM format so you need to use SAMtools to do this. An efficient method that I like to use to get BAM format in one step is to pipe the output of bowtie to &lt;a href=&quot;http://samtools.sourceforge.net/&quot;&gt;Samtools&lt;/a&gt; like so:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; samtools view -bSF4 - &amp;gt; ~/FILEPATH/MYmRNAOUTPUT.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; -l &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt; -m &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; samtools view -bSF4 - &amp;gt; ~/FILEPATH/MYmRNAOUTPUT.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The first part of this is the same as above but omitting the output file name. We then use a pipe to send the output to samtools. We use the &amp;ldquo;view&amp;rdquo; mode to extract/print all or sub alignments in SAM or BAM format. The flags -bSF4 mean to output in bam format while expecting input to be in SAM format, while also omitting any alignments that have the &amp;ldquo;4&amp;rdquo; flag which indicates that the query sequence itself is unmapped to the reference genome. This output format is useful so the downstream analyses don&amp;rsquo;t get clogged up with unmapped reads.&lt;/p&gt;
 
@@ -146,14 +146,14 @@
 
 &lt;p&gt;You could do&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
-sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v 2 - seqfile1.sorted &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
+sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; - seqfile1.sorted &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2&lt;/p&gt;
 
 &lt;p&gt;One can also do this using process substitution&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Wed, 16 Apr 2014 00:00:00 -0700</pubDate>
         <link>//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</link>
@@ -164,16 +164,16 @@ sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v 2 - seqfile
         <title>Nucleotide content of 1st and 2nd positions</title>
         <description>&lt;p&gt;So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo gem install bio-faster
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo gem install bio-faster
 sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can use input as a gnu zipped file. Call it like&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;zcat test.fastq.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ruby fastq_reader.rb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;zcat test.fastq.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ruby fastq_reader.rb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now for the script.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio-faster&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
@@ -203,39 +203,39 @@ sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The following command counts the number of sequences in a fasta formatted file. The &amp;ldquo;|&amp;rdquo; operator is a pipe. This lets you stream the output from one command into another.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Extract position 2 through 8 on all sequences in a fasta file. The -v option for grep is the inversion option. This tells grep to only consider lines that are not fasta headers.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Counts how many unique text strings are in a file.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Exports counts of unique occurences in YOURFILE_pos2-8.fasta&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character &amp;ldquo;/t&amp;rdquo; It then will sort this in decreasing numerical order.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/^\s\+//&amp;#39;&lt;/span&gt; YOURFILE_unique_counts.output &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/\s\+/\t/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/^\s\+//&amp;#39;&lt;/span&gt; YOURFILE_unique_counts.output &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/\s\+/\t/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo;, &amp;ldquo;cat&amp;rdquo;, &amp;ldquo;sort&amp;rdquo;, and &amp;ldquo;uniq -c&amp;rdquo; to extract microRNA sequences from &lt;a href=&quot;./v19.fa&quot;&gt;mirbase Version 19&lt;/a&gt; and &lt;a href=&quot;./v20.fa&quot;&gt;Version 20&lt;/a&gt; and determine which sequences are in both versions. How many are shared in both versions?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v19.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v19_uniq.out
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v19.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v19_uniq.out
 grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v20.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v20_uniq.out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The &amp;ldquo;&amp;gt;&amp;rdquo; operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c &amp;ldquo;2&amp;rdquo; is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo; and &amp;ldquo;sort&amp;rdquo; to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use &amp;ldquo;join&amp;rdquo; to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;join -v 1 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
-join -v 2 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
+join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were &amp;ldquo;retired&amp;rdquo; from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the &amp;ldquo;unmatchable&amp;rdquo; ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
 </description>
@@ -248,7 +248,7 @@ join -v 2 v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&g
         <title>Fasta extracta</title>
         <description>&lt;p&gt;You need bioruby for this one. &lt;a href=&quot;http://bioruby.org/&quot;&gt;Bioruby&lt;/a&gt; is quite easy to install on unix systems. I use Ubuntu&amp;hellip; The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;

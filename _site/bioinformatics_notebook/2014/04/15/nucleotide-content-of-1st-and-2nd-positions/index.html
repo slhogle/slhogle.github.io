@@ -63,16 +63,16 @@
 <article class="post-content">
   <p>So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:</p>
 
-<div class="highlight"><pre><code class="bash">sudo gem install bio-faster
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem install bio-faster
 sudo gem update bio</code></pre></div>
 
 <p>You can use input as a gnu zipped file. Call it like</p>
 
-<div class="highlight"><pre><code class="bash">zcat test.fastq.gz <span class="p">|</span> ruby fastq_reader.rb</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">zcat test.fastq.gz <span class="p">|</span> ruby fastq_reader.rb</code></pre></div>
 
 <p>Now for the script.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
 <span class="nb">require</span> <span class="s1">&#39;bio&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;bio-faster&#39;</span>
 <span class="kp">include</span> <span class="no">Bio</span>

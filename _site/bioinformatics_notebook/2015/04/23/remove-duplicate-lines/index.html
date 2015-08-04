@@ -65,7 +65,7 @@
 
 <p>To reduce a hmmscan output file to only the best scoring PFAMs you could use:</p>
 
-<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;!x[$3]++&#39;</span> MYOUTFILE.pfam  &gt; MYBESTHITS.pfam</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="s1">&#39;!x[$3]++&#39;</span> MYOUTFILE.pfam  &gt; MYBESTHITS.pfam</code></pre></div>
 
 <p>and you would get only the lines containing the PFAMs with highest full-sequence score.</p>
 
@@ -73,7 +73,7 @@
 
 <p>For example you could write:</p>
 
-<div class="highlight"><pre><code class="bash">sort -rnk3 FILE <span class="p">|</span> awk <span class="s1">&#39;!x[$2]++&#39;</span> &gt; OUT</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sort -rnk3 FILE <span class="p">|</span> awk <span class="s1">&#39;!x[$2]++&#39;</span> &gt; OUT</code></pre></div>
 
 <p>This sorts FILE from highest to lowest (-r) based on column 3 (-k3) and orders it based on string numeric values (-n) then performs awk command on the output.</p>
 
