@@ -8,21 +8,16 @@ permalink: /projects/
 
 Here's where I'll post code, images, and supplementary data for the projects I'm working on
 
-#### Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies
+[*Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies*](/TM_roseo_sar)
 
-This work is yet to appear in print.
+* This work is yet to appear in print.
 
-You can download the datasets used in these analyses from [here](/files/roseo_sar11_datatables.tar.gz) or here
+[*Linking phytoplankton and bacterioplankton community dynamics to iron-binding ligand production in a microcosm experiment*](/CCE12_ligand_microbes)
 
-* [Fisher's exact test](/R_markdown/Hogle_etal_2015_fisher.html) for genome neighborhood enrichment
+* This work is yet to appear in print.
 
-* [Ordination](/R_markdown/Hogle_etal_2015_ordination.html) of genomes based on transporter abundance and diversity
+*Converging physiological, geochemical, and molecular evidence for phytoplankton iron-limitation in the California Current Ecosystem*
 
-* [Correlation analysis](/R_markdown/Hogle_etal_2015_correlation.html) between transporters and genome features
+* This work is yet to appear in print. More soon!
 
-#### Fe-binding ligand production and microbial community composition in microcosm incubations
-This work is yet to appear in print.
 
-You can download the datasets used in these analyses from [here](/files/Fe_incubation_community_data.tar.gz) or here
-
-* [Analyses](/R_markdown/CCE12_community_data.html) used to examine microbial community composition in micronutrient and macronutrient ammend microcosm incubations
