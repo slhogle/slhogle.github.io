@@ -37,7 +37,7 @@
       <nav class="site-nav right">
         <a href="/about/">About</a>
 <a href="/publications/">Publications</a>
-<a href="/projects/">Projects</a>
+<a href="/research/">Research</a>
 <a href="/contact/">Contact</a>
 
       </nav>
@@ -55,24 +55,40 @@
     <h1 class="h2"></h1>
   </header>
   <article class="post-content">
-  <p><img src="/images/CCA_roseo_sar11.png" alt="desk">
-<br></p>
+  <p><img src="/images/CCA_roseo_sar11.png" alt="desk"></p>
 
-<h4 id="trace-metal-acquisition-by-heterotrophic-bacterioplankton-with-contrasting-trophic-strategies">Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies</h4>
+<p><strong>Supplemental Material and Datasets Reference:</strong></p>
 
-<p><em>This work is yet to appear in print</em>
-<br><br>
-You can download the datasets used in these analyses from <a href="/files/roseo_sar11_datatables.tar.gz">here</a> or <a href="http://dx.doi.org/10.6084/m9.figshare.1533034">here</a></p>
+<hr>
+
+<p>Hogle SL, Thrash JC, Dupont CL, Barbeau KA. <em>Accepted.</em> Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. <em>Appl. Environ. Microbiol.</em></p>
+
+<hr>
+
+<p><br></p>
+
+<p>You can download the datasets used in these analyses from <a href="/files/roseo_sar11_datatables.tar.gz">here</a> or <a href="http://dx.doi.org/10.6084/m9.figshare.1533034">here</a></p>
 
 <iframe src="http://wl.figshare.com/articles/1533034/embed?show_title=1" width="568" height="485" frameborder="0"></iframe>
 
 <p><br><br>
-<em>R markdown for &ldquo;Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies&rdquo;</em></p>
+<strong>Python implementation of the protein identification pipeline used in the paper</strong></p>
 
 <ul>
-<li><p><a href="/R_markdown/Hogle_etal_2015_fisher.html">Fisher&rsquo;s exact test</a> for genome neighborhood enrichment</p></li>
-<li><p><a href="/R_markdown/Hogle_etal_2015_ordination.html">Ordination</a> of genomes based on transporter abundance and diversity</p></li>
-<li><p><a href="/R_markdown/Hogle_etal_2015_correlation.html">Correlation analysis</a> between transporters and genome features</p></li>
+<li><a href="/1_makeprofiledb">1. Make rpsblast databases</a></li>
+<li><a href="/2_rpsblast_tab">2. rpsblast search - tab output</a></li>
+<li><a href="/3_rpsblast_tab_tophits">3. Parse rpsblast tab output for top hits</a></li>
+<li><a href="/4_rpsblast_xml">4. rpsblast top hits against NCBI CDD</a></li>
+<li><a href="/5_rpsbproc">5. Parse xml rpsblast output to reduced form</a></li>
+<li><a href="/6_rpsbproc_parse">6. Parse and convert to wide tabular format</a></li>
+</ul>
+
+<p><strong>Multivariate statistical analyses from the paper (in R)</strong></p>
+
+<ul>
+<li><a href="/R_markdown/Hogle_etal_2015_fisher.html">Fisher&rsquo;s exact test</a> for genome neighborhood enrichment</li>
+<li><a href="/R_markdown/Hogle_etal_2015_ordination.html">Ordination</a> of genomes based on transporter abundance and diversity</li>
+<li><a href="/R_markdown/Hogle_etal_2015_correlation.html">Correlation analysis</a> between transporters and genome features</li>
 </ul>
 
   </article>
