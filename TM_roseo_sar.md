@@ -13,7 +13,7 @@ ___
 
 You can download the datasets used in these analyses from [here](/files/roseo_sar11_datatables.tar.gz) or [here](http://dx.doi.org/10.6084/m9.figshare.1533034)
 
-<iframe src="http://wl.figshare.com/articles/1533034/embed?show_title=1" width="568" height="485" frameborder="0"></iframe>
+<iframe src="https://widgets.figshare.com/articles/1533034/embed?show_title=0" width="568" height="351" frameborder="0"></iframe>
 
 <br><br>
 __Python implementation of the protein identification pipeline used in the paper__

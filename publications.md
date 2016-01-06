@@ -16,7 +16,7 @@ permalink: /publications/
 
 #####2016#####
 
-* __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. _Accepted._ Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. _Appl. Environ. Microbiol._ [[Suppl. Material]](/TM_roseo_sar)
+* __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. _Appl. Environ. Microbiol._ 82(5): XX-XX [[LINK]](http://aem.asm.org/content/early/2016/01/04/AEM.03128-15.short?rss=1) [[Suppl. Material]](/TM_roseo_sar)
 
 #####2015#####
 
