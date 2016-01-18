@@ -3,7 +3,7 @@ layout: page
 title: 
 permalink: /research/
 ---
-![desk](/images/marine_snow_heme.png)
+![desk](/images/diatom_diagram.png)
 
 __Microbes are everywhere.__ When most people think of microbes they think of the ones that can make you sick, but microbes are also present in almost every kind of environment on Earth. Basically, scientists find microbes wherever they care to look! Even though microbes are physically very small, the collective activities of microbial communities are incredibly influential on the functioning of earth's overall biosphere. Thus, it's important to study how microbes interact with each other and their environment in order to obtain a clearer picture of how our planet works on a system-wide scale and how it will change in a warming climate.
 
