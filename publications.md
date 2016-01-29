@@ -10,13 +10,13 @@ permalink: /publications/
 
 #####And into the Future...#####
 
-* __Hogle SL__, Bundy RA, Barbeau KA. _In prep._ Linking phytoplankton and bacterioplankton community dynamics to iron-binding ligand production in a microcosm experiment. [[Suppl. Material]](/CCE12_ligand_microbes)
+* __Hogle SL__, Bundy RA, Barbeau KA. _In prep._ Linking phytoplankton and bacterioplankton community dynamics to iron-binding ligand production in a microcosm experiment. [[Suppl. Material]](/CCE2012_MAW_microbes/mainpage)
 
 <!--* Hogle SL, Dupont CL, Barbeau KA, and others. _In prep._ Converging physiological, geochemical, and molecular evidence for phytoplankton iron-limitation in the California Current Ecosystem-->
 
 #####2016#####
 
-* __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. _Appl. Environ. Microbiol._ 82(5): XX-XX [[LINK]](http://aem.asm.org/content/early/2016/01/04/AEM.03128-15.short?rss=1) [[Suppl. Material]](/TM_roseo_sar)
+* __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. _Appl. Environ. Microbiol._ 82(5): XX-XX [[LINK]](http://aem.asm.org/content/early/2016/01/04/AEM.03128-15.short?rss=1) [[Suppl. Material]](/TM_roseo_sar/mainpage)
 
 #####2015#####
 

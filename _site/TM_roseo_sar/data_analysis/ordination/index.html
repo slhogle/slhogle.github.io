@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Shane Hogle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Microbes + Biogeochemistry">
+    <meta name="author" content="Shane Hogle">
+    
+    <link rel="canonical" href="//TM_roseo_sar/data_analysis/ordination/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Shane Hogle">
+    <meta property="og:description" content="Microbes + Biogeochemistry">
+    <meta property="og:url" content="//TM_roseo_sar/data_analysis/ordination/">
+    <meta property="og:site_name" content="Shane Hogle">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Shane Hogle</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+<a href="/publications/">Publications</a>
+<a href="/research/">Research</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post">
+  <header class="post-header">
+    <h1 class="h2"></h1>
+  </header>
+  <article class="post-content">
+  <h2 id="reference-publication">Reference publication</h2>
+
+<p><strong>Hogle SL</strong>, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. Appl. Environ. Microbiol. 82(5): XX-XX <a href="http://aem.asm.org/content/early/2016/01/04/AEM.03128-15">LINK</a></p>
+
+<hr>
+
+<h2 id="introduction-ordination-and-multivariate-statistics">Introduction: Ordination and multivariate statistics</h2>
+
+<p>Here we perform principle components analysis (PCA) and non-metric multidimmensional scaling (NMDS) in order to explore patterns of metal uptake genes in Roseobacter and SAR11. We also look at multivariate homogeneity of group dispersions for each taxonomic class in both NMDS and PCA ordinations in order to determine which group is more variable in terms of their transport capabilities.</p>
+
+<h3 id="load-required-libraries">Load required libraries</h3>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kn">library</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span><span class="s">&quot;vegan&quot;</span><span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span><span class="s">&quot;grid&quot;</span><span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span><span class="s">&quot;MASS&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="import-the-dataset">Import the dataset</h3>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metalCountData <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_metaluptake_counts.tsv&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+genomeFeat <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_genome_feat.tsv&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+genomeCategories <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_categories.tsv&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="create-reduced-dataframes">Create reduced dataframes</h3>
+
+<p>Dataframes without rows containing NA values in the Lifestyle category. Necessary for envfit analysis of factors</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metalCountData.reduc <span class="o">&lt;-</span> metalCountData<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>genomeCategories<span class="o">$</span>Lifestyle<span class="p">),</span> <span class="p">]</span>
+genomeCategories.reduc <span class="o">&lt;-</span> genomeCategories<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>genomeCategories<span class="o">$</span>Lifestyle<span class="p">),</span> <span class="p">]</span>
+</code></pre></div>
+<h3 id="vegan-implementation-of-pca">Vegan implementation of PCA</h3>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metal.rda <span class="o">&lt;-</span> rda<span class="p">(</span>metalCountData<span class="p">)</span>
+</code></pre></div>
+<p>PCA on reduced dataset</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metal.rda.reduc <span class="o">&lt;-</span> rda<span class="p">(</span>metalCountData.reduc<span class="p">)</span>
+</code></pre></div>
+<h3 id="fit-environmental-factors-onto-the-reduced-ordination">Fit environmental factors onto the reduced ordination</h3>
+
+<p>Using Lifestyle factor for environmnetal fitting</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">set.seed</span><span class="p">(</span><span class="m">753</span><span class="p">)</span>
+ef.reduc <span class="o">&lt;-</span> envfit<span class="p">(</span>metal.rda.reduc<span class="p">,</span> genomeCategories.reduc<span class="p">,</span> permu<span class="o">=</span><span class="m">999</span><span class="p">)</span>
+ef.reduc
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">***FACTORS:
+
+Centroids:
+                           PC1     PC2
+LifestyleFreeliving    -0.5893  0.1681
+LifestyleSurface_assoc  0.6161 -0.1757
+TaxaRoseobacter         0.6262 -0.1673
+TaxaSAR11              -0.6547  0.1749
+
+Goodness of fit:
+              r2 Pr(&gt;r)    
+Lifestyle 0.3284  0.001 ***
+Taxa      0.3674  0.001 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation: free
+Number of permutations: 999
+</code></pre></div>
+<p>Here we see that both the classifications of taxa (Roseobacter vs SAR11) and the classification of Lifestyle (surface associated/patch adapted vs freeliving) are significantly associated with the ordination. So the differences in metal transporter repretoir appear to be related to the differences between taxa and Lifestyle.</p>
+
+<h3 id="multivariate-homogeneity-of-group-dispersions">Multivariate homogeneity of group dispersions</h3>
+
+<p>Here we calculate dispersion values for euclidean distance based on SAR11 vs Roseobacter groups in order to determine which group has a larger dsipersion or spread</p>
+
+<p>Need to do dispersion calculation on a distance matrix. Use euclidean because PCA uses euclidean distances</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metal_tran_dis <span class="o">&lt;-</span> vegdist<span class="p">(</span>metalCountData<span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;euclidean&quot;</span><span class="p">)</span>
+disper <span class="o">&lt;-</span> betadisper<span class="p">(</span>metal_tran_dis<span class="p">,</span> genomeCategories<span class="o">$</span>Taxa<span class="p">,</span> bias.adjust<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+disper
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">    Homogeneity of multivariate dispersions
+
+Call: betadisper(d = metal_tran_dis, group = genomeCategories$Taxa,
+bias.adjust = TRUE)
+
+No. of Positive Eigenvalues: 40
+No. of Negative Eigenvalues: 0
+
+Average distance to median:
+Roseobacter       SAR11 
+      4.278       1.112 
+
+Eigenvalues for PCoA axes:
+   PCoA1    PCoA2    PCoA3    PCoA4    PCoA5    PCoA6    PCoA7    PCoA8 
+737.4761 186.1731  91.6971  52.1355  35.0828  27.6643  24.7258  22.2809 
+</code></pre></div><div class="highlight"><pre><code class="language-R" data-lang="R">permutest<span class="p">(</span>disper<span class="p">,</span> pairwise <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 999
+
+Response: Distances
+          Df Sum Sq Mean Sq      F N.Perm Pr(&gt;F)    
+Groups     1 144.69 144.694 60.194    999  0.001 ***
+Residuals 62 149.04   2.404                         
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+            Roseobacter SAR11
+Roseobacter             0.001
+SAR11        1.0391e-10      
+</code></pre></div>
+<p>We can see here that Roseobacter has a greater average distance to median (4.278) compared to SAR11 (1.112) and that this difference is significant based on permuted model residuals generating a permutations distribution of F under the null hypothesis that there is no difference in dispersion between groups. This indicates that Roseobacter trace metal transporter inventory is more diverse and variable than in SAR11.</p>
+
+<h3 id="plotting-the-pca-analysis">Plotting the PCA analysis</h3>
+
+<p>Uses scores function to put site PC values into scrcs. Then associate a variable with them - in this case using the Lifestyle category. The result is a dataframe</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">scrs <span class="o">&lt;-</span> <span class="kp">as.data.frame</span><span class="p">(</span>scores<span class="p">(</span>metal.rda<span class="p">,</span> display <span class="o">=</span> <span class="s">&quot;sites&quot;</span><span class="p">))</span>
+scrs <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>scrs<span class="p">,</span> lifestyle <span class="o">=</span> genomeCategories<span class="o">$</span>Lifestyle<span class="p">,</span> taxa <span class="o">=</span> genomeCategories<span class="o">$</span>Taxa<span class="p">)</span>
+</code></pre></div>
+<p>Fit factors and continuous variables to ordinations</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">set.seed</span><span class="p">(</span><span class="m">152</span><span class="p">)</span>
+ef <span class="o">&lt;-</span> envfit<span class="p">(</span>metal.rda<span class="p">,</span> genomeFeat<span class="p">,</span> permu <span class="o">=</span> <span class="m">999</span><span class="p">)</span>
+</code></pre></div>
+<p>Use the score function again to load direction of vectors. Vectors here are weighted by R<sup>2</sup> value</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">spp.scrs <span class="o">&lt;-</span> <span class="kp">as.data.frame</span><span class="p">(</span>scores<span class="p">(</span>ef<span class="p">,</span> display <span class="o">=</span> <span class="s">&quot;vectors&quot;</span><span class="p">))</span>
+spp.scrs <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>spp.scrs<span class="p">,</span> Species <span class="o">=</span> <span class="kp">rownames</span><span class="p">(</span>spp.scrs<span class="p">))</span>
+</code></pre></div>
+<p>make the ggplot object</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">ggplot<span class="p">(</span>scrs<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>mapping <span class="o">=</span> aes<span class="p">(</span>x <span class="o">=</span> PC1<span class="p">,</span> y <span class="o">=</span> PC2<span class="p">,</span> shape <span class="o">=</span> taxa<span class="p">,</span> color <span class="o">=</span> lifestyle<span class="p">),</span> size <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span> 
+  theme_bw<span class="p">()</span> <span class="o">+</span>
+  coord_fixed<span class="p">()</span> <span class="o">+</span> <span class="c1">## need aspect ratio of 1!</span>
+  geom_segment<span class="p">(</span>data <span class="o">=</span> spp.scrs<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> <span class="m">0</span><span class="p">,</span> xend <span class="o">=</span> PC1<span class="p">,</span> 
+                                    y <span class="o">=</span> <span class="m">0</span><span class="p">,</span> yend <span class="o">=</span> PC2<span class="p">),</span> 
+                                   arrow <span class="o">=</span> arrow<span class="p">(</span>length <span class="o">=</span> unit<span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="s">&quot;cm&quot;</span><span class="p">)),</span> 
+                                   colour <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">)</span> <span class="o">+</span>
+  geom_text<span class="p">(</span>data <span class="o">=</span> spp.scrs<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> PC1<span class="p">,</span> y <span class="o">=</span> PC2<span class="p">,</span> label <span class="o">=</span> Species<span class="p">),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="/TM_roseo_sar/data_analysis/output_33_0.svg" alt="svg"></p>
+
+<h3 id="vegan-implementation-of-nmds">Vegan implementation of NMDS</h3>
+
+<p>We’ll now perform the same analysis as above using NMDS. NMDS is a popular and very robust ordination method, and it is frequently used in microbial ecology studies. We want to make sure that NMDS and PCA (both based on differing assumptions) don’t provide wildly different results.</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">set.seed</span><span class="p">(</span><span class="m">471</span><span class="p">)</span>
+metal.mds <span class="o">&lt;-</span> metaMDS<span class="p">(</span>metalCountData<span class="p">,</span> trace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> plot <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> 
+                     autotransform <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> noshare <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+                     wascores <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> trymax <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Run 0 stress 0.1042079 
+Run 1 stress 0.1041562 
+... New best solution
+... procrustes: rmse 0.008973122  max resid 0.04651044 
+Run 2 stress 0.1037959 
+... New best solution
+... procrustes: rmse 0.06409011  max resid 0.3321104 
+Run 3 stress 0.1052446 
+Run 4 stress 0.1062545 
+Run 5 stress 0.1062794 
+Run 6 stress 0.1015691 
+... New best solution
+... procrustes: rmse 0.05271375  max resid 0.1365035 
+Run 7 stress 0.1029558 
+Run 8 stress 0.1061895 
+Run 9 stress 0.1015154 
+... New best solution
+... procrustes: rmse 0.006515735  max resid 0.03648933 
+Run 10 stress 0.1067396 
+Run 11 stress 0.1015274 
+... procrustes: rmse 0.001932787  max resid 0.006878349 
+*** Solution reached
+</code></pre></div>
+<h3 id="multivariate-homogeneity-of-group-dispersions-for-nmds">Multivariate homogeneity of group dispersions for NMDS</h3>
+
+<p>The same analysis as above but using Bray-Curtis distance. This is the default dissimilarity matrix used in the metaMDS function.</p>
+
+<p>Need to do dispersion calculation on a distance matrix. Use bray distance</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metal_tran_dis <span class="o">&lt;-</span> vegdist<span class="p">(</span>metalCountData<span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;bray&quot;</span><span class="p">)</span>
+disper <span class="o">&lt;-</span> betadisper<span class="p">(</span>metal_tran_dis<span class="p">,</span> genomeCategories<span class="o">$</span>Taxa<span class="p">,</span> bias.adjust<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+disper
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">    Homogeneity of multivariate dispersions
+
+Call: betadisper(d = metal_tran_dis, group = genomeCategories$Taxa,
+bias.adjust = TRUE)
+
+No. of Positive Eigenvalues: 26
+No. of Negative Eigenvalues: 30
+
+Average distance to median:
+Roseobacter       SAR11 
+     0.3628      0.3426 
+
+Eigenvalues for PCoA axes:
+ PCoA1  PCoA2  PCoA3  PCoA4  PCoA5  PCoA6  PCoA7  PCoA8 
+7.4161 2.0080 1.4299 0.9981 0.8239 0.7594 0.6977 0.6206 
+</code></pre></div><div class="highlight"><pre><code class="language-R" data-lang="R">permutest<span class="p">(</span>disper<span class="p">,</span> pairwise <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 999
+
+Response: Distances
+          Df Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)
+Groups     1 0.0059 0.0058997 0.2734    999  0.611
+Residuals 62 1.3378 0.0215781                     
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+            Roseobacter SAR11
+Roseobacter             0.602
+SAR11           0.60292      
+</code></pre></div>
+<p>So it looks like there is no significant difference in group dispersion between Roseobacter or SAR11 in the NMDS/Bray-Curtis case. Why is this result different than that for PCA which relies on a Euclidean dissimilarity structure? Let’s plot the NMDS plot to look closer…</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">plot<span class="p">(</span>metal.mds<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+text<span class="p">(</span>metal.mds<span class="p">,</span> display <span class="o">=</span> <span class="s">&quot;sites&quot;</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Warning message:
+In ordiplot(x, choices = choices, type = type, display = display, : Species scores not available
+</code></pre></div>
+<p><img src="/TM_roseo_sar/data_analysis/output_43_1.svg" alt="svg"></p>
+
+<p>In the NMDS ordination it looks like both AAA240-E13 and HIMB058 are big outliers. These genomes are not complete and/or amplified by MDA so they might not be refelecting a real trend here (potentially missing genes related to metal transport). Since NMDS is based on rank rather than absolute distances you lose information regarding the large differences in magnitude that you would expect with an analysis like PCA between SAR11 and Roseobacter. For example, instead of HTCC1002 being X arbitrary units away from Ruegeria TrichCH4B, HTCC1002 would be the “first, second, or third and so on” most distant object from CH4B. In that respect, in NMDS a lot of the biggest differences in magnitude between positioning in the ordination get compressed while smaller changes tend to be amplified.</p>
+
+<p>Lets look at this again but omit AAA240-E13 and HIMB058 since they may be valid outliers.</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">set.seed</span><span class="p">(</span><span class="m">471</span><span class="p">)</span>
+metalCountData.NOSAG <span class="o">&lt;-</span> metalCountData<span class="p">[</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">42</span><span class="p">,</span><span class="m">43</span><span class="p">),</span> <span class="p">]</span>     <span class="c1">#remove AAA240-E13 and HIMB058</span>
+genomeCategories.NOSAG <span class="o">&lt;-</span> genomeCategories<span class="p">[</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">42</span><span class="p">,</span><span class="m">43</span><span class="p">),</span> <span class="p">]</span> <span class="c1">#remove AAA240-E13 and HIMB058</span>
+genomeFeat.NOSAG <span class="o">&lt;-</span> genomeFeat<span class="p">[</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">42</span><span class="p">,</span><span class="m">43</span><span class="p">),</span> <span class="p">]</span>             <span class="c1">#remove AAA240-E13 and HIMB058</span>
+</code></pre></div><div class="highlight"><pre><code class="language-R" data-lang="R">metal.mds.NOSAG <span class="o">&lt;-</span> metaMDS<span class="p">(</span>metalCountData.NOSAG<span class="p">,</span> trace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> 
+                           plot <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> autotransform <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+                           noshare <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> wascores <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+                           trymax <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Run 0 stress 0.1191187 
+Run 1 stress 0.1336855 
+Run 2 stress 0.1191504 
+... procrustes: rmse 0.003718555  max resid 0.01963279 
+Run 3 stress 0.123536 
+Run 4 stress 0.1191234 
+... procrustes: rmse 0.003292331  max resid 0.01538293 
+Run 5 stress 0.123536 
+Run 6 stress 0.1226624 
+Run 7 stress 0.1190997 
+... New best solution
+... procrustes: rmse 0.003516377  max resid 0.02218278 
+Run 8 stress 0.1226623 
+Run 9 stress 0.1226624 
+Run 10 stress 0.1235359 
+Run 11 stress 0.1235359 
+Run 12 stress 0.123536 
+Run 13 stress 0.1235359 
+Run 14 stress 0.1235359 
+Run 15 stress 0.1375248 
+Run 16 stress 0.1191233 
+... procrustes: rmse 0.005829302  max resid 0.03454454 
+Run 17 stress 0.1339936 
+Run 18 stress 0.1191471 
+... procrustes: rmse 0.00501204  max resid 0.03359612 
+Run 19 stress 0.1190998 
+... procrustes: rmse 7.917323e-05  max resid 0.0003379384 
+*** Solution reached
+</code></pre></div>
+<p>Now we’ll look again at the group dispersions. Need to do dispersion calculation on a distance matrix. Use bray distance</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">metal_tran_dis.NOSAG <span class="o">&lt;-</span> vegdist<span class="p">(</span>metalCountData.NOSAG<span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;bray&quot;</span><span class="p">)</span>
+disper.NOSAG <span class="o">&lt;-</span> betadisper<span class="p">(</span>metal_tran_dis.NOSAG<span class="p">,</span> genomeCategories.NOSAG<span class="o">$</span>Taxa<span class="p">,</span> bias.adjust<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+disper.NOSAG
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">    Homogeneity of multivariate dispersions
+
+Call: betadisper(d = metal_tran_dis.NOSAG, group =
+genomeCategories.NOSAG$Taxa, bias.adjust = TRUE)
+
+No. of Positive Eigenvalues: 25
+No. of Negative Eigenvalues: 29
+
+Average distance to median:
+Roseobacter       SAR11 
+     0.3628      0.2856 
+
+Eigenvalues for PCoA axes:
+ PCoA1  PCoA2  PCoA3  PCoA4  PCoA5  PCoA6  PCoA7  PCoA8 
+7.4055 1.9920 1.1716 0.9338 0.7788 0.7025 0.6375 0.5098 
+</code></pre></div><div class="highlight"><pre><code class="language-R" data-lang="R">permutest<span class="p">(</span>disper.NOSAG<span class="p">,</span> pairwise <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 999
+
+Response: Distances
+          Df  Sum Sq  Mean Sq      F N.Perm Pr(&gt;F)   
+Groups     1 0.08071 0.080712 9.5915    999  0.005 **
+Residuals 60 0.50490 0.008415                        
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+            Roseobacter SAR11
+Roseobacter             0.002
+SAR11         0.0029714      
+</code></pre></div>
+<p>Now these dispersion differences appear to be significant - albeit they are smaller in magnitude than what we saw for the euclidean distance in the PCA analysis. Still it is good to see the two methods generally agreeing, even though their underlying assumptions are quite different. Let’s now plot up the NMDS ordination missing the potentially incomplete genomes</p>
+
+<p>Uses scores function to put site PC values into scrcs. Then associate a variable with them - in this case using the Lifestyle category. The result is a dataframe</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">scrs.mds <span class="o">&lt;-</span> <span class="kp">as.data.frame</span><span class="p">(</span>scores<span class="p">(</span>metal.mds.NOSAG<span class="p">,</span> display <span class="o">=</span> <span class="s">&quot;sites&quot;</span><span class="p">))</span>
+scrs.mds <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>scrs.mds<span class="p">,</span> lifestyle <span class="o">=</span> genomeCategories.NOSAG<span class="o">$</span>Lifestyle<span class="p">,</span> taxa <span class="o">=</span> genomeCategories.NOSAG<span class="o">$</span>Taxa<span class="p">)</span>
+</code></pre></div>
+<p>Fit factors and continuous variables to ordinations</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">set.seed</span><span class="p">(</span><span class="m">152</span><span class="p">)</span>
+ef.mds <span class="o">&lt;-</span> envfit<span class="p">(</span>metal.mds.NOSAG<span class="p">,</span> genomeFeat.NOSAG<span class="p">,</span> permu <span class="o">=</span> <span class="m">999</span><span class="p">)</span>
+</code></pre></div>
+<p>Use the score function again to load direction of vectors. Vectors here are weighted by R<sup>2</sup> value</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">spp.scrs.mds <span class="o">&lt;-</span> <span class="kp">as.data.frame</span><span class="p">(</span>scores<span class="p">(</span>ef.mds<span class="p">,</span> display <span class="o">=</span> <span class="s">&quot;vectors&quot;</span><span class="p">))</span>
+spp.scrs.mds <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>spp.scrs.mds<span class="p">,</span> Species <span class="o">=</span> <span class="kp">rownames</span><span class="p">(</span>spp.scrs.mds<span class="p">))</span>
+</code></pre></div>
+<p>make the ggplot object</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R">ggplot<span class="p">(</span>scrs.mds<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>mapping <span class="o">=</span> aes<span class="p">(</span>x <span class="o">=</span> NMDS1<span class="p">,</span> y <span class="o">=</span> NMDS2<span class="p">,</span> shape <span class="o">=</span> taxa<span class="p">,</span> color <span class="o">=</span> lifestyle<span class="p">),</span> size <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span> 
+  theme_bw<span class="p">()</span> <span class="o">+</span>
+  coord_fixed<span class="p">()</span> <span class="o">+</span> <span class="c1">## need aspect ratio of 1!</span>
+  geom_segment<span class="p">(</span>data <span class="o">=</span> spp.scrs.mds<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> <span class="m">0</span><span class="p">,</span> xend <span class="o">=</span> NMDS1<span class="p">,</span> 
+                                    y <span class="o">=</span> <span class="m">0</span><span class="p">,</span> yend <span class="o">=</span> NMDS2<span class="p">),</span> 
+                                   arrow <span class="o">=</span> arrow<span class="p">(</span>length <span class="o">=</span> unit<span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="s">&quot;cm&quot;</span><span class="p">)),</span> 
+                                   colour <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">)</span> <span class="o">+</span>
+  geom_text<span class="p">(</span>data <span class="o">=</span> spp.scrs.mds<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> NMDS1<span class="p">,</span> y <span class="o">=</span> NMDS2<span class="p">,</span> label <span class="o">=</span> Species<span class="p">),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="/TM_roseo_sar/data_analysis/output_58_0.svg" alt="svg"></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>It appears that PCA seems to be more sensitive to the “double zero problem” which is that ecological sites will tend to cluster based on species with many shared absences as opposed to those species with shared presences (paraphrased from Numerical Ecology by Legendre and Legendre). This is cited as a problem by Legendre and Legendre because traditional ecological studies treat double zeros aka shared absences of species as uninformative presumably due to the risk of false negatives. However, in our case zero values are true values. The absence of a gene in a set of genomes is actually informative in our case given that our risk for false negatives is effectively zero (albeit except for cases of the SAG and mda genomes). Therefore, we think that euclidean distance PCA best represents our data here. We do need to be careful about genome completeness, but at this stage in our exploratory analysis we think that it is unnecessary to omit AAA240-E13 and HIMB058 as they represent valuable phylogenetic diversity not encompassed by the other strains.</p>
+
+  </article>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

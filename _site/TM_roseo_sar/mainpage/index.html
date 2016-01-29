@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Shane Hogle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Microbes + Biogeochemistry">
+    <meta name="author" content="Shane Hogle">
+    
+    <link rel="canonical" href="//TM_roseo_sar/mainpage/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Shane Hogle">
+    <meta property="og:description" content="Microbes + Biogeochemistry">
+    <meta property="og:url" content="//TM_roseo_sar/mainpage/">
+    <meta property="og:site_name" content="Shane Hogle">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">Shane Hogle</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+<a href="/publications/">Publications</a>
+<a href="/research/">Research</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post">
+  <header class="post-header">
+    <h1 class="h2"></h1>
+  </header>
+  <article class="post-content">
+  <p><img src="/TM_roseo_sar/CCA_roseo_sar11.png" alt="desk"></p>
+
+<h2 id="reference-publication">Reference publication</h2>
+
+<p><strong>Hogle SL</strong>, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. <em>Appl. Environ. Microbiol.</em> 82(5): XX-XX <a href="http://aem.asm.org/content/early/2016/01/04/AEM.03128-15">LINK</a></p>
+
+<hr>
+
+<p>You can download the datasets used in these analyses from <a href="http://dx.doi.org/10.6084/m9.figshare.1533034">here</a> or <a href="/TM_roseo_sar/1533034.zip">here</a>.</p>
+
+<iframe src="https://widgets.figshare.com/articles/1533034/embed?show_title=0" width="568" height="351" frameborder="0"></iframe>
+
+<p><strong>Python implementation of the protein identification pipeline used in the paper</strong></p>
+
+<ul>
+<li><a href="/TM_roseo_sar/annotation_pipeline/1_makeprofiledb">1. Make rpsblast databases</a></li>
+<li><a href="/TM_roseo_sar/annotation_pipeline/2_rpsblast_tab">2. rpsblast search - tab output</a></li>
+<li><a href="/TM_roseo_sar/annotation_pipeline/3_rpsblast_tab_tophits">3. Parse rpsblast tab output for top hits</a></li>
+<li><a href="/TM_roseo_sar/annotation_pipeline/4_rpsblast_xml">4. rpsblast top hits against NCBI CDD</a></li>
+<li><a href="/TM_roseo_sar/annotation_pipeline/5_rpsbproc">5. Parse xml rpsblast output to reduced form</a></li>
+<li><a href="/TM_roseo_sar/annotation_pipeline/6_rpsbproc_parse">6. Parse and convert to wide tabular format</a></li>
+</ul>
+
+<p><strong>Multivariate statistical analyses from the paper (in R)</strong></p>
+
+<ul>
+<li><a href="/TM_roseo_sar/data_analysis/fisher">Fisher&rsquo;s exact test</a> for genome neighborhood enrichment</li>
+<li><a href="/TM_roseo_sar/data_analysis/ordination">Ordination</a> of genomes based on transporter abundance and diversity</li>
+<li><a href="/TM_roseo_sar/data_analysis/correlation">Correlation analysis</a> between transporters and genome features</li>
+</ul>
+
+  </article>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
