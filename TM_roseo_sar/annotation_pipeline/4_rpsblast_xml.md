@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 
-permalink: /4_rpsblast_xml/
+permalink: /TM_roseo_sar/annotation_pipeline/4_rpsblast_xml/
 ---
 
 ```python
