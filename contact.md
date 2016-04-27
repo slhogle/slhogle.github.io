@@ -7,7 +7,7 @@ permalink: /contact/
 ### Get in touch!!
 I'm always happy to hear from anyone interested in microbial ecology!
 
-* <shogle@ucsd.edu>
+* shogle AT mit dot edu
 * [Twitter](https://twitter.com/@slhogle)
 * [Impact Story](https://impactstory.org/ShaneHogle)
 * [ResearchGate](https://researchgate.net/profile/Shane_Hogle)

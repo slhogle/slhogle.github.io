@@ -5,7 +5,7 @@ permalink: /about/
 ---
 ![desk](/images/correlation_circle_subset.png)
 
-Thanks for vising my website and blog! I am currently a PhD candidate in the [Barbeau Laboratory](https://scripps.ucsd.edu/labs/barbeau/) at the [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) and the [University of California, San Diego](http://www.ucsd.edu/). I did my undergraduate degree in Chemistry at [Earlham College](http://www.earlham.edu/) - a small liberal arts college in Richmond, Indiana. 
+Thanks for vising my website and blog! I am currently a Postdoctoral Research Associate in the [Chisholm Laboratory](https://chisholmlab.mit.edu/) at [MIT](http://web.mit.edu/). I recieved my Ph.D from the [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) at [UCSD](http://www.ucsd.edu/), and I took my undergraduate degree in Chemistry at [Earlham College](http://www.earlham.edu/).
 
 <!--
 Below is a non-technical(ish) description of my research and why it is important. If you are interested read on!
@@ -20,8 +20,6 @@ _RIGHT NOW_ this warming is altering weather patterns, sea level, glacial cover,
 __We need to better understand how the microbial loop works in order to better understand the biological pump and how our oceans and climate will respond to anthropogenic warming.__ A better understanding of the bacteria that live in the ocean and how they interact in communities will contribute to a clearer picture of how our planet works on a system-wide scale and how it may change with a warming climate.
 -->
 
-My PhD thesis is broadly focused on the specific molecular mechanisms and underlying genetics that bacteria and phytoplankton use to aquire iron from the unique chemical conditions of the marine environment. In turn, I am interested in how microbes influence the chemical speciation of iron in seawater and how they shape the ocean iron cycle. Much of my thesis looks at how bacteria of the marine Roseobacter lineage utilize exogenous heme and hemoproteins and the role heme uptake plays in the overall turnover of iron in the ocean. A better understanding of the iron cycle will provide us with a clearer picture of how iron interacts with the carbon cycle and Earth's climate.
+Much of my Ph.D. thesis examined how and why bacteria of the marine _Roseobacter_ lineage utilize exogenous heme and hemoproteins as nutritional iron sources. The impetus behind this work was to gain a better understanding of the role that heme uptake plays in the overall turnover of iron in the ocean and how marine microbes shape the iron cycle by means of remineralization processes. For my postdoctoral research I am using _Prochlorococcus_ as a model system in the lab and _in silico_ in order to better understand how this abundant and incredibly important organism influences and is influenced by marine trace metal distributions. These projects should provide us with a clearer window into how _Prochlorococcus_ interacts with trace metals and the intersections between trace metal cycles and the marine carbon cycle.
 
 --Shane
-
-![desk](/images/me450.jpg)

@@ -37,7 +37,7 @@
 &lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Thu, 23 Apr 2015 00:00:00 -0700</pubDate>
+        <pubDate>Thu, 23 Apr 2015 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</guid>
       </item>
@@ -62,7 +62,7 @@
 
 &lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Machuca (Floor-2)&lt;/p&gt;
 </description>
-        <pubDate>Wed, 10 Dec 2014 00:00:00 -0800</pubDate>
+        <pubDate>Wed, 10 Dec 2014 00:00:00 -0500</pubDate>
         <link>//news/2014/12/10/ASLO-2015/</link>
         <guid isPermaLink="true">//news/2014/12/10/ASLO-2015/</guid>
       </item>
@@ -71,7 +71,7 @@
         <title>New publication</title>
         <description>&lt;p&gt;I participated in a &lt;a href=&quot;http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2014198a.html&quot;&gt;project&lt;/a&gt; examining the genomes and gene expression of prokaryotic and eukaryptic communities on a transect in the easter subtropical Pacific ocean while collaborating with scientists at the &lt;a href=&quot;http://www.jcvi.org/cms/home/&quot;&gt;J. Craig Venter Institute&lt;/a&gt;. There were a number of scientists from The &lt;a href=&quot;https://scripps.ucsd.edu/&quot;&gt;Scripps Institution of Oceanography&lt;/a&gt; involved as well.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 21 Oct 2014 00:00:00 -0700</pubDate>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0400</pubDate>
         <link>//news/2014/10/21/new-publication-out-in-ISMEJ/</link>
         <guid isPermaLink="true">//news/2014/10/21/new-publication-out-in-ISMEJ/</guid>
       </item>
@@ -94,7 +94,7 @@
 
 &lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 14:00 - 17:00&lt;/p&gt;
 </description>
-        <pubDate>Thu, 05 Jun 2014 00:00:00 -0700</pubDate>
+        <pubDate>Thu, 05 Jun 2014 00:00:00 -0400</pubDate>
         <link>//news/2014/06/05/Goldschmidt-2014-poster/</link>
         <guid isPermaLink="true">//news/2014/06/05/Goldschmidt-2014-poster/</guid>
       </item>
@@ -103,7 +103,7 @@
         <title>New publication</title>
         <description>&lt;p&gt;I recently published a &lt;a href=&quot;http://pubs.rsc.org/en/content/articlelanding/2014/mt/c4mt00031e#!divAbstract&quot;&gt;review article&lt;/a&gt; with &lt;a href=&quot;http://scrippsscholars.ucsd.edu/kbarbeau&quot;&gt;Kathy Barbeau&lt;/a&gt; (my primary adviser) and &lt;a href=&quot;http://www.geomar.de/en/mitarbeiter/fb2/ch/mgledhill/&quot;&gt;Martha Gledhill&lt;/a&gt; about the biogeochemistry of heme in marine systems. Unfortunately, the paper is not in an open access journal. If you don&amp;rsquo;t have access and want to read it, message me for a copy.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 30 May 2014 00:00:00 -0700</pubDate>
+        <pubDate>Fri, 30 May 2014 00:00:00 -0400</pubDate>
         <link>//news/2014/05/30/new-publication-out-in-metallomics/</link>
         <guid isPermaLink="true">//news/2014/05/30/new-publication-out-in-metallomics/</guid>
       </item>
@@ -133,7 +133,7 @@
 
 &lt;p&gt;Next post I&amp;rsquo;ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 29 May 2014 00:00:00 -0700</pubDate>
+        <pubDate>Thu, 29 May 2014 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</guid>
       </item>
@@ -155,7 +155,7 @@ sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v &lt;span cl
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Wed, 16 Apr 2014 00:00:00 -0700</pubDate>
+        <pubDate>Wed, 16 Apr 2014 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</guid>
       </item>
@@ -192,7 +192,7 @@ sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Tue, 15 Apr 2014 00:00:00 -0700</pubDate>
+        <pubDate>Tue, 15 Apr 2014 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</guid>
       </item>
@@ -239,7 +239,7 @@ join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; v19_uniq.out v20_uniq.out
 
 &lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were &amp;ldquo;retired&amp;rdquo; from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the &amp;ldquo;unmatchable&amp;rdquo; ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 14 Apr 2014 00:00:00 -0700</pubDate>
+        <pubDate>Mon, 14 Apr 2014 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2014/04/14/unix-for-fasta/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/04/14/unix-for-fasta/</guid>
       </item>
@@ -266,7 +266,7 @@ join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; v19_uniq.out v20_uniq.out
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Tue, 11 Mar 2014 00:00:00 -0700</pubDate>
+        <pubDate>Tue, 11 Mar 2014 00:00:00 -0400</pubDate>
         <link>//bioinformatics_notebook/2014/03/11/fasta-extracta/</link>
         <guid isPermaLink="true">//bioinformatics_notebook/2014/03/11/fasta-extracta/</guid>
       </item>
