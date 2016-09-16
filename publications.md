@@ -11,11 +11,10 @@ permalink: /publications/
 #####And into the Future...#####
 * __Hogle SL__, Dupont CL, Barbeau KA, and others. _In prep._ Converging physiological, geochemical, and molecular evidence for phytoplankton iron-limitation in the California Current Ecosystem
 
-* __Hogle SL__, Bundy RA, Blanton JM, Allen EE, Barbeau KA. _In review._ Linking phytoplankton and bacterioplankton community dynamics to iron-binding ligand production in a microcosm experiment. [[Suppl. Material]](/CCE2012_MAW_microbes/mainpage)
-
-* __Hogle SL__, Brahamsha B, Barbeau KA. _In review._ Heme as a molecular intermediate in the microbial remineralization of marine biogenic Fe.
-
 #####2016#####
+* __Hogle SL__, Brahamsha B, Barbeau KA. _In review._ Iron cycling from marine phytoplankton to bacteria is facilitated by direct heme uptake.
+
+* __Hogle SL__, Bundy RA, Blanton JM, Allen EE, Barbeau KA. (2016). _Accepted._  Copiotrophic marine bacteria are associated with strong irong-binding ligand production during phytoplankton blooms. _Limnol. Oceanogr. Lett._ [[Suppl. Material]](https://github.com/slhogle/code-LO-letters-2016)
 
 * __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. _Appl. Environ. Microbiol._ 82(5):1613-1624 [[LINK]](http://aem.asm.org/content/early/2016/01/04/AEM.03128-15.short?rss=1) [[Suppl. Material]](/TM_roseo_sar/mainpage)
 

@@ -8,8 +8,10 @@ permalink: /contact/
 I'm always happy to hear from anyone interested in microbial ecology!
 
 * shogle AT mit dot edu
+* [Github](https://github.com/slhogle)
 * [Twitter](https://twitter.com/@slhogle)
-* [Impact Story](https://impactstory.org/ShaneHogle)
+* [ORCHID](http://orcid.org/0000-0003-2595-3863)
+* [Impact Story](https://impactstory.org/u/0000-0003-2595-3863)
 * [ResearchGate](https://researchgate.net/profile/Shane_Hogle)
 * [Curriculum vitae (pdf)](/CV/ShaneHogleCV.pdf)
 * [Google Scholar](http://scholar.google.com/citations?user=WKVJzbgAAAAJ&hl=en&oi=ao)

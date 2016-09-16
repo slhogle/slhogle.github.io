@@ -1,3 +1,5 @@
+[Check out the site](http://slhogle.github.io/)
+
 # Jekyll and Pixyll template information
 
 I built this website using the [Pixyll template](http://www.pixyll.com) for [Jekyll.](http://jekyllrb.com/)
