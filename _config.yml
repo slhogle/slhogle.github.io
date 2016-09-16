@@ -3,7 +3,7 @@ title:       Blog
 email:       shogle@mit.edu
 author:      Shane Hogle
 description: "Microbes + Biogeochemistry"
-baseurl:     ""
+baseurl:     "/"
 url:         /
 
 # Google analytics
