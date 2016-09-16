@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Shane Hogle</title>
+    <title>Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Microbes + Biogeochemistry">
     <meta name="author" content="Shane Hogle">
     
-    <link rel="canonical" href="//TM_roseo_sar/annotation_pipeline/4_rpsblast_xml/">
+    <link rel="canonical" href="///TM_roseo_sar/annotation_pipeline/4_rpsblast_xml/">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="//css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -22,10 +22,10 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Shane Hogle">
+    <meta property="og:title" content="Blog">
     <meta property="og:description" content="Microbes + Biogeochemistry">
     <meta property="og:url" content="//TM_roseo_sar/annotation_pipeline/4_rpsblast_xml/">
-    <meta property="og:site_name" content="Shane Hogle">
+    <meta property="og:site_name" content="Blog">
 </head>
 
 <body class="">
@@ -33,12 +33,12 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/" class="site-title">Shane Hogle</a>
+      <a href="/" class="site-title">Blog</a>
       <nav class="site-nav right">
-        <a href="/about/">About</a>
-<a href="/publications/">Publications</a>
-<a href="/research/">Research</a>
-<a href="/contact/">Contact</a>
+        <a href="//about/">Shane Hogle</a>
+<a href="//publications/">Publications</a>
+<a href="//research/">Research</a>
+<a href="//contact/">Contact</a>
 
       </nav>
       <div class="clearfix"></div>
@@ -55,34 +55,42 @@
     <h1 class="h2"></h1>
   </header>
   <article class="post-content">
-  <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">subprocess</span>
-</code></pre></div><div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">localrpsb_path</span> <span class="o">=</span> <span class="s">&#39;/home/shane/Documents/localrpsb/cdd_v3.14&#39;</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="s">&#39;/home/shane/Documents/grad_classes/SIO209_Python_2015/homework/finalproject&#39;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">threads</span> <span class="o">=</span> <span class="s">&#39;4&#39;</span>
-<span class="n">evalue</span> <span class="o">=</span> <span class="s">&#39;0.00001&#39;</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="s">&#39;no&#39;</span>
-<span class="n">outfmt</span> <span class="o">=</span> <span class="s">&#39;5&#39;</span> <span class="c">#tab format</span>
-<span class="n">targseq</span> <span class="o">=</span> <span class="s">&#39;10&#39;</span>
-<span class="n">dbloc</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">&#39;/db/full/Cdd&#39;</span>
+  <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+</code></pre>
+</div>
 
-<span class="n">protfams</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">project_path</span><span class="o">+</span><span class="s">&#39;/prot_fams&#39;</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">localrpsb_path</span> <span class="o">=</span> <span class="s">'/home/shane/Documents/localrpsb/cdd_v3.14'</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="s">'/home/shane/Documents/grad_classes/SIO209_Python_2015/homework/finalproject'</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">threads</span> <span class="o">=</span> <span class="s">'4'</span>
+<span class="n">evalue</span> <span class="o">=</span> <span class="s">'0.00001'</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="s">'no'</span>
+<span class="n">outfmt</span> <span class="o">=</span> <span class="s">'5'</span> <span class="c">#tab format</span>
+<span class="n">targseq</span> <span class="o">=</span> <span class="s">'10'</span>
+<span class="n">dbloc</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">'/db/full/Cdd'</span>
+
+<span class="n">protfams</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">project_path</span><span class="o">+</span><span class="s">'/prot_fams'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">fam</span> <span class="ow">in</span> <span class="n">protfams</span><span class="p">:</span>
     <span class="n">fam</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-    <span class="n">qloc</span> <span class="o">=</span> <span class="n">project_path</span><span class="o">+</span><span class="s">&#39;/1st_blasts/&#39;</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">&#39;_uniq_76roseo.faa&#39;</span>
-    <span class="n">outloc</span> <span class="o">=</span> <span class="n">project_path</span><span class="o">+</span><span class="s">&#39;/2nd_blasts/&#39;</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">&#39;_76roseo.xml&#39;</span>
-
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;rpsblast&#39;</span><span class="p">,</span>
-                     <span class="s">&#39;-db&#39;</span><span class="p">,</span> <span class="n">dbloc</span><span class="p">,</span>
-                     <span class="s">&#39;-query&#39;</span><span class="p">,</span> <span class="n">qloc</span><span class="p">,</span>
-                     <span class="s">&#39;-out&#39;</span><span class="p">,</span> <span class="n">outloc</span><span class="p">,</span>
-                     <span class="s">&#39;-num_threads&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="p">,</span>
-                     <span class="s">&#39;-evalue&#39;</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span>
-                     <span class="s">&#39;-outfmt&#39;</span><span class="p">,</span> <span class="n">outfmt</span><span class="p">,</span>
-                     <span class="s">&#39;-max_target_seqs&#39;</span><span class="p">,</span> <span class="n">targseq</span><span class="p">])</span>
-
+    <span class="n">qloc</span> <span class="o">=</span> <span class="n">project_path</span><span class="o">+</span><span class="s">'/1st_blasts/'</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">'_uniq_76roseo.faa'</span>
+    <span class="n">outloc</span> <span class="o">=</span> <span class="n">project_path</span><span class="o">+</span><span class="s">'/2nd_blasts/'</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">'_76roseo.xml'</span>
+    
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'rpsblast'</span><span class="p">,</span>
+                     <span class="s">'-db'</span><span class="p">,</span> <span class="n">dbloc</span><span class="p">,</span>
+                     <span class="s">'-query'</span><span class="p">,</span> <span class="n">qloc</span><span class="p">,</span>
+                     <span class="s">'-out'</span><span class="p">,</span> <span class="n">outloc</span><span class="p">,</span>
+                     <span class="s">'-num_threads'</span><span class="p">,</span> <span class="n">threads</span><span class="p">,</span>
+                     <span class="s">'-evalue'</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span>
+                     <span class="s">'-outfmt'</span><span class="p">,</span> <span class="n">outfmt</span><span class="p">,</span>
+                     <span class="s">'-max_target_seqs'</span><span class="p">,</span> <span class="n">targseq</span><span class="p">])</span>
+    
 <span class="n">protfams</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
+
   </article>
 </div>
 
@@ -94,7 +102,13 @@
   <div class="p2 wrap">
     <div class="measure mt1 center">
       <small>
-        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+        &copy;Copyright 
+        	<script language="javascript" type="text/javascript">
+			var today = new Date()
+			var year = today.getFullYear()
+			document.write(year)
+			</script>
+			 Shane L. Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
       </small>
     </div>
   </div>

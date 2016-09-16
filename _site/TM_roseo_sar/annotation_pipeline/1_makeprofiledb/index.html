@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Shane Hogle</title>
+    <title>Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Microbes + Biogeochemistry">
     <meta name="author" content="Shane Hogle">
     
-    <link rel="canonical" href="//TM_roseo_sar/annotation_pipeline/1_makeprofiledb/">
+    <link rel="canonical" href="///TM_roseo_sar/annotation_pipeline/1_makeprofiledb/">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="//css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -22,10 +22,10 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Shane Hogle">
+    <meta property="og:title" content="Blog">
     <meta property="og:description" content="Microbes + Biogeochemistry">
     <meta property="og:url" content="//TM_roseo_sar/annotation_pipeline/1_makeprofiledb/">
-    <meta property="og:site_name" content="Shane Hogle">
+    <meta property="og:site_name" content="Blog">
 </head>
 
 <body class="">
@@ -33,12 +33,12 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/" class="site-title">Shane Hogle</a>
+      <a href="/" class="site-title">Blog</a>
       <nav class="site-nav right">
-        <a href="/about/">About</a>
-<a href="/publications/">Publications</a>
-<a href="/research/">Research</a>
-<a href="/contact/">Contact</a>
+        <a href="//about/">Shane Hogle</a>
+<a href="//publications/">Publications</a>
+<a href="//research/">Research</a>
+<a href="//contact/">Contact</a>
 
       </nav>
       <div class="clearfix"></div>
@@ -56,38 +56,47 @@
   </header>
   <article class="post-content">
   <h3 id="generate-rpsblast-profile-databases-for-a-collection-of-protein-families">Generate RPSblast profile databases for a collection of protein families</h3>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">subprocess</span>
-</code></pre></div>
-<p>need a folder containing some version of the NCBI CDD database &lsquo;localrpsb_path&rsquo;</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">localrpsb_path</span> <span class="o">=</span> <span class="s">&#39;/home/shane/Documents/localrpsb/cdd_v3.14&#39;</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="s">&#39;/home/shane/Documents/grad_classes/SIO209_Python_2015/homework/finalproject&#39;</span>
-</code></pre></div>
-<h4 id="call-makeprofile-db-for-each-protein-family">Call makeprofile db for each protein family</h4>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">threshold</span> <span class="o">=</span> <span class="s">&#39;9.82&#39;</span>
-<span class="n">dbtype</span> <span class="o">=</span> <span class="s">&#39;rps&#39;</span>
-<span class="n">scale</span> <span class="o">=</span> <span class="s">&#39;100.0&#39;</span> <span class="c">#tab format</span>
-<span class="n">index</span> <span class="o">=</span> <span class="s">&#39;true&#39;</span>
 
-<span class="n">protfams</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">project_path</span><span class="o">+</span><span class="s">&#39;/prot_fams&#39;</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+</code></pre>
+</div>
+
+<p>need a folder containing some version of the NCBI CDD database ‘localrpsb_path’</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">localrpsb_path</span> <span class="o">=</span> <span class="s">'/home/shane/Documents/localrpsb/cdd_v3.14'</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="s">'/home/shane/Documents/grad_classes/SIO209_Python_2015/homework/finalproject'</span>
+</code></pre>
+</div>
+
+<h4 id="call-makeprofile-db-for-each-protein-family">Call makeprofile db for each protein family</h4>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">threshold</span> <span class="o">=</span> <span class="s">'9.82'</span>
+<span class="n">dbtype</span> <span class="o">=</span> <span class="s">'rps'</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="s">'100.0'</span> <span class="c">#tab format</span>
+<span class="n">index</span> <span class="o">=</span> <span class="s">'true'</span>
+
+<span class="n">protfams</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">project_path</span><span class="o">+</span><span class="s">'/prot_fams'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">fam</span> <span class="ow">in</span> <span class="n">protfams</span><span class="p">:</span>
     <span class="n">fam</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-    <span class="n">pnfile</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">&#39;/pns/&#39;</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">&#39;.pn&#39;</span> 
-    <span class="n">dbfile</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">&#39;/db/reduced/&#39;</span><span class="o">+</span><span class="n">fam</span>
-    <span class="c">#cwd = localrpsb_path+&#39;/smps&#39;</span>
-
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;makeprofiledb&#39;</span><span class="p">,</span> 
-                     <span class="s">&#39;-in&#39;</span><span class="p">,</span> <span class="n">pnfile</span><span class="p">,</span> 
-                     <span class="s">&#39;-out&#39;</span><span class="p">,</span> <span class="n">dbfile</span><span class="p">,</span> 
-                     <span class="s">&#39;-title&#39;</span><span class="p">,</span> <span class="n">fam</span><span class="p">,</span> 
-                     <span class="s">&#39;-threshold&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="p">],</span>
-                     <span class="s">&#39;-scale&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="p">],</span>
-                     <span class="s">&#39;-dbtype&#39;</span><span class="p">,</span> <span class="n">dbtype</span><span class="p">],</span>
-                     <span class="s">&#39;-index&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">]],</span>
-                   <span class="n">cwd</span><span class="o">=</span><span class="n">localrpsb_path</span><span class="o">+</span><span class="s">&#39;/smps&#39;</span><span class="p">)</span>
+    <span class="n">pnfile</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">'/pns/'</span><span class="o">+</span><span class="n">fam</span><span class="o">+</span><span class="s">'.pn'</span> 
+    <span class="n">dbfile</span> <span class="o">=</span> <span class="n">localrpsb_path</span><span class="o">+</span><span class="s">'/db/reduced/'</span><span class="o">+</span><span class="n">fam</span>
+    <span class="c">#cwd = localrpsb_path+'/smps'</span>
+  
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'makeprofiledb'</span><span class="p">,</span> 
+                     <span class="s">'-in'</span><span class="p">,</span> <span class="n">pnfile</span><span class="p">,</span> 
+                     <span class="s">'-out'</span><span class="p">,</span> <span class="n">dbfile</span><span class="p">,</span> 
+                     <span class="s">'-title'</span><span class="p">,</span> <span class="n">fam</span><span class="p">,</span> 
+                     <span class="s">'-threshold'</span><span class="p">,</span> <span class="n">threshold</span><span class="p">],</span>
+                     <span class="s">'-scale'</span><span class="p">,</span> <span class="n">scale</span><span class="p">],</span>
+                     <span class="s">'-dbtype'</span><span class="p">,</span> <span class="n">dbtype</span><span class="p">],</span>
+                     <span class="s">'-index'</span><span class="p">,</span> <span class="n">index</span><span class="p">]],</span>
+                   <span class="n">cwd</span><span class="o">=</span><span class="n">localrpsb_path</span><span class="o">+</span><span class="s">'/smps'</span><span class="p">)</span>
 
 <span class="n">protfams</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
+
   </article>
 </div>
 
@@ -99,7 +108,13 @@
   <div class="p2 wrap">
     <div class="measure mt1 center">
       <small>
-        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+        &copy;Copyright 
+        	<script language="javascript" type="text/javascript">
+			var today = new Date()
+			var year = today.getFullYear()
+			document.write(year)
+			</script>
+			 Shane L. Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
       </small>
     </div>
   </div>

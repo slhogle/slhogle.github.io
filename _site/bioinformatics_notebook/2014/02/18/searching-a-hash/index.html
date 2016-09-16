@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Searching a hash &#8211; Shane Hogle</title>
+    <title>Searching a hash &#8211; Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Use Ruby to search a hash with the entries from an array">
     <meta name="author" content="Shane Hogle">
     <meta name="keywords" content="bioinformatics_notebook">
-    <link rel="canonical" href="//bioinformatics_notebook/2014/02/18/searching-a-hash/">
+    <link rel="canonical" href="///bioinformatics_notebook/2014/02/18/searching-a-hash/">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="//css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -25,7 +25,7 @@
     <meta property="og:title" content="Searching a hash">
     <meta property="og:description" content="Microbes + Biogeochemistry">
     <meta property="og:url" content="//bioinformatics_notebook/2014/02/18/searching-a-hash/">
-    <meta property="og:site_name" content="Shane Hogle">
+    <meta property="og:site_name" content="Blog">
 </head>
 
 <body class="">
@@ -33,12 +33,12 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/" class="site-title">Shane Hogle</a>
+      <a href="/" class="site-title">Blog</a>
       <nav class="site-nav right">
-        <a href="/about/">About</a>
-<a href="/publications/">Publications</a>
-<a href="/research/">Research</a>
-<a href="/contact/">Contact</a>
+        <a href="//about/">Shane Hogle</a>
+<a href="//publications/">Publications</a>
+<a href="//research/">Research</a>
+<a href="//contact/">Contact</a>
 
       </nav>
       <div class="clearfix"></div>
@@ -61,27 +61,28 @@
 </div>
 
 <article class="post-content">
-  <p>Let&rsquo;s say you have a list of stuff. You also have a tab delimited file with all of the items in your list (plus many more) with some other piece of information associated with each item. If you want to output the information from the tab delimited file associated with the items in your list you can use this script. I don&rsquo;t think this would be very fast on large files (like those approaching 1 GB) the way it is currently coded.</p>
+  <p>Let’s say you have a list of stuff. You also have a tab delimited file with all of the items in your list (plus many more) with some other piece of information associated with each item. If you want to output the information from the tab delimited file associated with the items in your list you can use this script. I don’t think this would be very fast on large files (like those approaching 1 GB) the way it is currently coded.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
-<span class="n">tab</span><span class="o">-</span><span class="n">delimited</span><span class="o">-</span><span class="n">mapping</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-<span class="n">list</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-<span class="n">list_array</span> <span class="o">=</span> <span class="o">[]</span>
-<span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">list_array</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="o">.</span><span class="n">chop</span> <span class="p">}</span>
-<span class="n">map</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
-<span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tab</span><span class="o">-</span><span class="n">delimited</span><span class="o">-</span><span class="n">mapping</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span>
-  <span class="n">cols</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="n">map</span><span class="o">[</span><span class="n">cols</span><span class="o">[</span><span class="mi">1</span><span class="o">]]</span> <span class="o">=</span> <span class="n">cols</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> 
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="n">tab</span><span class="o">-</span><span class="n">delimited</span><span class="o">-</span><span class="n">mapping</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">list</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">list_array</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="no">File</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">).</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">list_array</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">.</span><span class="nf">chop</span> <span class="p">}</span>
+<span class="n">map</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span>
+<span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">tab</span><span class="o">-</span><span class="n">delimited</span><span class="o">-</span><span class="n">mapping</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span>
+  <span class="n">cols</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="nf">chomp</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">map</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 <span class="k">end</span>
-<span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">list</span><span class="o">+</span><span class="s1">&#39;_sub&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-  <span class="n">list_array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">entry</span><span class="o">|</span>
-    <span class="k">if</span> <span class="n">maps</span><span class="o">.</span><span class="n">has_key?</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-      <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">maps</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+<span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">list</span><span class="o">+</span><span class="s1">'_sub'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">list_array</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">entry</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">maps</span><span class="p">.</span><span class="nf">has_key?</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+      <span class="n">f</span><span class="p">.</span><span class="nf">puts</span> <span class="n">maps</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
     <span class="k">else</span>
-      <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;not found&quot;</span>
+      <span class="n">f</span><span class="p">.</span><span class="nf">puts</span> <span class="s2">"not found"</span>
     <span class="k">end</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
+
 
 </article>
 
@@ -99,7 +100,13 @@
   <div class="p2 wrap">
     <div class="measure mt1 center">
       <small>
-        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+        &copy;Copyright 
+        	<script language="javascript" type="text/javascript">
+			var today = new Date()
+			var year = today.getFullYear()
+			document.write(year)
+			</script>
+			 Shane L. Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
       </small>
     </div>
   </div>

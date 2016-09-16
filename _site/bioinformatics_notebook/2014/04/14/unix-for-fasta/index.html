@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unix for fasta &#8211; Shane Hogle</title>
+    <title>Unix for fasta &#8211; Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Useful unix commands for processing sequence files">
     <meta name="author" content="Shane Hogle">
     <meta name="keywords" content="bioinformatics_notebook">
-    <link rel="canonical" href="//bioinformatics_notebook/2014/04/14/unix-for-fasta/">
+    <link rel="canonical" href="///bioinformatics_notebook/2014/04/14/unix-for-fasta/">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="//css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -25,7 +25,7 @@
     <meta property="og:title" content="Unix for fasta">
     <meta property="og:description" content="Microbes + Biogeochemistry">
     <meta property="og:url" content="//bioinformatics_notebook/2014/04/14/unix-for-fasta/">
-    <meta property="og:site_name" content="Shane Hogle">
+    <meta property="og:site_name" content="Blog">
 </head>
 
 <body class="">
@@ -33,12 +33,12 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/" class="site-title">Shane Hogle</a>
+      <a href="/" class="site-title">Blog</a>
       <nav class="site-nav right">
-        <a href="/about/">About</a>
-<a href="/publications/">Publications</a>
-<a href="/research/">Research</a>
-<a href="/contact/">Contact</a>
+        <a href="//about/">Shane Hogle</a>
+<a href="//publications/">Publications</a>
+<a href="//research/">Research</a>
+<a href="//contact/">Contact</a>
 
       </nav>
       <div class="clearfix"></div>
@@ -63,43 +63,50 @@
 <article class="post-content">
   <p>The syntax here is using the Bash shell in unix.</p>
 
-<p>The following command counts the number of sequences in a fasta formatted file. The &ldquo;|&rdquo; operator is a pipe. This lets you stream the output from one command into another.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The following command counts the number of sequences in a fasta formatted file. The “</td>
+      <td>” operator is a pipe. This lets you stream the output from one command into another.</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep <span class="s2">&quot;&gt;&quot;</span> YOURFILE.fasta <span class="p">|</span> wc -l</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">grep <span class="s2">"&gt;"</span> YOURFILE.fasta | wc -l</code></pre></figure>
 
 <p>Extract position 2 through 8 on all sequences in a fasta file. The -v option for grep is the inversion option. This tells grep to only consider lines that are not fasta headers.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep -v <span class="s2">&quot;&gt;&quot;</span> YOURFILE.fasta <span class="p">|</span> cut -c2-8 &gt; YOURFILE_pos2-8.fasta</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">grep -v <span class="s2">"&gt;"</span> YOURFILE.fasta | cut -c2-8 &gt; YOURFILE_pos2-8.fasta</code></pre></figure>
 
 <p>Counts how many unique text strings are in a file.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sort -u YOURFILE_pos2-8.fasta <span class="p">|</span> wc -l</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sort -u YOURFILE_pos2-8.fasta | wc -l</code></pre></figure>
 
 <p>Exports counts of unique occurences in YOURFILE_pos2-8.fasta</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sort YOURFILE_pos2-8.fasta <span class="p">|</span> uniq -c &gt; YOURFILE_unique_counts.output</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sort YOURFILE_pos2-8.fasta | uniq -c &gt; YOURFILE_unique_counts.output</code></pre></figure>
 
-<p>This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character &ldquo;/t&rdquo; It then will sort this in decreasing numerical order.</p>
+<p>This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character “/t” It then will sort this in decreasing numerical order.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sed <span class="s1">&#39;s/^\s\+//&#39;</span> YOURFILE_unique_counts.output <span class="p">|</span> sed <span class="s1">&#39;s/\s\+/\t/&#39;</span> <span class="p">|</span> sort -n -r</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sed <span class="s1">'s/^\s\+//'</span> YOURFILE_unique_counts.output | sed <span class="s1">'s/\s\+/\t/'</span> | sort -n -r</code></pre></figure>
 
-<p><strong>Example questions: Use &ldquo;grep&rdquo;, &ldquo;cat&rdquo;, &ldquo;sort&rdquo;, and &ldquo;uniq -c&rdquo; to extract microRNA sequences from <a href="./v19.fa">mirbase Version 19</a> and <a href="./v20.fa">Version 20</a> and determine which sequences are in both versions. How many are shared in both versions?</strong></p>
+<p><strong>Example questions: Use “grep”, “cat”, “sort”, and “uniq -c” to extract microRNA sequences from <a href="./v19.fa">mirbase Version 19</a> and <a href="./v20.fa">Version 20</a> and determine which sequences are in both versions. How many are shared in both versions?</strong></p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep -v <span class="s2">&quot;&gt;&quot;</span> v19.fa <span class="p">|</span> sort -u &gt; v19_uniq.out
-grep -v <span class="s2">&quot;&gt;&quot;</span> v20.fa <span class="p">|</span> sort -u &gt; v20_uniq.out</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">grep -v <span class="s2">"&gt;"</span> v19.fa | sort -u &gt; v19_uniq.out
+grep -v <span class="s2">"&gt;"</span> v20.fa | sort -u &gt; v20_uniq.out</code></pre></figure>
 
-<p>This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The &ldquo;&gt;&rdquo; operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.</p>
+<p>This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The “&gt;” operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">cat v19_uniq.out v20_uniq.out <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> grep -c <span class="s2">&quot;2&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">cat v19_uniq.out v20_uniq.out | sort | uniq -c | grep -c <span class="s2">"2"</span></code></pre></figure>
 
-<p>The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c &ldquo;2&rdquo; is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.</p>
+<p>The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c “2” is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.</p>
 
-<p><strong>Example questions: Use &ldquo;grep&rdquo; and &ldquo;sort&rdquo; to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use &ldquo;join&rdquo; to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?</strong></p>
+<p><strong>Example questions: Use “grep” and “sort” to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use “join” to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?</strong></p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">join -v <span class="m">1</span> v19_uniq.out v20_uniq.out <span class="p">|</span> wc -l
-join -v <span class="m">2</span> v19_uniq.out v20_uniq.out <span class="p">|</span> wc -l</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">join -v 1 v19_uniq.out v20_uniq.out | wc -l
+join -v 2 v19_uniq.out v20_uniq.out | wc -l</code></pre></figure>
 
-<p>Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were &ldquo;retired&rdquo; from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the &ldquo;unmatchable&rdquo; ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.</p>
+<p>Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were “retired” from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the “unmatchable” ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.</p>
 
 </article>
 
@@ -117,7 +124,13 @@ join -v <span class="m">2</span> v19_uniq.out v20_uniq.out <span class="p">|</sp
   <div class="p2 wrap">
     <div class="measure mt1 center">
       <small>
-        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+        &copy;Copyright 
+        	<script language="javascript" type="text/javascript">
+			var today = new Date()
+			var year = today.getFullYear()
+			document.write(year)
+			</script>
+			 Shane L. Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
       </small>
     </div>
   </div>

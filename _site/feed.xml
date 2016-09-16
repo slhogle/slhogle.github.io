@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shane Hogle</title>
+    <title>Blog</title>
     <description>Microbes + Biogeochemistry</description>
-    <link>//</link>
-    <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
+    <link>///</link>
+    <atom:link href="///feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Collecting top hits</title>
-        <description>&lt;p&gt;Many times in bioinformatics you&amp;rsquo;ll have searched many sequences against a database (for example hmmscan versus pfamA). Say you are interested in only retaining the highest scoring PFAM hits for each of your query sequences. Depending on your cutoff score and the number of expected protein domains, each sequence may have gotten hits to multiple different PFAMs. For example, feoB transporters have GTPase-like binding domains, and it is easy to mis-annotate other sequences with GTPase domains as feoB proteins. &lt;/p&gt;
+        <description>&lt;p&gt;Many times in bioinformatics you’ll have searched many sequences against a database (for example hmmscan versus pfamA). Say you are interested in only retaining the highest scoring PFAM hits for each of your query sequences. Depending on your cutoff score and the number of expected protein domains, each sequence may have gotten hits to multiple different PFAMs. For example, feoB transporters have GTPase-like binding domains, and it is easy to mis-annotate other sequences with GTPase domains as feoB proteins.&lt;/p&gt;
 
 &lt;p&gt;To reduce a hmmscan output file to only the best scoring PFAMs you could use:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$3]++&amp;#39;&lt;/span&gt; MYOUTFILE.pfam  &amp;gt; MYBESTHITS.pfam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;'!x[$3]++'&lt;/span&gt; MYOUTFILE.pfam  &amp;gt; MYBESTHITS.pfam&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;and you would get only the lines containing the PFAMs with highest full-sequence score.&lt;/p&gt;
 
-&lt;p&gt;This code takes advantage of the fact that the output of hmmscan is already ordered with the highest scoring domain first for each sequence. In short, after it sees the first unique &amp;ldquo;query name&amp;rdquo; entry it removes all subsequent lines that have that &amp;ldquo;query name&amp;rdquo; entry then moves on to the next. If the sequences weren&amp;rsquo;t sorted with highest scoring PFAMs appearing first this wouldn&amp;rsquo;t give you the top hits - it would just de-duplicate your file. To make this work on other kinds of files you would need to sort them based on whatever value you are interested in.&lt;/p&gt;
+&lt;p&gt;This code takes advantage of the fact that the output of hmmscan is already ordered with the highest scoring domain first for each sequence. In short, after it sees the first unique “query name” entry it removes all subsequent lines that have that “query name” entry then moves on to the next. If the sequences weren’t sorted with highest scoring PFAMs appearing first this wouldn’t give you the top hits - it would just de-duplicate your file. To make this work on other kinds of files you would need to sort them based on whatever value you are interested in.&lt;/p&gt;
 
 &lt;p&gt;For example you could write:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -rnk3 FILE &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;!x[$2]++&amp;#39;&lt;/span&gt; &amp;gt; OUT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -rnk3 FILE | awk &lt;span class=&quot;s1&quot;&gt;'!x[$2]++'&lt;/span&gt; &amp;gt; OUT&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;This sorts FILE from highest to lowest (-r) based on column 3 (-k3) and orders it based on string numeric values (-n) then performs awk command on the output.&lt;/p&gt;
 
-&lt;p&gt;I learned this little trick off stackoverflow and it is &lt;a href=&quot;http://stackoverflow.com/questions/10842118/explain-this-duplicate-line-removing-order-retaining-one-line-awk-command&quot;&gt;explained there&lt;/a&gt; much betther than I can do, but I&amp;rsquo;ll take a crack at it anyways&amp;hellip;&lt;/p&gt;
+&lt;p&gt;I learned this little trick off stackoverflow and it is &lt;a href=&quot;http://stackoverflow.com/questions/10842118/explain-this-duplicate-line-removing-order-retaining-one-line-awk-command&quot;&gt;explained there&lt;/a&gt; much betther than I can do, but I’ll take a crack at it anyways…&lt;/p&gt;
 
 &lt;p&gt;Basically, what it is doing with our hmmscan output is:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Read the current line as input&lt;/li&gt;
-&lt;li&gt;Index array x with the entry in the &amp;ldquo;query name&amp;rdquo; field. If it doesnt already exist create it. Arrays in awk are associative so they are like dictionaries in python.&lt;/li&gt;
-&lt;li&gt;Increment value of x[$3] but return the prior value, which will be zero if the &amp;ldquo;query name&amp;rdquo; entry has not been seen yet. This is called a postfix increment and is seen for example in C programming.&lt;/li&gt;
-&lt;li&gt;Negate the resulting operator so its value is TRUE when x[$3] is zero causing awk to perform the default function which is print the line&lt;/li&gt;
-&lt;li&gt;Actually increment so x[$3] is no longer zero. The next time the same entry in the &amp;ldquo;query name&amp;rdquo; field is seen, the value of x[$3] = 1.&lt;/li&gt;
-&lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
+  &lt;li&gt;Read the current line as input&lt;/li&gt;
+  &lt;li&gt;Index array x with the entry in the “query name” field. If it doesnt already exist create it. Arrays in awk are associative so they are like dictionaries in python.&lt;/li&gt;
+  &lt;li&gt;Increment value of x[$3] but return the prior value, which will be zero if the “query name” entry has not been seen yet. This is called a postfix increment and is seen for example in C programming.&lt;/li&gt;
+  &lt;li&gt;Negate the resulting operator so its value is TRUE when x[$3] is zero causing awk to perform the default function which is print the line&lt;/li&gt;
+  &lt;li&gt;Actually increment so x[$3] is no longer zero. The next time the same entry in the “query name” field is seen, the value of x[$3] = 1.&lt;/li&gt;
+  &lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 23 Apr 2015 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</guid>
+        <link>///bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2015/04/23/remove-duplicate-lines/</guid>
       </item>
     
       <item>
         <title>ASLO 2015 Talk</title>
-        <description>&lt;p&gt;I&amp;rsquo;m presenting about trace metal aquisition in the marine Roseobacter clade on Monday, February 23rd at 09:15.&lt;/p&gt;
+        <description>&lt;p&gt;I’m presenting about trace metal aquisition in the marine Roseobacter clade on Monday, February 23rd at 09:15.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Presentation Title:&lt;/strong&gt; EVOLUTION, ECOLOGY, AND MECHANISMS OF HEME UPTAKE IN THE MARINE ROSEOBACTER LINEAGE&lt;/p&gt;
 
@@ -52,7 +52,7 @@
 
 &lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2015 ASLO Aquatic Sciences Meeting - Grenada, Spain&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 037 THE MOLECULAR ECOLOGY OF METAL-MICROBE INTERACTIONS IN THE OCEAN ENVIRONMENT &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 037 THE MOLECULAR ECOLOGY OF METAL-MICROBE INTERACTIONS IN THE OCEAN ENVIRONMENT&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Day:&lt;/strong&gt; Monday 02/23/2015&lt;/p&gt;
 
@@ -63,8 +63,8 @@
 &lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Machuca (Floor-2)&lt;/p&gt;
 </description>
         <pubDate>Wed, 10 Dec 2014 00:00:00 -0500</pubDate>
-        <link>//news/2014/12/10/ASLO-2015/</link>
-        <guid isPermaLink="true">//news/2014/12/10/ASLO-2015/</guid>
+        <link>///news/2014/12/10/ASLO-2015/</link>
+        <guid isPermaLink="true">///news/2014/12/10/ASLO-2015/</guid>
       </item>
     
       <item>
@@ -72,13 +72,13 @@
         <description>&lt;p&gt;I participated in a &lt;a href=&quot;http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2014198a.html&quot;&gt;project&lt;/a&gt; examining the genomes and gene expression of prokaryotic and eukaryptic communities on a transect in the easter subtropical Pacific ocean while collaborating with scientists at the &lt;a href=&quot;http://www.jcvi.org/cms/home/&quot;&gt;J. Craig Venter Institute&lt;/a&gt;. There were a number of scientists from The &lt;a href=&quot;https://scripps.ucsd.edu/&quot;&gt;Scripps Institution of Oceanography&lt;/a&gt; involved as well.&lt;/p&gt;
 </description>
         <pubDate>Tue, 21 Oct 2014 00:00:00 -0400</pubDate>
-        <link>//news/2014/10/21/new-publication-out-in-ISMEJ/</link>
-        <guid isPermaLink="true">//news/2014/10/21/new-publication-out-in-ISMEJ/</guid>
+        <link>///news/2014/10/21/new-publication-out-in-ISMEJ/</link>
+        <guid isPermaLink="true">///news/2014/10/21/new-publication-out-in-ISMEJ/</guid>
       </item>
     
       <item>
         <title>Goldschmidt 2014 Poster</title>
-        <description>&lt;p&gt;I&amp;rsquo;m presenting a poster on Wednesday June 11th from 14:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/MECHANISMS_OF_TRACE_METAL_ASSIMILATION_IN_MARINE_ROSEOBACTERS/1045578&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;I’m presenting a poster on Wednesday June 11th from 14:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/MECHANISMS_OF_TRACE_METAL_ASSIMILATION_IN_MARINE_ROSEOBACTERS/1045578&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Poster Title:&lt;/strong&gt; MECHANISMS OF TRACE METAL ASSIMILATION IN MARINE ROSEOBACTERS&lt;/p&gt;
 
@@ -88,187 +88,198 @@
 
 &lt;p&gt;&lt;strong&gt;Poster Number:&lt;/strong&gt; 236&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 17e: Oceans and Atmosphere: Trace elements, microbes, and biogeochemical cycles in the ocean environment. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 17e: Oceans and Atmosphere: Trace elements, microbes, and biogeochemical cycles in the ocean environment.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Presentation Day:&lt;/strong&gt; Wednesday 6/11/2014&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 14:00 - 17:00&lt;/p&gt;
+
 </description>
         <pubDate>Thu, 05 Jun 2014 00:00:00 -0400</pubDate>
-        <link>//news/2014/06/05/Goldschmidt-2014-poster/</link>
-        <guid isPermaLink="true">//news/2014/06/05/Goldschmidt-2014-poster/</guid>
+        <link>///news/2014/06/05/Goldschmidt-2014-poster/</link>
+        <guid isPermaLink="true">///news/2014/06/05/Goldschmidt-2014-poster/</guid>
       </item>
     
       <item>
         <title>New publication</title>
-        <description>&lt;p&gt;I recently published a &lt;a href=&quot;http://pubs.rsc.org/en/content/articlelanding/2014/mt/c4mt00031e#!divAbstract&quot;&gt;review article&lt;/a&gt; with &lt;a href=&quot;http://scrippsscholars.ucsd.edu/kbarbeau&quot;&gt;Kathy Barbeau&lt;/a&gt; (my primary adviser) and &lt;a href=&quot;http://www.geomar.de/en/mitarbeiter/fb2/ch/mgledhill/&quot;&gt;Martha Gledhill&lt;/a&gt; about the biogeochemistry of heme in marine systems. Unfortunately, the paper is not in an open access journal. If you don&amp;rsquo;t have access and want to read it, message me for a copy.&lt;/p&gt;
+        <description>&lt;p&gt;I recently published a &lt;a href=&quot;http://pubs.rsc.org/en/content/articlelanding/2014/mt/c4mt00031e#!divAbstract&quot;&gt;review article&lt;/a&gt; with &lt;a href=&quot;http://scrippsscholars.ucsd.edu/kbarbeau&quot;&gt;Kathy Barbeau&lt;/a&gt; (my primary adviser) and &lt;a href=&quot;http://www.geomar.de/en/mitarbeiter/fb2/ch/mgledhill/&quot;&gt;Martha Gledhill&lt;/a&gt; about the biogeochemistry of heme in marine systems. Unfortunately, the paper is not in an open access journal. If you don’t have access and want to read it, message me for a copy.&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 May 2014 00:00:00 -0400</pubDate>
-        <link>//news/2014/05/30/new-publication-out-in-metallomics/</link>
-        <guid isPermaLink="true">//news/2014/05/30/new-publication-out-in-metallomics/</guid>
+        <link>///news/2014/05/30/new-publication-out-in-metallomics/</link>
+        <guid isPermaLink="true">///news/2014/05/30/new-publication-out-in-metallomics/</guid>
       </item>
     
       <item>
         <title>Bowtie and Samtools</title>
-        <description>&lt;p&gt;A little out of character for me as I usually work on environmental genomics. I&amp;rsquo;ve been working on RNAseq data from human stem cells subjected to different treatments of WNT signaling proteins. We are interested in looking for differential expression of certain genes under the different treatment conditions. One great tool for doing this is &lt;a href=&quot;http://bowtie-bio.sourceforge.net/index.shtml&quot;&gt;bowtie&lt;/a&gt; or &lt;a href=&quot;http://bowtie-bio.sourceforge.net/bowtie2/index.shtml&quot;&gt;bowtie2&lt;/a&gt;, which is a very fast and efficient short read aligner. In my case I am using bowtie (not bowtie2) to map the mRNA sequences to the human genome (version hg19). There are a variety of reasons to choose between bowtie and bowtie2 that I won&amp;rsquo;t go into here. By using a series of other tools in the bowtie family, the resulting mapping are compared to one another and we can search for differences between locations on the genome where mRNA sequences mapped.&lt;/p&gt;
+        <description>&lt;p&gt;A little out of character for me as I usually work on environmental genomics. I’ve been working on RNAseq data from human stem cells subjected to different treatments of WNT signaling proteins. We are interested in looking for differential expression of certain genes under the different treatment conditions. One great tool for doing this is &lt;a href=&quot;http://bowtie-bio.sourceforge.net/index.shtml&quot;&gt;bowtie&lt;/a&gt; or &lt;a href=&quot;http://bowtie-bio.sourceforge.net/bowtie2/index.shtml&quot;&gt;bowtie2&lt;/a&gt;, which is a very fast and efficient short read aligner. In my case I am using bowtie (not bowtie2) to map the mRNA sequences to the human genome (version hg19). There are a variety of reasons to choose between bowtie and bowtie2 that I won’t go into here. By using a series of other tools in the bowtie family, the resulting mapping are compared to one another and we can search for differences between locations on the genome where mRNA sequences mapped.&lt;/p&gt;
 
-&lt;p&gt;Right now I&amp;rsquo;ll walk you through some commands I&amp;rsquo;ve used to take a bunch of sequence files and a reference database of the human genome and spit out coordinates of the human genome where these sequences mapped.&lt;/p&gt;
+&lt;p&gt;Right now I’ll walk you through some commands I’ve used to take a bunch of sequence files and a reference database of the human genome and spit out coordinates of the human genome where these sequences mapped.&lt;/p&gt;
 
-&lt;p&gt;First off, Bowtie needs something called a genome index. You can either build this yourself or there are lots of prebuilt indexes &lt;a href=&quot;http://support.illumina.com/sequencing/sequencing_software/igenome.html&quot;&gt;here&lt;/a&gt;. Say you&amp;rsquo;re working on a genome that doesn&amp;rsquo;t have a prebuilt index. You can make one yourself just from the fasta files of that genome. For example&amp;hellip;&lt;/p&gt;
+&lt;p&gt;First off, Bowtie needs something called a genome index. You can either build this yourself or there are lots of prebuilt indexes &lt;a href=&quot;http://support.illumina.com/sequencing/sequencing_software/igenome.html&quot;&gt;here&lt;/a&gt;. Say you’re working on a genome that doesn’t have a prebuilt index. You can make one yourself just from the fasta files of that genome. For example…&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./bowtie-build &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;* &amp;lt;reference_in&amp;gt; &amp;lt;ebwt_base&amp;gt;
-./bowtie-build -f chr1.fa,chr2.fa,chr3.fa,chr4.fa,chr5.fa... hg19&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./bowtie-build &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options]&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &amp;lt;reference_in&amp;gt; &amp;lt;ebwt_base&amp;gt;
+./bowtie-build -f chr1.fa,chr2.fa,chr3.fa,chr4.fa,chr5.fa... hg19&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;OK so now you&amp;rsquo;ve got your Bowtie-formatted genome index. In my case it is called &amp;ldquo;hg19.&amp;rdquo; You can map a variety of sequence file types to your genome index and these file types are indicated by different flags. In my case, I have a file of what&amp;rsquo;s called &amp;ldquo;raw sequences&amp;rdquo; this is one sequence per line with no header of any kind per sequence. To tell bowtie what kinds of sequences you need to use different flags: -r is for raw sequences, -f is for old fashioned fasta files, -q is for fastq files. If your sequences are raw or fasta formatted, bowtie gives them a default Phred quality score of 40.&lt;/p&gt;
+&lt;p&gt;OK so now you’ve got your Bowtie-formatted genome index. In my case it is called “hg19.” You can map a variety of sequence file types to your genome index and these file types are indicated by different flags. In my case, I have a file of what’s called “raw sequences” this is one sequence per line with no header of any kind per sequence. To tell bowtie what kinds of sequences you need to use different flags: -r is for raw sequences, -f is for old fashioned fasta files, -q is for fastq files. If your sequences are raw or fasta formatted, bowtie gives them a default Phred quality score of 40.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; -l &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt; -m &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw ~/FILEPATH/MYmRNAOUTPUT.sam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw ~/FILEPATH/MYmRNAOUTPUT.sam&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;The -r flag tells bowtie to expect raw sequences, the -n flag denotes the maximum number of mismatches permitted in the &amp;ldquo;seed,&amp;rdquo; the -l flag denotes the &amp;ldquo;seed length&amp;rdquo;; i.e., the number of bases on the high-quality end of the read to which the -n ceiling applies, and the the -m flag tells bowtie to suppress all alignments for a particular read if more than X reportable alignments exist for it. The -S flag tells bowtie to write the output in SAM format. In our case we want bowtie to write out all alignments using a seed length of 50 bases allowing no more than 3 mismatches in those 50 bases, and if a sequence maps to more than one place in the reference genome under those -n and -l conditions to not report any of those alignments. In my experience these are good mapping conditions to start with.&lt;/p&gt;
+&lt;p&gt;The -r flag tells bowtie to expect raw sequences, the -n flag denotes the maximum number of mismatches permitted in the “seed,” the -l flag denotes the “seed length”; i.e., the number of bases on the high-quality end of the read to which the -n ceiling applies, and the the -m flag tells bowtie to suppress all alignments for a particular read if more than X reportable alignments exist for it. The -S flag tells bowtie to write the output in SAM format. In our case we want bowtie to write out all alignments using a seed length of 50 bases allowing no more than 3 mismatches in those 50 bases, and if a sequence maps to more than one place in the reference genome under those -n and -l conditions to not report any of those alignments. In my experience these are good mapping conditions to start with.&lt;/p&gt;
 
 &lt;p&gt;SAM files are BIG. If you find yourself doing many of these kinds of bowtie analyses you will quickly see that the SAM files start to take up many gigabytes of disk space. A solution to the SAM size issue is to convert the SAM output from bowtie to BAM format. BAM is a binary format that takes up less space than the text content of SAM and can be passed to downstream tools later. Bowtie does not write to BAM format so you need to use SAMtools to do this. An efficient method that I like to use to get BAM format in one step is to pipe the output of bowtie to &lt;a href=&quot;http://samtools.sourceforge.net/&quot;&gt;Samtools&lt;/a&gt; like so:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; -l &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt; -m &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; samtools view -bSF4 - &amp;gt; ~/FILEPATH/MYmRNAOUTPUT.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bowtie -r -n 3 -l 50 -m 1 -S ~/FILEPATH/hg19 ~/FILEPATH/mRNASEQNAME.raw | samtools view -bSF4 - &amp;gt; ~/FILEPATH/MYmRNAOUTPUT.bam&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;The first part of this is the same as above but omitting the output file name. We then use a pipe to send the output to samtools. We use the &amp;ldquo;view&amp;rdquo; mode to extract/print all or sub alignments in SAM or BAM format. The flags -bSF4 mean to output in bam format while expecting input to be in SAM format, while also omitting any alignments that have the &amp;ldquo;4&amp;rdquo; flag which indicates that the query sequence itself is unmapped to the reference genome. This output format is useful so the downstream analyses don&amp;rsquo;t get clogged up with unmapped reads.&lt;/p&gt;
+&lt;p&gt;The first part of this is the same as above but omitting the output file name. We then use a pipe to send the output to samtools. We use the “view” mode to extract/print all or sub alignments in SAM or BAM format. The flags -bSF4 mean to output in bam format while expecting input to be in SAM format, while also omitting any alignments that have the “4” flag which indicates that the query sequence itself is unmapped to the reference genome. This output format is useful so the downstream analyses don’t get clogged up with unmapped reads.&lt;/p&gt;
 
-&lt;p&gt;Next post I&amp;rsquo;ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
+&lt;p&gt;Next post I’ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
 </description>
         <pubDate>Thu, 29 May 2014 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</guid>
+        <link>///bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2014/05/29/bowtie-and-samtools/</guid>
       </item>
     
       <item>
         <title>Process substitution with bash</title>
-        <description>&lt;p&gt;From &lt;a href=&quot;http://en.wikipedia.org/wiki/Process_substitution&quot;&gt;Wikipedia&lt;/a&gt; - &lt;em&gt;&amp;ldquo;Process substitution is a form of inter-process communication that allows the input or output of a command to appear as a file. The command is substituted in-line, where a file name would normally occur, by the command shell. This allows programs that normally only accept files to directly read from or write to another program.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+        <description>&lt;p&gt;From &lt;a href=&quot;http://en.wikipedia.org/wiki/Process_substitution&quot;&gt;Wikipedia&lt;/a&gt; - &lt;em&gt;“Process substitution is a form of inter-process communication that allows the input or output of a command to appear as a file. The command is substituted in-line, where a file name would normally occur, by the command shell. This allows programs that normally only accept files to directly read from or write to another program.”&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Say you want to use join to find and count the differences in two files each containing lines of biological sequence but those files are not sorted.&lt;/p&gt;
 
 &lt;p&gt;You could do&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
-sort seqfile2 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; - seqfile1.sorted &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
+sort seqfile2 | join -v 2 - seqfile1.sorted | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2&lt;/p&gt;
 
 &lt;p&gt;One can also do this using process substitution&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </description>
         <pubDate>Wed, 16 Apr 2014 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</guid>
+        <link>///bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2014/04/16/process-substitution-with-bash/</guid>
       </item>
     
       <item>
         <title>Nucleotide content of 1st and 2nd positions</title>
         <description>&lt;p&gt;So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo gem install bio-faster
-sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo gem install bio-faster
+sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;You can use input as a gnu zipped file. Call it like&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;zcat test.fastq.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ruby fastq_reader.rb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;zcat test.fastq.gz | ruby fastq_reader.rb&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Now for the script.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio-faster&amp;#39;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bio'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bio-faster'&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Faster&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# if stdin then you can pipe output from zcat -ex) zcat test.fastq.gz | ruby fastq_reader.rb&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each_record&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quality&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Faster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# if stdin then you can pipe output from zcat -ex) zcat test.fastq.gz | ruby fastq_reader.rb&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fastq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_record&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quality&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ary_bp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp1&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </description>
         <pubDate>Tue, 15 Apr 2014 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</guid>
+        <link>///bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2014/04/15/nucleotide-content-of-1st-and-2nd-positions/</guid>
       </item>
     
       <item>
         <title>Unix for fasta</title>
         <description>&lt;p&gt;The syntax here is using the Bash shell in unix.&lt;/p&gt;
 
-&lt;p&gt;The following command counts the number of sequences in a fasta formatted file. The &amp;ldquo;|&amp;rdquo; operator is a pipe. This lets you stream the output from one command into another.&lt;/p&gt;
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;The following command counts the number of sequences in a fasta formatted file. The “&lt;/td&gt;
+      &lt;td&gt;” operator is a pipe. This lets you stream the output from one command into another.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; YOURFILE.fasta | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Extract position 2 through 8 on all sequences in a fasta file. The -v option for grep is the inversion option. This tells grep to only consider lines that are not fasta headers.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; YOURFILE.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; YOURFILE.fasta | cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Counts how many unique text strings are in a file.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Exports counts of unique occurences in YOURFILE_pos2-8.fasta&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta | uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character &amp;ldquo;/t&amp;rdquo; It then will sort this in decreasing numerical order.&lt;/p&gt;
+&lt;p&gt;This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character “/t” It then will sort this in decreasing numerical order.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/^\s\+//&amp;#39;&lt;/span&gt; YOURFILE_unique_counts.output &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sed &lt;span class=&quot;s1&quot;&gt;&amp;#39;s/\s\+/\t/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;'s/^\s\+//'&lt;/span&gt; YOURFILE_unique_counts.output | sed &lt;span class=&quot;s1&quot;&gt;'s/\s\+/\t/'&lt;/span&gt; | sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo;, &amp;ldquo;cat&amp;rdquo;, &amp;ldquo;sort&amp;rdquo;, and &amp;ldquo;uniq -c&amp;rdquo; to extract microRNA sequences from &lt;a href=&quot;./v19.fa&quot;&gt;mirbase Version 19&lt;/a&gt; and &lt;a href=&quot;./v20.fa&quot;&gt;Version 20&lt;/a&gt; and determine which sequences are in both versions. How many are shared in both versions?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example questions: Use “grep”, “cat”, “sort”, and “uniq -c” to extract microRNA sequences from &lt;a href=&quot;./v19.fa&quot;&gt;mirbase Version 19&lt;/a&gt; and &lt;a href=&quot;./v20.fa&quot;&gt;Version 20&lt;/a&gt; and determine which sequences are in both versions. How many are shared in both versions?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v19.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v19_uniq.out
-grep -v &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt; v20.fa &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -u &amp;gt; v20_uniq.out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; v19.fa | sort -u &amp;gt; v19_uniq.out
+grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; v20.fa | sort -u &amp;gt; v20_uniq.out&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The &amp;ldquo;&amp;gt;&amp;rdquo; operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.&lt;/p&gt;
+&lt;p&gt;This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The “&amp;gt;” operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq -c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out | sort | uniq -c | grep -c &lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c &amp;ldquo;2&amp;rdquo; is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.&lt;/p&gt;
+&lt;p&gt;The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c “2” is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Example questions: Use &amp;ldquo;grep&amp;rdquo; and &amp;ldquo;sort&amp;rdquo; to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use &amp;ldquo;join&amp;rdquo; to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example questions: Use “grep” and “sort” to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use “join” to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
-join -v &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; v19_uniq.out v20_uniq.out &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 1 v19_uniq.out v20_uniq.out | wc -l
+join -v 2 v19_uniq.out v20_uniq.out | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were &amp;ldquo;retired&amp;rdquo; from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the &amp;ldquo;unmatchable&amp;rdquo; ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
+&lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were “retired” from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the “unmatchable” ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
 </description>
         <pubDate>Mon, 14 Apr 2014 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2014/04/14/unix-for-fasta/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2014/04/14/unix-for-fasta/</guid>
+        <link>///bioinformatics_notebook/2014/04/14/unix-for-fasta/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2014/04/14/unix-for-fasta/</guid>
       </item>
     
       <item>
         <title>Fasta extracta</title>
-        <description>&lt;p&gt;You need bioruby for this one. &lt;a href=&quot;http://bioruby.org/&quot;&gt;Bioruby&lt;/a&gt; is quite easy to install on unix systems. I use Ubuntu&amp;hellip; The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.&lt;/p&gt;
+        <description>&lt;p&gt;You need bioruby for this one. &lt;a href=&quot;http://bioruby.org/&quot;&gt;Bioruby&lt;/a&gt; is quite easy to install on unix systems. I use Ubuntu… The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bio'&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;_fasta_extracted&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FlatFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FastaFormat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;gt; &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;definition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'_fasta_extracted'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FlatFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;definition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FastaFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'&amp;gt; '&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;definition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </description>
         <pubDate>Tue, 11 Mar 2014 00:00:00 -0400</pubDate>
-        <link>//bioinformatics_notebook/2014/03/11/fasta-extracta/</link>
-        <guid isPermaLink="true">//bioinformatics_notebook/2014/03/11/fasta-extracta/</guid>
+        <link>///bioinformatics_notebook/2014/03/11/fasta-extracta/</link>
+        <guid isPermaLink="true">///bioinformatics_notebook/2014/03/11/fasta-extracta/</guid>
       </item>
     
   </channel>

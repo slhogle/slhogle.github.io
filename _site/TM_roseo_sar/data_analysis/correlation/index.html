@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Shane Hogle</title>
+    <title>Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Microbes + Biogeochemistry">
     <meta name="author" content="Shane Hogle">
     
-    <link rel="canonical" href="//TM_roseo_sar/data_analysis/correlation/">
+    <link rel="canonical" href="///TM_roseo_sar/data_analysis/correlation/">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="//css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -22,10 +22,10 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Shane Hogle">
+    <meta property="og:title" content="Blog">
     <meta property="og:description" content="Microbes + Biogeochemistry">
     <meta property="og:url" content="//TM_roseo_sar/data_analysis/correlation/">
-    <meta property="og:site_name" content="Shane Hogle">
+    <meta property="og:site_name" content="Blog">
 </head>
 
 <body class="">
@@ -33,12 +33,12 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/" class="site-title">Shane Hogle</a>
+      <a href="/" class="site-title">Blog</a>
       <nav class="site-nav right">
-        <a href="/about/">About</a>
-<a href="/publications/">Publications</a>
-<a href="/research/">Research</a>
-<a href="/contact/">Contact</a>
+        <a href="//about/">Shane Hogle</a>
+<a href="//publications/">Publications</a>
+<a href="//research/">Research</a>
+<a href="//contact/">Contact</a>
 
       </nav>
       <div class="clearfix"></div>
@@ -57,59 +57,73 @@
   <article class="post-content">
   <h2 id="reference-publication">Reference publication</h2>
 
-<p><strong>Hogle SL</strong>, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. Appl. Environ. Microbiol. 82(5): XX-XX <a href="http://aem.asm.org/content/early/2016/01/04/AEM.03128-15">LINK</a></p>
-
-<hr>
+<p><strong>Hogle SL</strong>, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. Appl. Environ. Microbiol. 82(5): XX-XX <a href="http://aem.asm.org/content/early/2016/01/04/AEM.03128-15">LINK</a>
+___</p>
 
 <h2 id="introduction-correlations-between-metal-transporters-and-genome-features">Introduction: Correlations between metal transporters and genome features</h2>
 
 <p>Here we are comuting pairwise correlations between the raw abundances of metal transporters observed in the genomes and their genome features/metadata obtained from IMG. We’ll calculate the correlations for a combined dataset of Roseobacter and SAR11 (N=64), but the paper also presents a correlation network of Roseobacter only. You should be able to subset the dataset yourself if you want to examine those correlation values. The visualizations in the paper were done in cytoscape, but the output from this analysis will be formatted for direct tabular import into cytoscape.</p>
 
 <h3 id="import-the-dataset">Import the dataset</h3>
-<div class="highlight"><pre><code class="language-R" data-lang="R">metalCountData <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_metaluptake_counts.tsv&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-genomeFeat <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_genome_feat.tsv&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-genomeCategories <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;sar11_roseo_categories.tsv&quot;</span><span class="p">,</span> row.names<span class="o">=</span><span class="m">1</span><span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-counts_feats <span class="o">&lt;-</span> <span class="kp">cbind.data.frame</span><span class="p">(</span>metalCountData<span class="p">,</span> genomeFeat<span class="p">)</span> <span class="c1"># combine the genome features and transporter counts dataframes</span>
-counts_feats <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>counts_feats<span class="p">,</span> select <span class="o">=</span> <span class="o">-</span>Biosynthetic_Count<span class="p">)</span> <span class="c1"># drop the Biosynthetic Count column</span>
-</code></pre></div>
-<h3 id="perform-pairwise-spearman’-rank-correlation-on-full-dataset-and-writes-table-of-results">Perform pairwise Spearman’ rank correlation on full dataset and writes table of results</h3>
-<div class="highlight"><pre><code class="language-R" data-lang="R">corr.counts_feats <span class="o">&lt;-</span> cor<span class="p">(</span>counts_feats<span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;spearman&quot;</span><span class="p">)</span>
-write.table<span class="p">(</span>corr.counts_feats<span class="p">,</span> file <span class="o">=</span> <span class="s">&quot;correlationtable.tsv&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-</code></pre></div>
+
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">metalCountData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"sar11_roseo_metaluptake_counts.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">genomeFeat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"sar11_roseo_genome_feat.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">genomeCategories</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"sar11_roseo_categories.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">counts_feats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind.data.frame</span><span class="p">(</span><span class="n">metalCountData</span><span class="p">,</span><span class="w"> </span><span class="n">genomeFeat</span><span class="p">)</span><span class="w"> </span><span class="c1"># combine the genome features and transporter counts dataframes
+</span><span class="n">counts_feats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">,</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">Biosynthetic_Count</span><span class="p">)</span><span class="w"> </span><span class="c1"># drop the Biosynthetic Count column
+</span></code></pre>
+</div>
+
+<h3 id="perform-pairwise-spearman-rank-correlation-on-full-dataset-and-writes-table-of-results">Perform pairwise Spearman’ rank correlation on full dataset and writes table of results</h3>
+
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">corr.counts_feats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"spearman"</span><span class="p">)</span><span class="w">
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">corr.counts_feats</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"correlationtable.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
 <h3 id="calculate-a-p-value-for-each-pairwise-correlation">Calculate a p value for each pairwise correlation</h3>
-<div class="highlight"><pre><code class="language-R" data-lang="R">pvals <span class="o">&lt;-</span> <span class="kt">array</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="kt">c</span><span class="p">(</span><span class="kp">dim</span><span class="p">(</span>counts_feats<span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="kp">dim</span><span class="p">(</span>counts_feats<span class="p">)[</span><span class="m">2</span><span class="p">]))</span>
 
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">dim</span><span class="p">(</span>counts_feats<span class="p">)[</span><span class="m">2</span><span class="p">])</span> <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">dim</span><span class="p">(</span>counts_feats<span class="p">)[</span><span class="m">2</span><span class="p">])</span> 
-  pvals<span class="p">[</span>i<span class="p">,</span>j<span class="p">]</span> <span class="o">&lt;-</span> cor.test<span class="p">(</span>counts_feats<span class="p">[,</span>i<span class="p">],</span>counts_feats<span class="p">[,</span>j<span class="p">])</span><span class="o">$</span>p.val 
-</code></pre></div>
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">pvals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="nf">dim</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)[</span><span class="m">2</span><span class="p">]))</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span><span class="w"> 
+  </span><span class="n">pvals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor.test</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span><span class="n">counts_feats</span><span class="p">[,</span><span class="n">j</span><span class="p">])</span><span class="o">$</span><span class="n">p.val</span><span class="w"> 
+</span></code></pre>
+</div>
+
 <h3 id="corrects-the-p-values-for-multiple-comparisons-and-writes-a-table-of-the-results">Corrects the p values for multiple comparisons and writes a table of the results</h3>
-<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="kp">rownames</span><span class="p">(</span>pvals<span class="p">)</span> <span class="o">&lt;-</span> <span class="kp">colnames</span><span class="p">(</span>counts_feats<span class="p">)</span> <span class="c1"># set up the data frame</span>
-<span class="kp">colnames</span><span class="p">(</span>pvals<span class="p">)</span> <span class="o">&lt;-</span> <span class="kp">colnames</span><span class="p">(</span>counts_feats<span class="p">)</span>
-ltri <span class="o">&lt;-</span> <span class="kp">lower.tri</span><span class="p">(</span>pvals<span class="p">)</span> 
-utri <span class="o">&lt;-</span> <span class="kp">upper.tri</span><span class="p">(</span>pvals<span class="p">)</span>
-pvals<span class="p">[</span>ltri<span class="p">]</span> <span class="o">&lt;-</span> p.adjust<span class="p">(</span>pvals<span class="p">[</span>ltri<span class="p">],</span> method <span class="o">=</span> <span class="s">&quot;fdr&quot;</span><span class="p">)</span> 
-pvals<span class="p">[</span>utri<span class="p">]</span> <span class="o">&lt;-</span> <span class="kp">t</span><span class="p">(</span>pvals<span class="p">)[</span>utri<span class="p">]</span>
-write.table<span class="p">(</span>pvals<span class="p">,</span> file <span class="o">=</span> <span class="s">&quot;correlationtable_pvals.tsv&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-</code></pre></div>
+
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">rownames</span><span class="p">(</span><span class="n">pvals</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)</span><span class="w"> </span><span class="c1"># set up the data frame
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pvals</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">counts_feats</span><span class="p">)</span><span class="w">
+</span><span class="n">ltri</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lower.tri</span><span class="p">(</span><span class="n">pvals</span><span class="p">)</span><span class="w"> 
+</span><span class="n">utri</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">upper.tri</span><span class="p">(</span><span class="n">pvals</span><span class="p">)</span><span class="w">
+</span><span class="n">pvals</span><span class="p">[</span><span class="n">ltri</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p.adjust</span><span class="p">(</span><span class="n">pvals</span><span class="p">[</span><span class="n">ltri</span><span class="p">],</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"fdr"</span><span class="p">)</span><span class="w"> 
+</span><span class="n">pvals</span><span class="p">[</span><span class="n">utri</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">pvals</span><span class="p">)[</span><span class="n">utri</span><span class="p">]</span><span class="w">
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">pvals</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"correlationtable_pvals.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
 <h3 id="write-a-table-formatted-for-import-to-cytoscape">Write a table formatted for import to cytoscape</h3>
-<div class="highlight"><pre><code class="language-R" data-lang="R">corr.edges <span class="o">&lt;-</span> <span class="kc">NULL</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">nrow</span><span class="p">(</span>corr.counts_feats<span class="p">))</span> <span class="p">{</span>
-  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>corr.counts_feats<span class="p">))</span> <span class="p">{</span>
-    corr.edges <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>corr.edges<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rownames</span><span class="p">(</span>corr.counts_feats<span class="p">)[</span>i<span class="p">],</span> <span class="kp">rownames</span><span class="p">(</span>corr.counts_feats<span class="p">)[</span>j<span class="p">],</span> corr.counts_feats<span class="p">[</span>i<span class="p">,</span>j<span class="p">]))</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 
-pval.edges <span class="o">&lt;-</span> <span class="kc">NULL</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">nrow</span><span class="p">(</span>pvals<span class="p">))</span> <span class="p">{</span>
-  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>pvals<span class="p">))</span> <span class="p">{</span>
-    pval.edges <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>pval.edges<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rownames</span><span class="p">(</span>pvals<span class="p">)[</span>i<span class="p">],</span> <span class="kp">rownames</span><span class="p">(</span>pvals<span class="p">)[</span>j<span class="p">],</span> pvals<span class="p">[</span>i<span class="p">,</span>j<span class="p">]))</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">corr.edges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">corr.counts_feats</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">corr.counts_feats</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">corr.edges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">corr.edges</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">rownames</span><span class="p">(</span><span class="n">corr.counts_feats</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">corr.counts_feats</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">corr.counts_feats</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]))</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-to_cytoscape <span class="o">&lt;-</span> <span class="kp">cbind.data.frame</span><span class="p">(</span>corr.edges<span class="p">,</span> pval.edges<span class="p">[,</span><span class="m">3</span><span class="p">])</span>
-<span class="kp">colnames</span><span class="p">(</span>to_cytoscape<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;node1&#39;</span><span class="p">,</span> <span class="s">&#39;node2&#39;</span><span class="p">,</span> <span class="s">&#39;rho&#39;</span><span class="p">,</span> <span class="s">&#39;Pcorrected&#39;</span><span class="p">)</span>
-write.table<span class="p">(</span>to_cytoscape<span class="p">,</span> file <span class="o">=</span> <span class="s">&quot;cytoscape_import.tsv&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> row.names <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
-</code></pre></div>
+</span><span class="n">pval.edges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pvals</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">pvals</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pval.edges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pval.edges</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">rownames</span><span class="p">(</span><span class="n">pvals</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pvals</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">pvals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]))</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">to_cytoscape</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind.data.frame</span><span class="p">(</span><span class="n">corr.edges</span><span class="p">,</span><span class="w"> </span><span class="n">pval.edges</span><span class="p">[,</span><span class="m">3</span><span class="p">])</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">to_cytoscape</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'node1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'node2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'rho'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Pcorrected'</span><span class="p">)</span><span class="w">
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">to_cytoscape</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cytoscape_import.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
   </article>
 </div>
 
@@ -121,7 +135,13 @@ write.table<span class="p">(</span>to_cytoscape<span class="p">,</span> file <sp
   <div class="p2 wrap">
     <div class="measure mt1 center">
       <small>
-        ©Copyright 2014 Shane Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
+        &copy;Copyright 
+        	<script language="javascript" type="text/javascript">
+			var today = new Date()
+			var year = today.getFullYear()
+			document.write(year)
+			</script>
+			 Shane L. Hogle</a> (<a href="https://twitter.com/slhogle">@slhogle</a>).
       </small>
     </div>
   </div>
