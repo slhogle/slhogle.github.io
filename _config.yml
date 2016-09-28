@@ -12,7 +12,7 @@ google_analytics: UA-XXXXX-XX
 repo: https://github.com/slhogle/slhogle.github.io
 disqus_shortname: "slhogle-site"
 twitter_username: "slhogle"
-comments: true
+comments: false
 
 # Build settings
 permalink   : /:year/:title/
