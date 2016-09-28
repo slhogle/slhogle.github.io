@@ -6,7 +6,7 @@ description: "Microbes + Biogeochemistry"
 keywords: "Marine, microbial ecology, bacteria, biogeochemistry, ocean"
 baseurl: null # apply repo name if use it under gh-pages branch
 # baseurl: null # apply null if repo name is something like username.github.io
-url: /
+url: 
 
 google_analytics: UA-XXXXX-XX
 repo: https://github.com/slhogle/slhogle.github.io
@@ -42,7 +42,7 @@ author:
 # social settings
 og_locale: "en_US"
 twitter_card: "summary_large_image"
-twitter_site: "@Hslhogle"
+twitter_site: "@slhogle"
 
 gems:
   - bourbon
