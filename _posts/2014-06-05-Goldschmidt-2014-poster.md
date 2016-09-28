@@ -4,6 +4,7 @@ title:      Goldschmidt 2014 Poster
 date:       2014-06-05
 summary:    Poster at the 2014 Goldschmidt meeting in Sacramento, CA
 categories: news
+comments: true
 ---
 I'm presenting a poster on Wednesday June 11th from 14:00 - 1700. You can get a preview of the poster [here](http://figshare.com/articles/MECHANISMS_OF_TRACE_METAL_ASSIMILATION_IN_MARINE_ROSEOBACTERS/1045578)
 

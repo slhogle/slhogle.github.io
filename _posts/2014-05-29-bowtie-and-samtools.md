@@ -4,6 +4,7 @@ title:      Bowtie and Samtools
 date:       2014-05-29
 summary:    Bowtie is an excellent tool for mapping sequencing reads to long reference sequences, such as the human genome. Here I'll give an introduction to using Bowtie and the great utility Samtools
 categories: bioinformatics_notebook
+comments: true
 ---
 A little out of character for me as I usually work on environmental genomics. I've been working on RNAseq data from human stem cells subjected to different treatments of WNT signaling proteins. We are interested in looking for differential expression of certain genes under the different treatment conditions. One great tool for doing this is [bowtie](http://bowtie-bio.sourceforge.net/index.shtml) or [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml), which is a very fast and efficient short read aligner. In my case I am using bowtie (not bowtie2) to map the mRNA sequences to the human genome (version hg19). There are a variety of reasons to choose between bowtie and bowtie2 that I won't go into here. By using a series of other tools in the bowtie family, the resulting mapping are compared to one another and we can search for differences between locations on the genome where mRNA sequences mapped.
 

@@ -4,6 +4,7 @@ title:      Nucleotide content of 1st and 2nd positions
 date:       2014-04-15
 summary:    Get the average nucleotide content of the first and second position in a .fastq file
 categories: bioinformatics_notebook
+comments: true
 ---
 
 So this writes out the frequency of all nucleotides at the first and second position in a fastq formatted file. You need to install the bio-faster package. This can be done by as follows:

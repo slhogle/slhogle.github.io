@@ -3,7 +3,6 @@ layout: page
 title: 
 permalink: /contact/
 ---
-![desk](/images/protein_network.png)
 ### Get in touch!!
 I'm always happy to hear from anyone interested in microbial ecology!
 

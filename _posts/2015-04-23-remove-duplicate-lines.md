@@ -4,6 +4,7 @@ title:      Collecting top hits
 date:       2015-04-23
 summary:    AWK one liner for removing duplicate entries in a delimited file
 categories: bioinformatics_notebook
+comments: true
 ---
 Many times in bioinformatics you'll have searched many sequences against a database (for example hmmscan versus pfamA). Say you are interested in only retaining the highest scoring PFAM hits for each of your query sequences. Depending on your cutoff score and the number of expected protein domains, each sequence may have gotten hits to multiple different PFAMs. For example, feoB transporters have GTPase-like binding domains, and it is easy to mis-annotate other sequences with GTPase domains as feoB proteins. 
 

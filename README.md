@@ -1,9 +1,15 @@
-[Check out the site](http://slhogle.github.io/)
+# Thinkspace v1
 
-# Jekyll and Pixyll template information
+Just another minimalist Jekyll theme that focuses on technical writing. Designed for engineers to write their ranting and findings.
 
-I built this website using the [Pixyll template](http://www.pixyll.com) for [Jekyll.](http://jekyllrb.com/)
-The template is free and open source.
+[**Demo**](http://heiswayi.github.io/thinkspace/)
 
-Pixyll was originally created by [John Otander](http://johnotander.com)
+[**Here is how to download/use this theme**](http://heiswayi.github.io/thinkspace/2016/how-to-download-or-use-this-theme/)
 
+### Screenshot
+
+![Screenshot](http://i.imgur.com/WHcnbYF.png)
+
+### License
+
+[MIT](LICENSE.md)

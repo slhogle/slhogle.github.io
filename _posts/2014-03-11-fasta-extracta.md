@@ -4,6 +4,7 @@ title:      Fasta extracta
 date:       2014-03-11
 summary:    Output sequences from a fasta formatted file that match a list of sequence ids
 categories: bioinformatics_notebook
+comments: true
 ---
 You need bioruby for this one. [Bioruby](http://bioruby.org/) is quite easy to install on unix systems. I use Ubuntu... The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.
 

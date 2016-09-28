@@ -4,6 +4,7 @@ title:      Process substitution with bash
 date:       2014-04-16
 summary:    Increase speed and productivity with process subsitution
 categories: bioinformatics_notebook
+comments: true
 ---
 
 From [Wikipedia](http://en.wikipedia.org/wiki/Process_substitution) - _"Process substitution is a form of inter-process communication that allows the input or output of a command to appear as a file. The command is substituted in-line, where a file name would normally occur, by the command shell. This allows programs that normally only accept files to directly read from or write to another program."_

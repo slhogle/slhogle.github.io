@@ -1,9 +1,12 @@
 ---
 layout: page
-title:
+title: About
 permalink: /about/
 ---
-![desk](/images/correlation_circle_subset.png)
+
+{:refdef: style="text-align: center;"}
+![My Image]({{ site.baseimg }}/images/me1.jpg)
+{: refdef}
 
 Thanks for vising my website and blog! I am currently a Postdoctoral Research Associate in the [Chisholm Laboratory](https://chisholmlab.mit.edu/) at [MIT](http://web.mit.edu/). I recieved my Ph.D from the [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) at [UCSD](http://www.ucsd.edu/), and I took my undergraduate degree in Chemistry at [Earlham College](http://www.earlham.edu/).
 

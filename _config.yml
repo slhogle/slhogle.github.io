@@ -1,39 +1,58 @@
-# Site settings
-title:       Blog
-email:       shogle@mit.edu
-author:      Shane Hogle
+
+# SEO settings
+title: "Notes"
+title2: "" # default: ""
 description: "Microbes + Biogeochemistry"
-baseurl:     "/"
-url:         /
+keywords: "Marine, microbial ecology, bacteria, biogeochemistry, ocean"
+baseurl: null # apply repo name if use it under gh-pages branch
+# baseurl: null # apply null if repo name is something like username.github.io
+url: /
 
-# Google analytics
-google_analytics:
-
-# Optional features
-animated:           false
-show_related_posts: false
-show_post_footers:  false
-
-# Disqus post comments
-# (leave blank to disable Disqus)
-disqus_shortname:
-
-# Social icons
-show_social_icons: false
-github_username:
-stackoverflow_id:
-twitter_username: slhogle
-google_plus_id: 
-linkedin_username:
-bitcoin_url:
-paypal_url:
-flattr_button:
+google_analytics: UA-XXXXX-XX
+repo: https://github.com/slhogle/slhogle.github.io
+disqus_shortname: "slhogle-site"
+twitter_username: "slhogle"
+comments: true
 
 # Build settings
-#markdown:     redcarpet
-#redcarpet:
-#  extensions: ['smart', 'tables', 'with_toc_data']
-permalink:    pretty
-paginate:     3
+permalink   : /:year/:title/
+markdown    : kramdown
+highlighter : rouge
+
+source: ./
+destination: ./_site
+
+# Sass configuration
 sass:
-  compressed: true
+  sass_dir: assets/scss
+  style: compressed # expanded
+
+# Author settings
+author:
+  name     : "Shane Hogle"
+  job      : "Postdoctoral Associate @ MIT"
+  # thumb    : /images/author.jpg
+  # email    : hnrird@gmail.com
+  # url      : http://heiswayi.github.io
+  # github   : http://github.com/heiswayi
+  # twitter  : http://twitter.com/HeiswayiNrird
+  # facebook : https://www.facebook.com/profile.php?id=1257583160
+  # linkedin : http://linkedin.com/in/nrird
+
+# social settings
+og_locale: "en_US"
+twitter_card: "summary_large_image"
+twitter_site: "@Hslhogle"
+
+gems:
+  - bourbon
+  - jekyll-paginate
+
+# navbar pages
+navbar:
+  - slug : about
+    title: About
+  - slug : blog
+    title: Blog
+
+exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md"]

@@ -4,6 +4,7 @@ title:      Unix for fasta
 date:       2014-04-14
 summary:    Useful unix commands for processing sequence files
 categories: bioinformatics_notebook
+comments: true
 ---
 
 The syntax here is using the Bash shell in unix.
