@@ -4,10 +4,6 @@ title: About
 permalink: /about/
 ---
 
-{:refdef: style="text-align: center;"}
-![My Image]({{ site.baseimg }}/images/me1.jpg)
-{: refdef}
-
 Thanks for vising my website and blog! I am currently a Postdoctoral Research Associate in the [Chisholm Laboratory](https://chisholmlab.mit.edu/) at [MIT](http://web.mit.edu/). I recieved my Ph.D from the [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) at [UCSD](http://www.ucsd.edu/), and I took my undergraduate degree in Chemistry at [Earlham College](http://www.earlham.edu/).
 
 <!--
@@ -26,3 +22,9 @@ __We need to better understand how the microbial loop works in order to better u
 Much of my Ph.D. thesis examined how and why bacteria of the marine _Roseobacter_ lineage utilize exogenous heme and hemoproteins as nutritional iron sources. The impetus behind this work was to gain a better understanding of the role that heme uptake plays in the overall turnover of iron in the ocean and how marine microbes shape the iron cycle by means of remineralization processes. For my postdoctoral research I am using _Prochlorococcus_ as a model system in the lab and _in silico_ in order to better understand how this abundant and incredibly important organism influences and is influenced by marine trace metal distributions. These projects should provide us with a clearer window into how _Prochlorococcus_ interacts with trace metals and the intersections between trace metal cycles and the marine carbon cycle.
 
 --Shane
+
+{:refdef: style="text-align: center;"}
+![My Image]({{ site.baseimg }}/images/me1.jpg)
+{: refdef}
+
+
