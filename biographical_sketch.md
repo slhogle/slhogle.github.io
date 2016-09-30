@@ -33,13 +33,13 @@ permalink: /biographical_sketch/
 **Jun 2011 - July 2011** \| R/V Melville, California Current Ecosystem LTER Process Cruise, San Diego, CA
 
 ### Conference and Seminar Presentations
-**Hogle SL** Signatures of iron cycling in marine microbial genomes and ecosystems. Invited presentation, Microbial Systems Seminar @ MIT, November 2016.
+**Hogle SL.** Signatures of iron cycling in marine microbial genomes and ecosystems. Invited oral presentation, Microbial Systems Seminar @ MIT, November 2016.
 
 **Hogle SL**, Bundy RM, Barbeau KA. Linking phyotplankton and bacterioplankton community dynamics to iron-binding ligand production in a microcosm experiment. Poster presentation, TOS/ASLO/AGU 2014 Ocean Sciences Meeting, February 2016
 
 **Hogle SL**, Dupont C, Brahamsha B, Barbeau KA. Evolution, ecology, and mechanisms of heme uptake in the marine Roseobacter lineage. Oral presentation, ASLO Meeting, February 2015
 
-**Hogle SL**, Dupont C, Brahamsha B, Barbeau KA. What do marine bacterial transporters tell us about oceanchemistry? Oral Presentation, Scripps Student Symposium, September 2014
+**Hogle SL**, Dupont C, Brahamsha B, Barbeau KA. What do marine bacterial transporters tell us about ocean chemistry? Invited oral presentation, Scripps Student Symposium, September 2014
 
 **Hogle SL**, Brahamsha B, Barbeau KA. Mechanisms for Trace Metal Assimilation in Marine Roseobacters. Poster presentation, Goldschmidt Meeting: Session 17e Trace Elements, Microbes, and Biogeochemical Cycles in the Ocean Environment, June 2014
 
