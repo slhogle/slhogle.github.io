@@ -6,14 +6,21 @@ permalink: /biographical_sketch/
 [//]: #(remove [//]: # to uncomment)![desk](/images/SA11_heme_operon.png)
 
 ### Education
-* **2016** \| Ph.D. Oceanography, The Scripps Institution of Oceanography at the University of California San Diego
+* **2016** \| Ph.D. Oceanography, University of California, San Diego
 
-* **2010** \| B.A. Chemistry, Highest Honors, Earlham College; Richmond, Indiana
+* **2010** \| B.A. Chemistry with Honors, Earlham College
+
+### Positions Held
+* **2016-present** \| Postdoctoral Associate, Department of Civil and Environmental Engineering, MIT (Advisor: Dr. Sallie W. Chisholm)
+
+* **2014 - 2016** \| Graduate Researcher, Scripps Institution of Oceanography, UCSD (Advisor: Dr. Katherine A. Barbeau)
+
+* **2010 - 2014** \| Graduate Fellow, Scripps Institution of Oceanography, UCSD (Advisor: Dr. Katherine A. Barbeau)
 
 ### Honors, Awards, & Fellowships
 * **2011-2014** \| National Science Foundation Graduate Research Fellowship
 
-* **2010-2011** \| University of California San Diego Director’s Fellowship
+* **2010-2011** \| University of California, San Diego Director’s Fellowship
 
 * **2010-2016** \| Phi Beta Kappa, Delta Chapter of Indiana
 
@@ -29,7 +36,11 @@ permalink: /biographical_sketch/
 
 **Jan 2012-Jun 2013** \| _Aarani Arulmoli - UC San Diego._ Currently a masters student at UC Irvine. Project Title: Bacterial community composition in iron induced phytoplankton blooms. Project resulted in material for Aarani's undergraduate thesis.
 
-### Field Experience
+### Service To Profession
+* Manuscript Reviewer: Frontiers in Microbiology
+* Grant Reviewer: NSF Chemical Oceanography
+
+### Field Work
 **Jun 2011 - July 2011** \| R/V Melville, California Current Ecosystem LTER Process Cruise, San Diego, CA
 
 ### Conference and Seminar Presentations
