@@ -5,9 +5,441 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 22 Oct 2016 15:31:27 -0400</pubDate>
-    <lastBuildDate>Sat, 22 Oct 2016 15:31:27 -0400</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <pubDate>Mon, 09 Jan 2017 14:45:33 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2017 14:45:33 -0500</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Git and Jekyll Cheatsheet</title>
+        <description>&lt;h3 id=&quot;the-short-version&quot;&gt;THE SHORT VERSION&lt;/h3&gt;
+&lt;p&gt;Recipe for setting up a repository quick and dirty&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# emacs_stuff&quot;&lt;/span&gt; &amp;gt;&amp;gt; README.md
+git init
+git add README.md
+git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;first commit&quot;&lt;/span&gt;
+git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git push -u origin master
+&lt;span class=&quot;c&quot;&gt;# …or push an existing repository from the command line&lt;/span&gt;
+git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;For updating a Jekyll based blog hosted on github pages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;jekyll serve --watch
+&lt;span class=&quot;c&quot;&gt;# take a look at the changes you make live&lt;/span&gt;
+jekyll build 
+&lt;span class=&quot;c&quot;&gt;# uses jekyll to convert/build html version&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# rendered files located in _site&lt;/span&gt;
+git add --all
+&lt;span class=&quot;c&quot;&gt;# add all changes in current repo to be staged&lt;/span&gt;
+git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;my commit message&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# create a message for the commit&lt;/span&gt;
+git push
+&lt;span class=&quot;c&quot;&gt;# changes should be live at the github pages site&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Adapted from &lt;a href=&quot;https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;configure-tooling&quot;&gt;CONFIGURE TOOLING&lt;/h3&gt;
+&lt;p&gt;Configure user information for all local repositories&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git config --global user.name &lt;span class=&quot;s2&quot;&gt;&quot;[name]&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Sets the name you want atached to your commit transactions&lt;/span&gt;
+git config --global user.email &lt;span class=&quot;s2&quot;&gt;&quot;[email address]&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Sets the email you want atached to your commit transactions&lt;/span&gt;
+git config --global color.ui auto
+&lt;span class=&quot;c&quot;&gt;# Enables helpful colorization of command line output&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;create-repositories&quot;&gt;CREATE REPOSITORIES&lt;/h3&gt;
+&lt;p&gt;Start a new repository or obtain one from an existing URL&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git init &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;project-name]
+&lt;span class=&quot;c&quot;&gt;# Creates a new local repository with the specified name&lt;/span&gt;
+git clone &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;url]
+&lt;span class=&quot;c&quot;&gt;# Downloads a project and its entire version history&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;make-changes&quot;&gt;MAKE CHANGES&lt;/h3&gt;
+&lt;p&gt;Review edits and craft a commit transaction&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git status
+&lt;span class=&quot;c&quot;&gt;# Lists all new or modified files to be commited&lt;/span&gt;
+git add &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file]
+&lt;span class=&quot;c&quot;&gt;# Snapshots the file in preparation for versioning&lt;/span&gt;
+git reset &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file]
+&lt;span class=&quot;c&quot;&gt;# Unstages the fiale, but preserve its contents&lt;/span&gt;
+git diff
+&lt;span class=&quot;c&quot;&gt;# Shows file differences not yet staged&lt;/span&gt;
+git diff --staged
+&lt;span class=&quot;c&quot;&gt;# Shows file differences between staging and the last file version&lt;/span&gt;
+git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;[descriptive message]&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Records file snapshots permanently in version history&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;group-changes&quot;&gt;GROUP CHANGES&lt;/h3&gt;
+&lt;p&gt;Name a series of commits and combine completed efforts&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git branch
+&lt;span class=&quot;c&quot;&gt;# Lists all local branches in the current repository&lt;/span&gt;
+git branch &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch-name]
+&lt;span class=&quot;c&quot;&gt;# Creates a new branch&lt;/span&gt;
+git checkout &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch-name]
+&lt;span class=&quot;c&quot;&gt;# Switches to the specified branch and updates the working directory&lt;/span&gt;
+git merge &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch]
+&lt;span class=&quot;c&quot;&gt;# Combines the specified branch’s history into the current branch&lt;/span&gt;
+git branch -d &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch-name]
+&lt;span class=&quot;c&quot;&gt;# Deletes the specified branch&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;refactor-filenames&quot;&gt;REFACTOR FILENAMES&lt;/h3&gt;
+&lt;p&gt;Relocate and remove versioned files&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git rm &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file]
+&lt;span class=&quot;c&quot;&gt;# Deletes the file from the working directory and stages the deletion&lt;/span&gt;
+git rm --cached &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file]
+&lt;span class=&quot;c&quot;&gt;# Removes the file from version control but preserves the file locally&lt;/span&gt;
+git mv &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file-original] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file-renamed]
+&lt;span class=&quot;c&quot;&gt;# Changes the file name and prepares it for commit&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;suppress-tracking&quot;&gt;SUPPRESS TRACKING&lt;/h3&gt;
+&lt;p&gt;Exclude temporary files and paths&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.log
+build/
+temp-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# A text file named .gitignore suppresses accidental versioning of&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# files and paths matching the specified paterns&lt;/span&gt;
+git ls-files --other --ignored --exclude-standard
+&lt;span class=&quot;c&quot;&gt;# Lists all ignored files in this project&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;save-fragments&quot;&gt;SAVE FRAGMENTS&lt;/h3&gt;
+&lt;p&gt;Shelve and restore incomplete changes&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git stash
+&lt;span class=&quot;c&quot;&gt;# Temporarily stores all modified tracked files&lt;/span&gt;
+git stash list
+&lt;span class=&quot;c&quot;&gt;# Lists all stashed changesets&lt;/span&gt;
+git stash pop
+&lt;span class=&quot;c&quot;&gt;# Restores the most recently stashed files&lt;/span&gt;
+git stash drop
+&lt;span class=&quot;c&quot;&gt;# Discards the most recently stashed changeset&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;review-history&quot;&gt;REVIEW HISTORY&lt;/h3&gt;
+&lt;p&gt;Browse and inspect the evolution of project files&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git log
+&lt;span class=&quot;c&quot;&gt;# Lists version history for the current branch&lt;/span&gt;
+git log --follow &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;file]
+&lt;span class=&quot;c&quot;&gt;# Lists version history for a file, including renames&lt;/span&gt;
+git diff &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;first-branch]...[second-branch]
+&lt;span class=&quot;c&quot;&gt;# Shows content differences between two branches&lt;/span&gt;
+git show &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;commit]
+&lt;span class=&quot;c&quot;&gt;# Outputs metadata and content changes of the specified commit&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;redo-commits&quot;&gt;REDO COMMITS&lt;/h3&gt;
+&lt;p&gt;Erase mistakes and craft replacement history&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git reset &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;commit]
+&lt;span class=&quot;c&quot;&gt;# Undoes all commits afer [commit], preserving changes locally&lt;/span&gt;
+git reset --hard &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;commit]
+&lt;span class=&quot;c&quot;&gt;# Discards all history and changes back to the specified commit&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;synchronize-changes&quot;&gt;SYNCHRONIZE CHANGES&lt;/h3&gt;
+&lt;p&gt;Register a repository bookmark and exchange version history&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git fetch &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;bookmark]
+&lt;span class=&quot;c&quot;&gt;# Downloads all history from the repository bookmark&lt;/span&gt;
+git merge &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;bookmark]/[branch]
+&lt;span class=&quot;c&quot;&gt;# Combines bookmark’s branch into current local branch&lt;/span&gt;
+git push &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch]
+&lt;span class=&quot;c&quot;&gt;# Uploads all local branch commits to GitHub&lt;/span&gt;
+git pull
+&lt;span class=&quot;c&quot;&gt;# Downloads bookmark history and incorporates changes&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+        <pubDate>Mon, 09 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2017/gitjekyll-cheatsheet/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2017/gitjekyll-cheatsheet/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Slurm Cheatsheet</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;General SLURM documentation found &lt;a href=&quot;https://slurm.schedmd.com/&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;SLURM &lt;a href=&quot;https://slurm.schedmd.com/tutorials.html&quot;&gt;tutorials&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;SLURM tools &lt;a href=&quot;https://www.youtube.com/watch?v=U42qlYkzP9k&amp;amp;feature=player_embedded&quot;&gt;youtube video&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;SLURM &lt;a href=&quot;https://rc.fas.harvard.edu/resources/running-jobs/&quot;&gt;tutorial&lt;/a&gt; @ Harvard&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;submitting-and-cancelling-slurm-jobs&quot;&gt;Submitting and cancelling SLURM jobs&lt;/h3&gt;
+&lt;p&gt;Submit a job script called my_script.sh requesting:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;5GB RAM per cpu (–mem-per-cpu 5GB)&lt;/li&gt;
+  &lt;li&gt;20 CPUs on a single node (-c 20)&lt;/li&gt;
+  &lt;li&gt;use the scheduler queue $MYQUEUE (-p $MYQUEUE)&lt;/li&gt;
+  &lt;li&gt;use the job name $MYJOB_NAME (-J $MYJOB_NAME)&lt;/li&gt;
+  &lt;li&gt;provide a time ceiling of 3 HRs (-t 0-3:00:00)&lt;/li&gt;
+  &lt;li&gt;write STDOUT to file $MYLOG.log (-o $MYLOG.log)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch --mem-per-cpu 5GB -c 20 -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; -J &lt;span class=&quot;nv&quot;&gt;$MYJOB_NAME&lt;/span&gt; -t 0-3:00:00 -o &lt;span class=&quot;nv&quot;&gt;$MYLOG&lt;/span&gt;.log my_script.sh
+
+&lt;span class=&quot;c&quot;&gt;# Cancel a task with the related JOB_ID&lt;/span&gt;
+scancel &lt;span class=&quot;nv&quot;&gt;$MYJOB_ID&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Submit an interactive job&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2GB RAM per cpu (–mem-per-cpu 2GB)&lt;/li&gt;
+  &lt;li&gt;4 CPUs on a single node (-c 4)&lt;/li&gt;
+  &lt;li&gt;use the scheduler queue $MYQUEUE (-p $MYQUEUE)&lt;/li&gt;
+  &lt;li&gt;provide a time ceiling of 1 HR (-t 0-1:00:00)&lt;/li&gt;
+  &lt;li&gt;execute task zero in pseudo terminal mode (–pty). The option –pty is important because it allows an interactive terminal mode. Without –pty every command issued would be run 4 times (-c 4)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;srun --mem-per-cpu 2GB -c 4 -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; -t 0-01:00:00 --pty /bin/bash
+
+&lt;span class=&quot;c&quot;&gt;# Use srun for any long jobs, even cp or rsync&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# DONT USE THE LOGIN NODE&lt;/span&gt;
+srun -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; cp my_file my_new_file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;jobs-can-be-submitted-by-passing-all-slurm-parameters-through-bash-script&quot;&gt;Jobs can be submitted by passing all SLURM parameters through bash script&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH --mem-per-cpu 5GB&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -c 20&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -p $MYQUEUE&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -J $MYJOB&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -t 0-3:00:00&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -o $MYLOG.log my_script.sh&lt;/span&gt;
+
+raxmlHPC-PTHREADS-AVX -T 20 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-m GTRGAMMA &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-p 82748 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;-# &lt;/span&gt;20 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-s &lt;span class=&quot;nv&quot;&gt;$MY_PHYLIP_FILE&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-n &lt;span class=&quot;nv&quot;&gt;$MY_NAME&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-o &lt;span class=&quot;nv&quot;&gt;$MY_OUTGROUP&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+-w &lt;span class=&quot;nv&quot;&gt;$MY_OUTDIR&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run the RAxML analysis as&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch my_raxml_script.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;find-information-about-partitions-and-jobs&quot;&gt;Find information about partitions and jobs&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Display submitted jobs for a given user&lt;/span&gt;
+squeue -u &lt;span class=&quot;nv&quot;&gt;$USER&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;List job information&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The sacct command displays job accounting data stored in the job accounting log file or Slurm database in a variety of forms for your analysis. The sacct command displays information on jobs, job steps, status, and exitcodes by default. For the non-root user, the sacct command limits the display of job accounting data to jobs that were launched with their own user identifier (UID) by default. Data for other users can be displayed with the –allusers, –user, or –uid options.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sacct --format&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CPUTime,MaxRSS,AveRSS,JobName,Timelimit,Start,Elapsed&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Display available partitions on the cluster&lt;/span&gt;
+sinfo
+
+&lt;span class=&quot;c&quot;&gt;# List jobs that ran since Dec 1st 2016&lt;/span&gt;
+sacct -S 2016-12-01
+
+&lt;span class=&quot;c&quot;&gt;# Get help about sacct command&lt;/span&gt;
+sacct --helpformat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+        <pubDate>Sun, 04 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2016/slurm-cheatsheet/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2016/slurm-cheatsheet/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>GNU Parallel for mutlithreaded tasks</title>
+        <description>&lt;p&gt;We’re sequencing a bunch of single cell bacterial genomes, and I had like a 1000 genomes we needed to quickly call ORFs on and annotate. I’m using the excellent &lt;a href=&quot;https://github.com/tseemann/prokka&quot;&gt;Prokka&lt;/a&gt; software, but I wanted to parallelize it with GNU Parallel. I ended up putting together this series of scripts (based off instructions &lt;a href=&quot;https://rcc.uchicago.edu/documentation/_build/html/running-jobs/srun-parallel/index.html#parallel-batch&quot;&gt;here&lt;/a&gt;) to eventually make it work with our SLURM scheduler. If you know a better way to do this lemme know!&lt;/p&gt;
+
+&lt;p&gt;While I’m at it some useful links for GNU Parallel&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.biostars.org/p/63816/&quot;&gt;Quick tutorial on Biostars&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.gnu.org/software/parallel/parallel_tutorial.html&quot;&gt;Official GNU tutorial&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rcc.uchicago.edu/documentation/_build/html/tutorials/kicp-tutorials/running-jobs.html&quot;&gt;GNU Parallel and SLURM from U Chicago&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://outreach.ino.pm/presentations/2014/03/genomics-wranglers/index.html#/18&quot;&gt;A nice presentation&lt;/a&gt; by Ino de Bruijn&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;prokkahetssh&quot;&gt;prokka.hets.sh&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;odir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'OUTPATH'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;rawnucl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'SCAFFOLD_LOCATION'&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;qpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;find &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;rawnucl&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; -name &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.fna&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+prokka &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--addgenes &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--kingdom Bacteria &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--outdir &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;odir&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--genus Marine_Heterotroph &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--species &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--locustag &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--prefix &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--cpus 20 &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;qpath&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;prokka.hets.sh is the shell script that will be parallelized. The cool thing is that you can run multi-threaded tasks using this techniqe. For example I’m running Prokka using 20 cores per job. GNU Parallel can cleverly handle available resources such that multi-threaded tasks can be parallelized across multiple nodes. More on that below…&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Of note: $1 is arg1:{1} from parallel.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;parallelsh&quot;&gt;parallel.sh&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#SBATCH --time=04:00:00&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH --nodes=10&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH --ntasks-per-node=1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH --cpus-per-task=20&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH --exclusive&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#SBATCH -p MYQUEUE&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;srun&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;srun --exclusive -N1 -n1 -c&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SLURM_CPUS_PER_TASK&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;parallel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;parallel --delay .2 -j &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SLURM_NNODES&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; --joblog runtask.log --resume -a &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;parallel&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;srun&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ./&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Call this script as:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch parallel.sh prokka.hets.sh ids.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Where prokka.hets.sh is the script above and ids.txt is a file containing ids (1 per line) of the nucleotide scaffolds that Prokka is to annotate. We use srun to execute the script prokka.hets.sh. The -c$SLURM_CPUS_PER_TASK instructs srun to allocate 20 CPUs to each instance of Prokka that runs.  The –exclusive flag does not let Prokka share nodes with other running jobs and -N1 -n1 mandates that the 20 CPUs be dedicate to a single task (-n1) or a single instance of Prokka that is operating on a single node (-N1). These commands ensure that each Prokka task is confined to running on the 20 cpus residing on a single node.&lt;/p&gt;
+
+&lt;p&gt;For the parallel command –delay .2 prevents overloading the controlling node, -j is the number of tasks parallel runs so but instead of $SLURM_NTASKS we want to use $SLURM_NNODES to tell parallel how many jobs to start. –joblog makes parallel create a log of tasks that it has already run and –resume makes parallel use the joblog to resume from where it has left off. The combination of –joblog and –resume allows jobs to be resubmitted if necessary and continue from where they left off. -a ids.txt is an option for parallel that allows it to use ids.txt as input source rather than arguments from the command line passed by ::: which is quite useful if your input doesn’t neatly follow some shell expansion or something…&lt;/p&gt;
+
+&lt;p&gt;We finally run the parallel command and prokka.hets.sh should be able to use the 20 cpus per node that we requested with -c20 through srun.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2016/gnu-parallel/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2016/gnu-parallel/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Bash commands</title>
+        <description>&lt;p&gt;Text form can be found at my &lt;a href=&quot;https://github.com/slhogle/scripts&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Makes bioperl index file of GOS CN assembly&lt;/span&gt;
+bp_index.pl -dir . -fmt fasta GOS_ass_CN_index /usr/local/depot/projects/GOS/analysis/jgoll-CN_2012_92pct-annotation/metagene_seq.faa
+
+&lt;span class=&quot;c&quot;&gt;# loops through txt file with 1 accession per line and extracts them using bp_fetch.pl&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;accession_number
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;bp_fetch net::&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;accession_number&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; accessions.list &amp;gt; results.txt
+
+&lt;span class=&quot;c&quot;&gt;# reads an ID file containing scaffold IDs of TRAP SBP, &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# then loops through *all* scaffold IDs with the annotation 'TRAP' &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# and counts the number of occurences each SBP scaffold has in that file. &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;accession_number
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;grep -c &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;accession_number&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; TRAP_CN_total_assembly
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; TRAP_SBP_scf_IDs.formatted.list &amp;gt; results.txt
+
+&lt;span class=&quot;c&quot;&gt;#replaces any instance of one or more whitespace &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# characters with a tab (the g is for global)&lt;/span&gt;
+sed -r &lt;span class=&quot;s1&quot;&gt;'s/\s+/\t/g'&lt;/span&gt; rest.out &amp;gt; rest1.out
+
+&lt;span class=&quot;c&quot;&gt;#removes one or more whitespace only at the end of each line&lt;/span&gt;
+sed -r &lt;span class=&quot;s1&quot;&gt;'s/\s+$//'&lt;/span&gt; 1-3 &amp;gt; 1-3.out
+
+&lt;span class=&quot;c&quot;&gt;#removes one or more whitespace only at the beginning of each line&lt;/span&gt;
+sed -r &lt;span class=&quot;s1&quot;&gt;'s/^\s+//'&lt;/span&gt; rest &amp;gt; rest.out
+
+&lt;span class=&quot;c&quot;&gt;#Separate file by multiple delimiters - in this case it is colon and semicolon&lt;/span&gt;
+awk -F &lt;span class=&quot;s1&quot;&gt;'[&amp;gt;...]'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt; file
+
+&lt;span class=&quot;c&quot;&gt;#Take a uclust output file, separate spaces by tab, &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# select the second column, remove &quot;&amp;gt;&quot; from that column, &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# remove &quot;...&quot; from the column, print output&lt;/span&gt;
+sed -r &lt;span class=&quot;s1&quot;&gt;'s/\s+/\t/g'&lt;/span&gt; art | awk -F &lt;span class=&quot;s1&quot;&gt;'[\t]'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt; | sed -r &lt;span class=&quot;s1&quot;&gt;'s/&amp;gt;//'&lt;/span&gt; | sed -r &lt;span class=&quot;s1&quot;&gt;'s/\.\.\.//'&lt;/span&gt; &amp;gt; out
+
+&lt;span class=&quot;c&quot;&gt;#Remove all rows with a . in the 7th column&lt;/span&gt;
+awk &lt;span class=&quot;s1&quot;&gt;'$7 == &quot;.&quot; { next } { print }'&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#Add Cluster_ to begining of each line in file&lt;/span&gt;
+sed -r &lt;span class=&quot;s1&quot;&gt;'s/^/Cluster_/'&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &amp;gt; test.new
+
+&lt;span class=&quot;c&quot;&gt;# Rename all files with *_05242016.fna &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# to *.fna&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;f &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;_05242016.fna
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;mv -- &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$f&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%_05242016.fna&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.fna&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Delete all files in a list called &quot;remove_list.txt&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; -r entry
+&lt;span class=&quot;k&quot;&gt;do 
+  &lt;/span&gt;rm &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; remove_list.txt
+
+&lt;span class=&quot;c&quot;&gt;# count the files in every subdirectory in a directory&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;D &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;nv&quot;&gt;$D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; has this many entries &quot;&lt;/span&gt;
+  ls &lt;span class=&quot;nv&quot;&gt;$D&lt;/span&gt; | wc -l
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;## RENAME all files in directory &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# from scB241_528N20.contigs.fna to scB241_528N20.fna&lt;/span&gt;
+rename .contigs.fna &lt;span class=&quot;s1&quot;&gt;'.fna'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;## RENAME all files in directory &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# from scB241_528N20.fna to B241_528N20.fna&lt;/span&gt;
+rename scB &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;## Gets file extensions and prepending paths&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;f &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /nobackup1/shogle/pro_genomes/sags/simons/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%.fna&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#split fasta file into files with single fasta entry&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;line
+&lt;span class=&quot;k&quot;&gt;do
+    if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;line&lt;/span&gt;:0:1&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;outfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;#&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.fa
+        &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &amp;gt; &lt;span class=&quot;nv&quot;&gt;$outfile&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class=&quot;nv&quot;&gt;$outfile&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fi
+done&lt;/span&gt; &amp;lt; tmp.fasta
+
+&lt;span class=&quot;c&quot;&gt;## find lines that exist in file &quot;all&quot; that don't exist in file &quot;have&quot;&lt;/span&gt;
+comm -13 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort all&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;gt; ids_4_phylosift.txt
+
+&lt;span class=&quot;c&quot;&gt;## show differences between file &quot;have&quot; and &quot;all&quot; in &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# side by side format and with width of 72 characters&lt;/span&gt;
+diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort all&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;## parse the ncbi taxonomy tree (nodes.dmp) searching for a (partial) list of ids in file names.txt&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;entry
+&lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;grep &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; names.dmp | gsed &lt;span class=&quot;s1&quot;&gt;'s/\t//g'&lt;/span&gt; | gcut -d &lt;span class=&quot;s2&quot;&gt;&quot;|&quot;&lt;/span&gt; -f1,2 | gsed &lt;span class=&quot;s1&quot;&gt;'s/|/\t/g'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; names.txt &amp;gt; filtered_pro.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2016/bash-notebook/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2016/bash-notebook/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Collecting top hits</title>
@@ -46,89 +478,6 @@
         
         
         <category>bioinformatics_notebook</category>
-        
-      </item>
-    
-      <item>
-        <title>ASLO 2015 Talk</title>
-        <description>&lt;p&gt;I’m presenting about trace metal aquisition in the marine Roseobacter clade on Monday, February 23rd at 09:15.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Title:&lt;/strong&gt; EVOLUTION, ECOLOGY, AND MECHANISMS OF HEME UPTAKE IN THE MARINE ROSEOBACTER LINEAGE&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Abstract:&lt;/strong&gt; The sources, transformations, and ultimate fate of heme and hemoproteins in seawater are poorly understood. The marine Roseobacters, an abundant and cosmopolitan bacterial lineage, are frequently found in environmental niches where heme concentrations are likely to be greatest. Here we show that in the Roseobacter group, heme uptake genes represent the most common strategy for organic-iron acquisition and are highly conserved with respect to synteny, sequence similarity, and transcription factor binding. We also argue that Roseobacters specialized to use heme as an iron source after genome divergence by way of horizontal gene transfer. We show that heme uptake genes of a model Roseobacter, Ruegeria sp. TM1040, are co-transcribed as an operon and are upregulated under iron stress. The insertional inactivation of a predicted TonB dependent outer membrane receptor in the heme uptake operon results in the inability of TM1040 to grow on heme as an iron source. Our results identify and confirm genes responsible for heme uptake in a model Roseobacter strain and highlight heme uptake as the dominant organic-iron uptake pathway within the rest of the lineage.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2015 ASLO Aquatic Sciences Meeting - Grenada, Spain&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 037 THE MOLECULAR ECOLOGY OF METAL-MICROBE INTERACTIONS IN THE OCEAN ENVIRONMENT&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Day:&lt;/strong&gt; Monday 02/23/2015&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Type:&lt;/strong&gt; Oral&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Time:&lt;/strong&gt; 09:15&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Machuca (Floor-2)&lt;/p&gt;
-</description>
-        <pubDate>Wed, 10 Dec 2014 00:00:00 -0500</pubDate>
-        <link>http://slhogle.github.io/2014/ASLO-2015/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/ASLO-2015/</guid>
-        
-        
-        <category>news</category>
-        
-      </item>
-    
-      <item>
-        <title>New publication</title>
-        <description>&lt;p&gt;I participated in a &lt;a href=&quot;http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2014198a.html&quot;&gt;project&lt;/a&gt; examining the genomes and gene expression of prokaryotic and eukaryptic communities on a transect in the easter subtropical Pacific ocean while collaborating with scientists at the &lt;a href=&quot;http://www.jcvi.org/cms/home/&quot;&gt;J. Craig Venter Institute&lt;/a&gt;. There were a number of scientists from The &lt;a href=&quot;https://scripps.ucsd.edu/&quot;&gt;Scripps Institution of Oceanography&lt;/a&gt; involved as well.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 21 Oct 2014 00:00:00 -0400</pubDate>
-        <link>http://slhogle.github.io/2014/new-publication-out-in-ISMEJ/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/new-publication-out-in-ISMEJ/</guid>
-        
-        
-        <category>news</category>
-        
-      </item>
-    
-      <item>
-        <title>Goldschmidt 2014 Poster</title>
-        <description>&lt;p&gt;I’m presenting a poster on Wednesday June 11th from 14:00 - 1700. You can get a preview of the poster &lt;a href=&quot;http://figshare.com/articles/MECHANISMS_OF_TRACE_METAL_ASSIMILATION_IN_MARINE_ROSEOBACTERS/1045578&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Poster Title:&lt;/strong&gt; MECHANISMS OF TRACE METAL ASSIMILATION IN MARINE ROSEOBACTERS&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Abstract:&lt;/strong&gt; In the marine environment, Mn, Fe, Co, Ni, Cu, and Zn are arguably the most important bioactive trace metals. The are present as cofactors in enzymes, such as those involved in nitrate assimilation, and thus can indirectly influence the cycling of macronutrients in marine systems. The Roseobacter clade is an abundant group of marine bacteria with a global distribution. They have been isolated from diverse environments and appear to be well adapted to dynamic conditions and changing nutrient availability. The Roseobacter clade has been shown to be influential in the marine carbon, nitrogen, and sulfur cycles, but little is known as to how they influence the cyling of trace metals. Here we present case studies from bioinformatic genome mining and genetic analyses that point to molecular mechanisms of how the Roseobacter clade might influence the cycling of metals in their environments. We surveyed 42 marine Roseobacter genomes for the presence of uptake systemsfor oxidized, reduced, and chelated metal species. Systems for theacquisition of inorganic Mn, Fe, Co, Ni, Cu, and Zn were identified using sequence homology searches. Specific metal-chelates were assigned to predicted transporters and related components using sequence homology searches, genome neighborhood analysis, and Markov sequence clustering. We also report an unexpected putative role for tripartite ATP-independent periplasmic transporters in assimilation of metal chelates, particularly siderophores. Further, we describe the functional characterization of an outer membrane receptor required for heme uptake in a particular Roseobacterstrain, Ruegeria sp. TM1040, by insertional inactivation of a predicted TonB dependent transporter.Collectively, these findings refine the our knowledge of the specific metal compounds encountered and potentially utilized by microbes in marine environments.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conference:&lt;/strong&gt; 2014 Goldschmidt Meeting - Sacramento, CA&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Poster Number:&lt;/strong&gt; 236&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Session:&lt;/strong&gt; 17e: Oceans and Atmosphere: Trace elements, microbes, and biogeochemical cycles in the ocean environment.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Day:&lt;/strong&gt; Wednesday 6/11/2014&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Presentation Time:&lt;/strong&gt; 14:00 - 17:00&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 05 Jun 2014 00:00:00 -0400</pubDate>
-        <link>http://slhogle.github.io/2014/Goldschmidt-2014-poster/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/Goldschmidt-2014-poster/</guid>
-        
-        
-        <category>news</category>
-        
-      </item>
-    
-      <item>
-        <title>New publication</title>
-        <description>&lt;p&gt;I recently published a &lt;a href=&quot;http://pubs.rsc.org/en/content/articlelanding/2014/mt/c4mt00031e#!divAbstract&quot;&gt;review article&lt;/a&gt; with &lt;a href=&quot;http://scrippsscholars.ucsd.edu/kbarbeau&quot;&gt;Kathy Barbeau&lt;/a&gt; (my primary adviser) and &lt;a href=&quot;http://www.geomar.de/en/mitarbeiter/fb2/ch/mgledhill/&quot;&gt;Martha Gledhill&lt;/a&gt; about the biogeochemistry of heme in marine systems. Unfortunately, the paper is not in an open access journal. If you don’t have access and want to read it, message me for a copy.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 30 May 2014 00:00:00 -0400</pubDate>
-        <link>http://slhogle.github.io/2014/new-publication-out-in-metallomics/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/new-publication-out-in-metallomics/</guid>
-        
-        
-        <category>news</category>
         
       </item>
     

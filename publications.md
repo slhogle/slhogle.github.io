@@ -9,7 +9,10 @@ permalink: /publications/
 * __Hogle SL__, Dupont CL, Barbeau KA, and others. _In prep._ Converging physiological, geochemical, and molecular evidence for phytoplankton iron-limitation in the California Current Ecosystem.
 
 ### Articles in Review ###
-* __Hogle SL__, Brahamsha B, Barbeau KA. _In review._ Iron cycling from marine phytoplankton to bacteria is facilitated by direct heme uptake.
+* NA
+
+### Articles in Revision ###
+* __Hogle SL__, Brahamsha B, Barbeau KA. _In revision._ Direct heme uptake by phytoplankton-associated _Roseobacter_ bacteria.
 
 ### Articles Published and in Press ###
 * __Hogle SL__, Bundy RA, Blanton JM, Allen EE, Barbeau KA. (2016). Copiotrophic marine bacteria are associated with strong irong-binding ligand production during phytoplankton blooms. [_Limnol. Oceanogr. Lett._ DOI:10.1002/lol2.10026](http://onlinelibrary.wiley.com/doi/10.1002/lol2.10026/full) [[Suppl. Material]](https://github.com/slhogle/code-LO-letters-2016)

@@ -1,0 +1,104 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Bash commands | Notes </title> <meta name="description" content=" Microbes + Biogeochemistry "> <meta name="keywords" content="Marine, microbial ecology, bacteria, biogeochemistry, ocean"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <!-- Social: Facebook / Open Graph --> <meta property="og:type" content="article"> <meta property="article:author" content="Shane Hogle"> <meta property="article:section" content=""> <meta property="article:tag" content=""> <meta property="article:published_time" content="2016-12-03 00:00:00 -0500"> <meta property="og:url" content="http://slhogle.github.io/2016/bash-notebook/"> <meta property="og:title" content=" Bash commands | Notes "> <meta property="og:image" content="http://slhogle.github.io"> <meta property="og:description" content=" Microbes + Biogeochemistry "> <meta property="og:site_name" content="Shane Hogle"> <meta property="og:locale" content="en_US"> <!-- Social: Twitter --> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:site" content="@slhogle"> <meta name="twitter:title" content=" Bash commands | Notes "> <meta name="twitter:description" content=" Microbes + Biogeochemistry "> <meta name="twitter:image:src" content="http://slhogle.github.io"> <!-- Social: Google+ / Schema.org --> <meta itemprop="name" content=" Bash commands | Notes "> <meta itemprop="description" content=" Microbes + Biogeochemistry "> <meta itemprop="image" content="http://slhogle.github.io"> <!-- rel prev and next --> <link rel="stylesheet" href="/assets/css/main.css"> <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> <!-- Canonical link tag --> <link rel="canonical" href="http://slhogle.github.io/2016/bash-notebook/"> <link rel="alternate" type="application/rss+xml" title="Notes" href="http://slhogle.github.io/feed.xml"> <script type="text/javascript"> var disqus_shortname = 'slhogle-site'; var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-XXXXX-XX']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> </head> <body> <main class="wrapper"> <header class="site-header"> <nav class="nav"> <div class="container"> <h1 class="logo"><a href="/">Notes<span></span></a></h1> <ul class="navbar"> <li><a href="/about">about</a></li> <li><a href="/research">research</a></li> <li><a href="/publications">publications</a></li> <li><a href="/biographical_sketch">biographical sketch</a></li> <li><a href="/contact">contact</a></li> </ul> </div> </nav> </header> <article class="post container" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <p class="post-meta"><time datetime="2016-12-03T00:00:00-05:00" itemprop="datePublished">Dec 3, 2016</time></p> <h1 class="post-title" itemprop="name headline">Bash commands</h1> </header> <div class="post-content" itemprop="articleBody"> <p>Text form can be found at my <a href="https://github.com/slhogle/scripts">github</a></p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
+
+<span class="c"># Makes bioperl index file of GOS CN assembly</span>
+bp_index.pl -dir . -fmt fasta GOS_ass_CN_index /usr/local/depot/projects/GOS/analysis/jgoll-CN_2012_92pct-annotation/metagene_seq.faa
+
+<span class="c"># loops through txt file with 1 accession per line and extracts them using bp_fetch.pl</span>
+<span class="k">while </span><span class="nb">read </span>accession_number
+<span class="k">do
+  </span>bp_fetch net::<span class="k">${</span><span class="nv">accession_number</span><span class="k">}</span>
+<span class="k">done</span> &lt; accessions.list &gt; results.txt
+
+<span class="c"># reads an ID file containing scaffold IDs of TRAP SBP, </span>
+<span class="c"># then loops through *all* scaffold IDs with the annotation 'TRAP' </span>
+<span class="c"># and counts the number of occurences each SBP scaffold has in that file. </span>
+<span class="k">while </span><span class="nb">read </span>accession_number
+<span class="k">do
+  </span>grep -c <span class="s2">"</span><span class="k">${</span><span class="nv">accession_number</span><span class="k">}</span><span class="s2">"</span> TRAP_CN_total_assembly
+<span class="k">done</span> &lt; TRAP_SBP_scf_IDs.formatted.list &gt; results.txt
+
+<span class="c">#replaces any instance of one or more whitespace </span>
+<span class="c"># characters with a tab (the g is for global)</span>
+sed -r <span class="s1">'s/\s+/\t/g'</span> rest.out &gt; rest1.out
+
+<span class="c">#removes one or more whitespace only at the end of each line</span>
+sed -r <span class="s1">'s/\s+$//'</span> 1-3 &gt; 1-3.out
+
+<span class="c">#removes one or more whitespace only at the beginning of each line</span>
+sed -r <span class="s1">'s/^\s+//'</span> rest &gt; rest.out
+
+<span class="c">#Separate file by multiple delimiters - in this case it is colon and semicolon</span>
+awk -F <span class="s1">'[&gt;...]'</span> <span class="s1">'{print $2}'</span> file
+
+<span class="c">#Take a uclust output file, separate spaces by tab, </span>
+<span class="c"># select the second column, remove "&gt;" from that column, </span>
+<span class="c"># remove "..." from the column, print output</span>
+sed -r <span class="s1">'s/\s+/\t/g'</span> art | awk -F <span class="s1">'[\t]'</span> <span class="s1">'{print $2}'</span> | sed -r <span class="s1">'s/&gt;//'</span> | sed -r <span class="s1">'s/\.\.\.//'</span> &gt; out
+
+<span class="c">#Remove all rows with a . in the 7th column</span>
+awk <span class="s1">'$7 == "." { next } { print }'</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+
+<span class="c">#Add Cluster_ to begining of each line in file</span>
+sed -r <span class="s1">'s/^/Cluster_/'</span> <span class="nb">test</span> &gt; test.new
+
+<span class="c"># Rename all files with *_05242016.fna </span>
+<span class="c"># to *.fna</span>
+<span class="k">for </span>f <span class="k">in</span> <span class="k">*</span>_05242016.fna
+<span class="k">do
+  </span>mv -- <span class="s2">"</span><span class="nv">$f</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">f</span><span class="p">%_05242016.fna</span><span class="k">}</span><span class="s2">.fna"</span>
+<span class="k">done</span>
+
+<span class="c"># Delete all files in a list called "remove_list.txt"</span>
+<span class="k">while </span><span class="nb">read</span> -r entry
+<span class="k">do 
+  </span>rm <span class="k">${</span><span class="nv">entry</span><span class="k">}</span>
+<span class="k">done</span> &lt; remove_list.txt
+
+<span class="c"># count the files in every subdirectory in a directory</span>
+<span class="k">for </span>D <span class="k">in</span> <span class="k">*</span>/
+<span class="k">do
+  </span><span class="nb">echo</span> -n <span class="nv">$D</span><span class="s2">" has this many entries "</span>
+  ls <span class="nv">$D</span> | wc -l
+<span class="k">done</span>
+
+<span class="c">## RENAME all files in directory </span>
+<span class="c"># from scB241_528N20.contigs.fna to scB241_528N20.fna</span>
+rename .contigs.fna <span class="s1">'.fna'</span> <span class="k">*</span>
+
+<span class="c">## RENAME all files in directory </span>
+<span class="c"># from scB241_528N20.fna to B241_528N20.fna</span>
+rename scB <span class="s1">'B'</span> <span class="k">*</span>
+
+<span class="c">## Gets file extensions and prepending paths</span>
+<span class="k">for </span>f <span class="k">in</span> /nobackup1/shogle/pro_genomes/sags/simons/<span class="k">*</span>
+<span class="k">do
+  </span><span class="nv">path</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">%.fna</span><span class="k">}</span>
+  <span class="nb">echo</span> <span class="k">${</span><span class="nv">path</span><span class="k">}</span>
+  <span class="nv">name</span><span class="o">=</span><span class="k">${</span><span class="nv">path</span><span class="p">##*/</span><span class="k">}</span>
+  <span class="nb">echo</span> <span class="k">${</span><span class="nv">name</span><span class="k">}</span>
+<span class="k">done</span>
+
+<span class="c">#split fasta file into files with single fasta entry</span>
+<span class="k">while </span><span class="nb">read </span>line
+<span class="k">do
+    if</span> <span class="o">[[</span> <span class="k">${</span><span class="nv">line</span>:0:1<span class="k">}</span> <span class="o">==</span> <span class="s1">'&gt;'</span> <span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nv">outfile</span><span class="o">=</span><span class="k">${</span><span class="nv">line</span><span class="p">#&gt;</span><span class="k">}</span>.fa
+        <span class="nb">echo</span> <span class="nv">$line</span> &gt; <span class="nv">$outfile</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="nv">$line</span> &gt;&gt; <span class="nv">$outfile</span>
+    <span class="k">fi
+done</span> &lt; tmp.fasta
+
+<span class="c">## find lines that exist in file "all" that don't exist in file "have"</span>
+comm -13 &lt;<span class="o">(</span>sort have<span class="o">)</span> &lt;<span class="o">(</span>sort all<span class="o">)</span> &gt; ids_4_phylosift.txt
+
+<span class="c">## show differences between file "have" and "all" in </span>
+<span class="c"># side by side format and with width of 72 characters</span>
+diff -y -W 72 &lt;<span class="o">(</span>sort have<span class="o">)</span> &lt;<span class="o">(</span>sort all<span class="o">)</span>
+
+<span class="c">## parse the ncbi taxonomy tree (nodes.dmp) searching for a (partial) list of ids in file names.txt</span>
+<span class="k">while </span><span class="nb">read </span>entry
+<span class="k">do
+  </span>grep <span class="k">${</span><span class="nv">entry</span><span class="k">}</span> names.dmp | gsed <span class="s1">'s/\t//g'</span> | gcut -d <span class="s2">"|"</span> -f1,2 | gsed <span class="s1">'s/|/\t/g'</span>
+<span class="k">done</span> &lt; names.txt &gt; filtered_pro.txt</code></pre></figure> <aside class="share"> <p>Share this post on <a href="http://twitter.com/share?text=Bash commands&amp;url=http://slhogle.github.io/2016/bash-notebook/&amp;via=slhogle" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">Twitter <i class="fa fa-twitter" aria-hidden="true" style="color:#00aced"></i></a> </p> </aside> </div> </article> <footer class="site-footer"> <div class="container"> <div align="center"> <small class="block">&copy; 2017 Shane Hogle. All rights reserved.</small> </div> </div> </footer> </main> </body> </html>

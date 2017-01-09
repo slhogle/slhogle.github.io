@@ -1,0 +1,82 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Git and Jekyll Cheatsheet | Notes </title> <meta name="description" content=" Microbes + Biogeochemistry "> <meta name="keywords" content="Marine, microbial ecology, bacteria, biogeochemistry, ocean"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <!-- Social: Facebook / Open Graph --> <meta property="og:type" content="article"> <meta property="article:author" content="Shane Hogle"> <meta property="article:section" content=""> <meta property="article:tag" content=""> <meta property="article:published_time" content="2017-01-09 00:00:00 -0500"> <meta property="og:url" content="http://slhogle.github.io/2017/gitjekyll-cheatsheet/"> <meta property="og:title" content=" Git and Jekyll Cheatsheet | Notes "> <meta property="og:image" content="http://slhogle.github.io"> <meta property="og:description" content=" Microbes + Biogeochemistry "> <meta property="og:site_name" content="Shane Hogle"> <meta property="og:locale" content="en_US"> <!-- Social: Twitter --> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:site" content="@slhogle"> <meta name="twitter:title" content=" Git and Jekyll Cheatsheet | Notes "> <meta name="twitter:description" content=" Microbes + Biogeochemistry "> <meta name="twitter:image:src" content="http://slhogle.github.io"> <!-- Social: Google+ / Schema.org --> <meta itemprop="name" content=" Git and Jekyll Cheatsheet | Notes "> <meta itemprop="description" content=" Microbes + Biogeochemistry "> <meta itemprop="image" content="http://slhogle.github.io"> <!-- rel prev and next --> <link rel="stylesheet" href="/assets/css/main.css"> <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> <!-- Canonical link tag --> <link rel="canonical" href="http://slhogle.github.io/2017/gitjekyll-cheatsheet/"> <link rel="alternate" type="application/rss+xml" title="Notes" href="http://slhogle.github.io/feed.xml"> <script type="text/javascript"> var disqus_shortname = 'slhogle-site'; var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-XXXXX-XX']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> </head> <body> <main class="wrapper"> <header class="site-header"> <nav class="nav"> <div class="container"> <h1 class="logo"><a href="/">Notes<span></span></a></h1> <ul class="navbar"> <li><a href="/about">about</a></li> <li><a href="/research">research</a></li> <li><a href="/publications">publications</a></li> <li><a href="/biographical_sketch">biographical sketch</a></li> <li><a href="/contact">contact</a></li> </ul> </div> </nav> </header> <article class="post container" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <p class="post-meta"><time datetime="2017-01-09T00:00:00-05:00" itemprop="datePublished">Jan 9, 2017</time></p> <h1 class="post-title" itemprop="name headline">Git and Jekyll Cheatsheet</h1> </header> <div class="post-content" itemprop="articleBody"> <h3 id="the-short-version">THE SHORT VERSION</h3> <p>Recipe for setting up a repository quick and dirty</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">"# emacs_stuff"</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span class="s2">"first commit"</span>
+git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git push -u origin master
+<span class="c"># …or push an existing repository from the command line</span>
+git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git push -u origin master</code></pre></figure> <p>For updating a Jekyll based blog hosted on github pages</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">jekyll serve --watch
+<span class="c"># take a look at the changes you make live</span>
+jekyll build 
+<span class="c"># uses jekyll to convert/build html version</span>
+<span class="c"># rendered files located in _site</span>
+git add --all
+<span class="c"># add all changes in current repo to be staged</span>
+git commit -m <span class="s2">"my commit message"</span>
+<span class="c"># create a message for the commit</span>
+git push
+<span class="c"># changes should be live at the github pages site</span></code></pre></figure> <hr /> <p>Adapted from <a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf">here</a></p> <h3 id="configure-tooling">CONFIGURE TOOLING</h3> <p>Configure user information for all local repositories</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git config --global user.name <span class="s2">"[name]"</span>
+<span class="c"># Sets the name you want atached to your commit transactions</span>
+git config --global user.email <span class="s2">"[email address]"</span>
+<span class="c"># Sets the email you want atached to your commit transactions</span>
+git config --global color.ui auto
+<span class="c"># Enables helpful colorization of command line output</span></code></pre></figure> <h3 id="create-repositories">CREATE REPOSITORIES</h3> <p>Start a new repository or obtain one from an existing URL</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git init <span class="o">[</span>project-name]
+<span class="c"># Creates a new local repository with the specified name</span>
+git clone <span class="o">[</span>url]
+<span class="c"># Downloads a project and its entire version history</span></code></pre></figure> <h3 id="make-changes">MAKE CHANGES</h3> <p>Review edits and craft a commit transaction</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git status
+<span class="c"># Lists all new or modified files to be commited</span>
+git add <span class="o">[</span>file]
+<span class="c"># Snapshots the file in preparation for versioning</span>
+git reset <span class="o">[</span>file]
+<span class="c"># Unstages the fiale, but preserve its contents</span>
+git diff
+<span class="c"># Shows file differences not yet staged</span>
+git diff --staged
+<span class="c"># Shows file differences between staging and the last file version</span>
+git commit -m <span class="s2">"[descriptive message]"</span>
+<span class="c"># Records file snapshots permanently in version history</span></code></pre></figure> <h3 id="group-changes">GROUP CHANGES</h3> <p>Name a series of commits and combine completed efforts</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git branch
+<span class="c"># Lists all local branches in the current repository</span>
+git branch <span class="o">[</span>branch-name]
+<span class="c"># Creates a new branch</span>
+git checkout <span class="o">[</span>branch-name]
+<span class="c"># Switches to the specified branch and updates the working directory</span>
+git merge <span class="o">[</span>branch]
+<span class="c"># Combines the specified branch’s history into the current branch</span>
+git branch -d <span class="o">[</span>branch-name]
+<span class="c"># Deletes the specified branch</span></code></pre></figure> <h3 id="refactor-filenames">REFACTOR FILENAMES</h3> <p>Relocate and remove versioned files</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git rm <span class="o">[</span>file]
+<span class="c"># Deletes the file from the working directory and stages the deletion</span>
+git rm --cached <span class="o">[</span>file]
+<span class="c"># Removes the file from version control but preserves the file locally</span>
+git mv <span class="o">[</span>file-original] <span class="o">[</span>file-renamed]
+<span class="c"># Changes the file name and prepares it for commit</span></code></pre></figure> <h3 id="suppress-tracking">SUPPRESS TRACKING</h3> <p>Exclude temporary files and paths</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span>.log
+build/
+temp-<span class="k">*</span>
+<span class="c"># A text file named .gitignore suppresses accidental versioning of</span>
+<span class="c"># files and paths matching the specified paterns</span>
+git ls-files --other --ignored --exclude-standard
+<span class="c"># Lists all ignored files in this project</span></code></pre></figure> <h3 id="save-fragments">SAVE FRAGMENTS</h3> <p>Shelve and restore incomplete changes</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git stash
+<span class="c"># Temporarily stores all modified tracked files</span>
+git stash list
+<span class="c"># Lists all stashed changesets</span>
+git stash pop
+<span class="c"># Restores the most recently stashed files</span>
+git stash drop
+<span class="c"># Discards the most recently stashed changeset</span></code></pre></figure> <h3 id="review-history">REVIEW HISTORY</h3> <p>Browse and inspect the evolution of project files</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git log
+<span class="c"># Lists version history for the current branch</span>
+git log --follow <span class="o">[</span>file]
+<span class="c"># Lists version history for a file, including renames</span>
+git diff <span class="o">[</span>first-branch]...[second-branch]
+<span class="c"># Shows content differences between two branches</span>
+git show <span class="o">[</span>commit]
+<span class="c"># Outputs metadata and content changes of the specified commit</span></code></pre></figure> <h3 id="redo-commits">REDO COMMITS</h3> <p>Erase mistakes and craft replacement history</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git reset <span class="o">[</span>commit]
+<span class="c"># Undoes all commits afer [commit], preserving changes locally</span>
+git reset --hard <span class="o">[</span>commit]
+<span class="c"># Discards all history and changes back to the specified commit</span></code></pre></figure> <h3 id="synchronize-changes">SYNCHRONIZE CHANGES</h3> <p>Register a repository bookmark and exchange version history</p> <figure class="highlight"><pre><code class="language-bash" data-lang="bash">git fetch <span class="o">[</span>bookmark]
+<span class="c"># Downloads all history from the repository bookmark</span>
+git merge <span class="o">[</span>bookmark]/[branch]
+<span class="c"># Combines bookmark’s branch into current local branch</span>
+git push <span class="o">[</span><span class="nb">alias</span><span class="o">]</span> <span class="o">[</span>branch]
+<span class="c"># Uploads all local branch commits to GitHub</span>
+git pull
+<span class="c"># Downloads bookmark history and incorporates changes</span></code></pre></figure> <aside class="share"> <p>Share this post on <a href="http://twitter.com/share?text=Git and Jekyll Cheatsheet&amp;url=http://slhogle.github.io/2017/gitjekyll-cheatsheet/&amp;via=slhogle" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">Twitter <i class="fa fa-twitter" aria-hidden="true" style="color:#00aced"></i></a> </p> </aside> </div> </article> <footer class="site-footer"> <div class="container"> <div align="center"> <small class="block">&copy; 2017 Shane Hogle. All rights reserved.</small> </div> </div> </footer> </main> </body> </html>

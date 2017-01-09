@@ -24,7 +24,7 @@ Much of my Ph.D. thesis examined how and why bacteria of the marine _Roseobacter
 --Shane
 
 {:refdef: style="text-align: center;"}
-![My Image]({{ site.baseimg }}/images/me1.jpg)
+![Mobile Greenhouse]({{ site.baseimg }}/images/me1.jpg)
 {: refdef}
 
 
