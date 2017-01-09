@@ -12,10 +12,16 @@ permalink: /publications/
 * NA
 
 ### Articles in Revision ###
-* __Hogle SL__, Brahamsha B, Barbeau KA. _In revision._ Direct heme uptake by phytoplankton-associated _Roseobacter_ bacteria.
+* NA
 
 ### Articles Published and in Press ###
-* __Hogle SL__, Bundy RA, Blanton JM, Allen EE, Barbeau KA. (2016). Copiotrophic marine bacteria are associated with strong irong-binding ligand production during phytoplankton blooms. [_Limnol. Oceanogr. Lett._ DOI:10.1002/lol2.10026](http://onlinelibrary.wiley.com/doi/10.1002/lol2.10026/full) [[Suppl. Material]](https://github.com/slhogle/code-LO-letters-2016)
+* __Hogle SL__, Brahamsha B, Barbeau KA. _In press._ Direct heme uptake by phytoplankton-associated _Roseobacter_ bacteria. _mSystems_ 2(1):e00124-16.
+
+[//]: ** Editor’s Pick at mSystems
+[//]: ** Featured on the American Society for Microbiology’s mBiosphere blog (Publication date TBD)
+[//]: ** Associated commentary by Alison Buchan (UT-Knoxville), Seth John (USC), and DanRepeta (WHOI) (Publication date and venue TBD)
+
+* __Hogle SL__, Bundy RA, Blanton JM, Allen EE, Barbeau KA. (2016). Copiotrophic marine bacteria are associated with strong irong-binding ligand production during phytoplankton blooms. [_Limnol. Oceanogr. Lett._ 1:36-43. DOI:10.1002/lol2.10026](http://onlinelibrary.wiley.com/doi/10.1002/lol2.10026/full) [[Suppl. Material]](https://github.com/slhogle/code-LO-letters-2016)
 
 * __Hogle SL__, Thrash JC, Dupont CL, Barbeau KA. (2016). Trace metal acquisition by heterotrophic bacterioplankton with contrasting trophic strategies. [_Appl. Environ. Microbiol._ 82(5):1613-1624](http://aem.asm.org/content/early/2016/01/04/AEM.03128-15.short?rss=1) [[Suppl. Material]](/TM_roseo_sar/mainpage)
 
