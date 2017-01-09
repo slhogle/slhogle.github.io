@@ -5,8 +5,8 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Jan 2017 14:58:21 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Jan 2017 14:58:21 -0500</lastBuildDate>
+    <pubDate>Mon, 09 Jan 2017 15:00:12 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2017 15:00:12 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -192,7 +192,7 @@ scancel &lt;span class=&quot;nv&quot;&gt;$MYJOB_ID&lt;/span&gt;&lt;/code&gt;&lt;
   &lt;li&gt;4 CPUs on a single node&lt;/li&gt;
   &lt;li&gt;use the scheduler queue $MYQUEUE&lt;/li&gt;
   &lt;li&gt;provide a time ceiling of 1 HR&lt;/li&gt;
-  &lt;li&gt;execute task zero in pseudo terminal mode. The option –pty is important because it allows an interactive terminal mode. Without –pty every command issued would be run 4 times (-c 4)&lt;/li&gt;
+  &lt;li&gt;execute task zero in pseudo terminal mode. The option “pty” is important because it allows an interactive terminal mode. Without “pty” every command issued would be run 4 times&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;srun --mem-per-cpu 2GB -c 4 -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; -t 0-01:00:00 --pty /bin/bash

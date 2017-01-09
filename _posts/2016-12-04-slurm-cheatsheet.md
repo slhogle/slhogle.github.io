@@ -31,7 +31,7 @@ Submit an interactive job
 - 4 CPUs on a single node
 - use the scheduler queue $MYQUEUE
 - provide a time ceiling of 1 HR
-- execute task zero in pseudo terminal mode. The option --pty is important because it allows an interactive terminal mode. Without --pty every command issued would be run 4 times (-c 4)
+- execute task zero in pseudo terminal mode. The option "pty" is important because it allows an interactive terminal mode. Without "pty" every command issued would be run 4 times
 
 {% highlight bash %}
 srun --mem-per-cpu 2GB -c 4 -p $MYQUEUE -t 0-01:00:00 --pty /bin/bash
