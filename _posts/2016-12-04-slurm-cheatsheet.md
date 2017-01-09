@@ -12,7 +12,8 @@ summary:    Useful commands for using the SLURM scheduler
 ------------
 
 ### Submitting and cancelling SLURM jobs
-Submit a job script called my_script.sh requesting:
+
+Submit a job script called my_script.sh requesting
 - 5GB RAM per cpu (--mem-per-cpu 5GB)
 - 20 CPUs on a single node (-c 20)
 - use the scheduler queue $MYQUEUE (-p $MYQUEUE)
