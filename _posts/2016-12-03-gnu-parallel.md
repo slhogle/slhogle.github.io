@@ -12,7 +12,6 @@ While I'm at it some useful links for GNU Parallel
 - [GNU Parallel and SLURM from U Chicago](https://rcc.uchicago.edu/documentation/_build/html/tutorials/kicp-tutorials/running-jobs.html)
 - [A nice presentation](http://outreach.ino.pm/presentations/2014/03/genomics-wranglers/index.html#/18) by Ino de Bruijn
 
------------
 ### prokka.hets.sh
 {% highlight bash %}
 #!/usr/bin/env bash
@@ -37,7 +36,6 @@ prokka.hets.sh is the shell script that will be parallelized. The cool thing is 
 
 _Of note: $1 is arg1:{1} from parallel._
 
------------
 ### parallel.sh
 {% highlight bash %}
 #!/usr/bin/env bash

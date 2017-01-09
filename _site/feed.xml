@@ -5,8 +5,8 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Jan 2017 14:52:22 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Jan 2017 14:52:22 -0500</lastBuildDate>
+    <pubDate>Mon, 09 Jan 2017 14:54:54 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2017 14:54:54 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -37,8 +37,6 @@ git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;my commit message&quot;&lt;
 &lt;span class=&quot;c&quot;&gt;# create a message for the commit&lt;/span&gt;
 git push
 &lt;span class=&quot;c&quot;&gt;# changes should be live at the github pages site&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;hr /&gt;
 
 &lt;p&gt;Adapted from &lt;a href=&quot;https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
@@ -171,10 +169,7 @@ git pull
   &lt;li&gt;SLURM &lt;a href=&quot;https://rc.fas.harvard.edu/resources/running-jobs/&quot;&gt;tutorial&lt;/a&gt; @ Harvard&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;hr /&gt;
-
 &lt;h3 id=&quot;submitting-and-cancelling-slurm-jobs&quot;&gt;Submitting and cancelling SLURM jobs&lt;/h3&gt;
-
 &lt;p&gt;Submit a job script called my_script.sh requesting&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;5GB RAM per cpu (–mem-per-cpu 5GB)&lt;/li&gt;
@@ -268,7 +263,6 @@ sacct --helpformat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
   &lt;li&gt;&lt;a href=&quot;http://outreach.ino.pm/presentations/2014/03/genomics-wranglers/index.html#/18&quot;&gt;A nice presentation&lt;/a&gt; by Ino de Bruijn&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;hr /&gt;
 &lt;h3 id=&quot;prokkahetssh&quot;&gt;prokka.hets.sh&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
@@ -292,7 +286,6 @@ prokka &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 
 &lt;p&gt;&lt;em&gt;Of note: $1 is arg1:{1} from parallel.&lt;/em&gt;&lt;/p&gt;
 
-&lt;hr /&gt;
 &lt;h3 id=&quot;parallelsh&quot;&gt;parallel.sh&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;

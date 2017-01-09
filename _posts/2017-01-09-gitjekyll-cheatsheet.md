@@ -33,8 +33,6 @@ git push
 # changes should be live at the github pages site
 {% endhighlight %}
 
-------------
-
 Adapted from [here](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
 
 ### CONFIGURE TOOLING
