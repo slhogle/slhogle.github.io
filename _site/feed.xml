@@ -5,8 +5,8 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Jan 2017 14:54:54 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Jan 2017 14:54:54 -0500</lastBuildDate>
+    <pubDate>Mon, 09 Jan 2017 14:58:21 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2017 14:58:21 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -171,13 +171,14 @@ git pull
 
 &lt;h3 id=&quot;submitting-and-cancelling-slurm-jobs&quot;&gt;Submitting and cancelling SLURM jobs&lt;/h3&gt;
 &lt;p&gt;Submit a job script called my_script.sh requesting&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;5GB RAM per cpu (–mem-per-cpu 5GB)&lt;/li&gt;
-  &lt;li&gt;20 CPUs on a single node (-c 20)&lt;/li&gt;
-  &lt;li&gt;use the scheduler queue $MYQUEUE (-p $MYQUEUE)&lt;/li&gt;
-  &lt;li&gt;use the job name $MYJOB_NAME (-J $MYJOB_NAME)&lt;/li&gt;
-  &lt;li&gt;provide a time ceiling of 3 HRs (-t 0-3:00:00)&lt;/li&gt;
-  &lt;li&gt;write STDOUT to file $MYLOG.log (-o $MYLOG.log)&lt;/li&gt;
+  &lt;li&gt;5GB RAM per cpu&lt;/li&gt;
+  &lt;li&gt;20 CPUs on a single node&lt;/li&gt;
+  &lt;li&gt;use the scheduler queue $MYQUEUE&lt;/li&gt;
+  &lt;li&gt;use the job name $MYJOB_NAME&lt;/li&gt;
+  &lt;li&gt;provide a time ceiling of 3 HRs&lt;/li&gt;
+  &lt;li&gt;write STDOUT to file $MYLOG.log&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch --mem-per-cpu 5GB -c 20 -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; -J &lt;span class=&quot;nv&quot;&gt;$MYJOB_NAME&lt;/span&gt; -t 0-3:00:00 -o &lt;span class=&quot;nv&quot;&gt;$MYLOG&lt;/span&gt;.log my_script.sh
@@ -187,11 +188,11 @@ scancel &lt;span class=&quot;nv&quot;&gt;$MYJOB_ID&lt;/span&gt;&lt;/code&gt;&lt;
 
 &lt;p&gt;Submit an interactive job&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;2GB RAM per cpu (–mem-per-cpu 2GB)&lt;/li&gt;
-  &lt;li&gt;4 CPUs on a single node (-c 4)&lt;/li&gt;
-  &lt;li&gt;use the scheduler queue $MYQUEUE (-p $MYQUEUE)&lt;/li&gt;
-  &lt;li&gt;provide a time ceiling of 1 HR (-t 0-1:00:00)&lt;/li&gt;
-  &lt;li&gt;execute task zero in pseudo terminal mode (–pty). The option –pty is important because it allows an interactive terminal mode. Without –pty every command issued would be run 4 times (-c 4)&lt;/li&gt;
+  &lt;li&gt;2GB RAM per cpu&lt;/li&gt;
+  &lt;li&gt;4 CPUs on a single node&lt;/li&gt;
+  &lt;li&gt;use the scheduler queue $MYQUEUE&lt;/li&gt;
+  &lt;li&gt;provide a time ceiling of 1 HR&lt;/li&gt;
+  &lt;li&gt;execute task zero in pseudo terminal mode. The option –pty is important because it allows an interactive terminal mode. Without –pty every command issued would be run 4 times (-c 4)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;srun --mem-per-cpu 2GB -c 4 -p &lt;span class=&quot;nv&quot;&gt;$MYQUEUE&lt;/span&gt; -t 0-01:00:00 --pty /bin/bash
