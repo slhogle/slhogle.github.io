@@ -5,8 +5,8 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Jan 2017 15:11:57 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Jan 2017 15:11:57 -0500</lastBuildDate>
+    <pubDate>Thu, 12 Jan 2017 11:38:15 +0200</pubDate>
+    <lastBuildDate>Thu, 12 Jan 2017 11:38:15 +0200</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -153,7 +153,7 @@ git push &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&q
 git pull
 &lt;span class=&quot;c&quot;&gt;# Downloads bookmark history and incorporates changes&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Mon, 09 Jan 2017 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 09 Jan 2017 00:00:00 +0200</pubDate>
         <link>http://slhogle.github.io/2017/gitjekyll-cheatsheet/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2017/gitjekyll-cheatsheet/</guid>
         
@@ -246,7 +246,7 @@ sacct -S 2016-12-01
 &lt;span class=&quot;c&quot;&gt;# Get help about sacct command&lt;/span&gt;
 sacct --helpformat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Sun, 04 Dec 2016 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 04 Dec 2016 00:00:00 +0200</pubDate>
         <link>http://slhogle.github.io/2016/slurm-cheatsheet/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/slurm-cheatsheet/</guid>
         
@@ -315,7 +315,7 @@ prokka &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 
 &lt;p&gt;We finally run the parallel command and prokka.hets.sh should be able to use the 20 cpus per node that we requested with -c20 through srun.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 +0200</pubDate>
         <link>http://slhogle.github.io/2016/gnu-parallel/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/gnu-parallel/</guid>
         
@@ -431,7 +431,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
   &lt;/span&gt;grep &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; names.dmp | gsed &lt;span class=&quot;s1&quot;&gt;'s/\t//g'&lt;/span&gt; | gcut -d &lt;span class=&quot;s2&quot;&gt;&quot;|&quot;&lt;/span&gt; -f1,2 | gsed &lt;span class=&quot;s1&quot;&gt;'s/|/\t/g'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; names.txt &amp;gt; filtered_pro.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 +0200</pubDate>
         <link>http://slhogle.github.io/2016/bash-notebook/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/bash-notebook/</guid>
         
@@ -469,7 +469,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
   &lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Thu, 23 Apr 2015 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 23 Apr 2015 00:00:00 +0300</pubDate>
         <link>http://slhogle.github.io/2015/remove-duplicate-lines/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2015/remove-duplicate-lines/</guid>
         
@@ -503,7 +503,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
 
 &lt;p&gt;Next post I’ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 29 May 2014 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 29 May 2014 00:00:00 +0300</pubDate>
         <link>http://slhogle.github.io/2014/bowtie-and-samtools/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/bowtie-and-samtools/</guid>
         
@@ -530,7 +530,7 @@ sort seqfile2 | join -v 2 - seqfile1.sorted | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Wed, 16 Apr 2014 00:00:00 -0400</pubDate>
+        <pubDate>Wed, 16 Apr 2014 00:00:00 +0300</pubDate>
         <link>http://slhogle.github.io/2014/process-substitution-with-bash/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/process-substitution-with-bash/</guid>
         
@@ -572,7 +572,7 @@ sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Tue, 15 Apr 2014 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 15 Apr 2014 00:00:00 +0300</pubDate>
         <link>http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</guid>
         
@@ -630,7 +630,7 @@ join -v 2 v19_uniq.out v20_uniq.out | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&
 
 &lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were “retired” from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the “unmatchable” ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 14 Apr 2014 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 14 Apr 2014 00:00:00 +0300</pubDate>
         <link>http://slhogle.github.io/2014/unix-for-fasta/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/unix-for-fasta/</guid>
         
@@ -662,7 +662,7 @@ join -v 2 v19_uniq.out v20_uniq.out | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Tue, 11 Mar 2014 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 11 Mar 2014 00:00:00 +0200</pubDate>
         <link>http://slhogle.github.io/2014/fasta-extracta/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/fasta-extracta/</guid>
         
