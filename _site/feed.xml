@@ -5,9 +5,50 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 12 Jan 2017 11:38:15 +0200</pubDate>
-    <lastBuildDate>Thu, 12 Jan 2017 11:38:15 +0200</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 19:06:15 -0500</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 19:06:15 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Installing Prokka in home folder on a compute cluster</title>
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;INTRODUCTION&lt;/h3&gt;
+&lt;p&gt;Some colleagues have been asking about installing and using the fabulous &lt;a href=&quot;https://github.com/tseemann/prokka&quot;&gt;Prokka software&lt;/a&gt; on a compute cluster. Without root privledges this can be somewhat tricky if you don’t know where to start. Particularly, on our compute cluster the default Perl version is old, and you don’t have the option to install custom modules due to permissions restrictions. Here’s how you get a working standalone Perl environment that you can update and modify freely and how you install the Prokka perl module dependencies. We’ll be using the glorious &lt;a href=&quot;https://perlbrew.pl/&quot;&gt;Perlbrew&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;setting-up-perl5-environment&quot;&gt;Setting up PERL5 environment&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# change to your home directory&lt;/span&gt;
+wget -O - https://install.perlbrew.pl | bash
+perlbrew install 5.24.0
+cpan App::cpanminus&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;installing-prokka-dependencies&quot;&gt;Installing Prokka dependencies&lt;/h4&gt;
+&lt;p&gt;These are the required perl modules for Prokka&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cpanm Time::Piece XML::Simple Bio::Perl Digest::MD5&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you are interested in prediciting rRNAs then I would recommend installing the barrnap program&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;wget https://github.com/tseemann/barrnap/archive/0.7.tar.gz
+tar zxvf barrnap-0.7.tar.gz&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, add barrnap-0.7/bin to your PATH&lt;/p&gt;
+
+&lt;h4 id=&quot;installing-prokka-itself&quot;&gt;Installing Prokka itself&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git clone https://github.com/tseemann/prokka.git &lt;span class=&quot;c&quot;&gt;# clone the prokka git repository into current directory&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Add prokka-1.1X/bin to your PATH&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;prokka --setupdb&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Good to go!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 19 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2017/install_prokka/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2017/install_prokka/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Git and Jekyll Cheatsheet</title>
@@ -153,7 +194,7 @@ git push &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&q
 git pull
 &lt;span class=&quot;c&quot;&gt;# Downloads bookmark history and incorporates changes&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Mon, 09 Jan 2017 00:00:00 +0200</pubDate>
+        <pubDate>Mon, 09 Jan 2017 00:00:00 -0500</pubDate>
         <link>http://slhogle.github.io/2017/gitjekyll-cheatsheet/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2017/gitjekyll-cheatsheet/</guid>
         
@@ -246,7 +287,7 @@ sacct -S 2016-12-01
 &lt;span class=&quot;c&quot;&gt;# Get help about sacct command&lt;/span&gt;
 sacct --helpformat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Sun, 04 Dec 2016 00:00:00 +0200</pubDate>
+        <pubDate>Sun, 04 Dec 2016 00:00:00 -0500</pubDate>
         <link>http://slhogle.github.io/2016/slurm-cheatsheet/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/slurm-cheatsheet/</guid>
         
@@ -315,7 +356,7 @@ prokka &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 
 &lt;p&gt;We finally run the parallel command and prokka.hets.sh should be able to use the 20 cpus per node that we requested with -c20 through srun.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 03 Dec 2016 00:00:00 +0200</pubDate>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
         <link>http://slhogle.github.io/2016/gnu-parallel/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/gnu-parallel/</guid>
         
@@ -431,7 +472,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
   &lt;/span&gt;grep &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; names.dmp | gsed &lt;span class=&quot;s1&quot;&gt;'s/\t//g'&lt;/span&gt; | gcut -d &lt;span class=&quot;s2&quot;&gt;&quot;|&quot;&lt;/span&gt; -f1,2 | gsed &lt;span class=&quot;s1&quot;&gt;'s/|/\t/g'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; names.txt &amp;gt; filtered_pro.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Sat, 03 Dec 2016 00:00:00 +0200</pubDate>
+        <pubDate>Sat, 03 Dec 2016 00:00:00 -0500</pubDate>
         <link>http://slhogle.github.io/2016/bash-notebook/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2016/bash-notebook/</guid>
         
@@ -469,7 +510,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
   &lt;li&gt;The operator is FALSE when x[$3] = 1, so awk does nothing. When a new value for $(3) is seen the process starts over.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Thu, 23 Apr 2015 00:00:00 +0300</pubDate>
+        <pubDate>Thu, 23 Apr 2015 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2015/remove-duplicate-lines/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2015/remove-duplicate-lines/</guid>
         
@@ -503,7 +544,7 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
 
 &lt;p&gt;Next post I’ll show you how to send some BAM files to the cuffdiff tool to find differences between the two files - ie) differences in gene expression.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 29 May 2014 00:00:00 +0300</pubDate>
+        <pubDate>Thu, 29 May 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/bowtie-and-samtools/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/bowtie-and-samtools/</guid>
         
@@ -530,7 +571,7 @@ sort seqfile2 | join -v 2 - seqfile1.sorted | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Wed, 16 Apr 2014 00:00:00 +0300</pubDate>
+        <pubDate>Wed, 16 Apr 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/process-substitution-with-bash/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/process-substitution-with-bash/</guid>
         
@@ -572,7 +613,7 @@ sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts_bp2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Tue, 15 Apr 2014 00:00:00 +0300</pubDate>
+        <pubDate>Tue, 15 Apr 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</guid>
         
@@ -630,41 +671,9 @@ join -v 2 v19_uniq.out v20_uniq.out | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&
 
 &lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were “retired” from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the “unmatchable” ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 14 Apr 2014 00:00:00 +0300</pubDate>
+        <pubDate>Mon, 14 Apr 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/unix-for-fasta/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/unix-for-fasta/</guid>
-        
-        
-        <category>bioinformatics_notebook</category>
-        
-      </item>
-    
-      <item>
-        <title>Fasta extracta</title>
-        <description>&lt;p&gt;You need bioruby for this one. &lt;a href=&quot;http://bioruby.org/&quot;&gt;Bioruby&lt;/a&gt; is quite easy to install on unix systems. I use Ubuntu… The script pulls the fasta entries from a multi-fasta file based on a provided list of sequence ids.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bio'&lt;/span&gt;
-&lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'_fasta_extracted'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FlatFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;definition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Bio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FastaFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'&amp;gt; '&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;definition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Tue, 11 Mar 2014 00:00:00 +0200</pubDate>
-        <link>http://slhogle.github.io/2014/fasta-extracta/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/fasta-extracta/</guid>
         
         
         <category>bioinformatics_notebook</category>
