@@ -5,9 +5,55 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 19:06:15 -0500</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 19:06:15 -0500</lastBuildDate>
+    <pubDate>Tue, 31 Jan 2017 16:10:51 -0500</pubDate>
+    <lastBuildDate>Tue, 31 Jan 2017 16:10:51 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Installing the bash kernel for Jupyter notebook</title>
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;INTRODUCTION&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://jupyter.org/&quot;&gt;Jupyter notebook&lt;/a&gt; is a handy little system for running and documenting your code. I use it frequently for my python 2.7 code, but I also write a lot of code in bash. I was using emacs org-mode to write and document my bash scripts, but I recently decided to port them to jupyter notebook. Here’s how to do it!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jupyter.readthedocs.io/en/latest/index.html&quot;&gt;Jupyter docs here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;setting-up-python-environment&quot;&gt;Setting up python environment&lt;/h4&gt;
+&lt;p&gt;If you haven’t already used it, &lt;a href=&quot;https://www.continuum.io/anaconda-overview&quot;&gt;Anaconda&lt;/a&gt; is a pretty useful system for managing different python installations and environments. Here’s how you install it (python 2.7 version) for OSX:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;wget https://repo.continuum.io/archive/Anaconda2-4.3.0-MacOSX-x86_64.sh
+bash Anaconda2-4.3.0-MacOSX-x86_64.sh &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;installing-dependencies&quot;&gt;Installing dependencies&lt;/h4&gt;
+&lt;p&gt;The bash kernel for Jupyter notebook requires python 3. Because I do a lot of bioinformatics stuff that relies on python 2.7 I installed that Anaconda version. However, we can easily get python 3.X. Here’s how:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Create the environment using Python 3 and add the IPython and Juypter system with notebook support.&lt;/span&gt;
+conda create -n py3k &lt;span class=&quot;nv&quot;&gt;python&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3 ipython notebook
+&lt;span class=&quot;c&quot;&gt;# now you need to activate the python 3 environment&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate py3k&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;installing-the-bash-kernel&quot;&gt;Installing the bash kernel&lt;/h4&gt;
+&lt;p&gt;The new bash kernel can be installed using pip (already installed with anaconda)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pip install bash_kernel
+python -m bash_kernel.install
+&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;deactivate py3k&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;running-the-notebook&quot;&gt;Running the notebook&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Remember to activate the python 3 env first!&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate py3k
+&lt;span class=&quot;c&quot;&gt;# start up the notebook server&lt;/span&gt;
+jupyter notebook
+&lt;span class=&quot;c&quot;&gt;# when you're finished deactivate the python 3 env so we can default to python 2.7&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;deactivate py3k&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now bash should be an available kernel for working in your notebooks. Good to go!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 19 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2017/bash_jupyter_notebook/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2017/bash_jupyter_notebook/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Installing Prokka in home folder on a compute cluster</title>
@@ -616,64 +662,6 @@ sudo gem update bio&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         <pubDate>Tue, 15 Apr 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/nucleotide-content-of-1st-and-2nd-positions/</guid>
-        
-        
-        <category>bioinformatics_notebook</category>
-        
-      </item>
-    
-      <item>
-        <title>Unix for fasta</title>
-        <description>&lt;p&gt;The syntax here is using the Bash shell in unix.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;The following command counts the number of sequences in a fasta formatted file. The “&lt;/td&gt;
-      &lt;td&gt;” operator is a pipe. This lets you stream the output from one command into another.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; YOURFILE.fasta | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Extract position 2 through 8 on all sequences in a fasta file. The -v option for grep is the inversion option. This tells grep to only consider lines that are not fasta headers.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; YOURFILE.fasta | cut -c2-8 &amp;gt; YOURFILE_pos2-8.fasta&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Counts how many unique text strings are in a file.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort -u YOURFILE_pos2-8.fasta | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Exports counts of unique occurences in YOURFILE_pos2-8.fasta&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort YOURFILE_pos2-8.fasta | uniq -c &amp;gt; YOURFILE_unique_counts.output&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This series of commands will format YOURFILE_unique_counts.output to remove the leading whitespace and replace the remaining whitespace with a tab character “/t” It then will sort this in decreasing numerical order.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sed &lt;span class=&quot;s1&quot;&gt;'s/^\s\+//'&lt;/span&gt; YOURFILE_unique_counts.output | sed &lt;span class=&quot;s1&quot;&gt;'s/\s\+/\t/'&lt;/span&gt; | sort -n -r&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;strong&gt;Example questions: Use “grep”, “cat”, “sort”, and “uniq -c” to extract microRNA sequences from &lt;a href=&quot;./v19.fa&quot;&gt;mirbase Version 19&lt;/a&gt; and &lt;a href=&quot;./v20.fa&quot;&gt;Version 20&lt;/a&gt; and determine which sequences are in both versions. How many are shared in both versions?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; v19.fa | sort -u &amp;gt; v19_uniq.out
-grep -v &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; v20.fa | sort -u &amp;gt; v20_uniq.out&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This creates a file (v19_uniq.out) with only unique nucleic acid sequences. The “&amp;gt;” operator at the end of a command writes the output to a file (in this case v19_uniq.out) instead of to the screen of the terminal. So now we have both versions of mirbase with only unique sequences - no duplicates - in two different files.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat v19_uniq.out v20_uniq.out | sort | uniq -c | grep -c &lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The cat command merges the content of files or standard input and outputs to the terminal. So with the first command we combine all unique sequences in each database. We then pipe that output to the sort command which orders the sequences alphanumerically. We pipe that output to uniq -c, which as we saw above counts the number of occurences of a given text string. Now my logic for using a pipe then grep -c “2” is that any sequence that occurs in both version 19 and 20 of mirbase will have a count of 2. (The -c operator can be used with grep to count the number of occurences of a text string or regular expression) If a sequences is unique to either database it will have a count of 1. By counting the number of occurences of 2 we find how many sequences were in both databases. My answer was 13522 sequences.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example questions: Use “grep” and “sort” to extract microRNA sequences from mirbase Version 19 and Version 20, creating 2 intermediate files. Use “join” to generate sequences present only in Version 19, only in Version 20, and both versions. How many sequences are in each of the 3 output files?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 1 v19_uniq.out v20_uniq.out | wc -l
-join -v 2 v19_uniq.out v20_uniq.out | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Here I used the same files (v20_uniq.out and v19_uniq.out) generated from the previous question. The trick to using join is that your input files must be sorted prior to use. Using the -v X operator tells join to output the lines that are unique to file X. In the way the files are ordered above, -v 1 tells join to ouput only the sequences unique to v19. Using the pipe operator plus wc -l gets the number lines from the join output. So we see that there were 80 unique sequences in mirbase version 19 that were “retired” from the version 20 issue of the database. Likewise, we see that 2204 unique sequences were added to version 20. If you were to use the -a 1 option this would output the shared sequences between the two databases plus the “unmatchable” ones in version 19. Substracting 80 from this number gives you the number of unique sequences shared in both versions.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 14 Apr 2014 00:00:00 -0400</pubDate>
-        <link>http://slhogle.github.io/2014/unix-for-fasta/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/unix-for-fasta/</guid>
         
         
         <category>bioinformatics_notebook</category>
