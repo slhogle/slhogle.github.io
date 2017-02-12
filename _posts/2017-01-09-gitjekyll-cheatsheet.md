@@ -7,14 +7,17 @@ summary:    Useful commands for using git/github and jekyll. Tailored to hosting
 ### THE SHORT VERSION
 Recipe for setting up a repository quick and dirty
 {% highlight bash %}
-echo "# emacs_stuff" >> README.md
+echo "# my markdown info" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+## adding using https protocol
+git remote add origin https://github.com/MYUSERNAME/MY-NEW-REPO.git
+## RECOMMENDED - or using ssh (after you have added a proper ssh key)
+git remote add origin git@github.com:MYUSERNAME/MY-NEW-REPO
 git push -u origin master
 # …or push an existing repository from the command line
-git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git remote add origin https://github.com/MYUSERNAME/MY-NEW-REPO.git
 git push -u origin master
 {% endhighlight %}
 

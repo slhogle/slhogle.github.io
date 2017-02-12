@@ -5,9 +5,9 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Feb 2017 11:15:09 -0500</pubDate>
-    <lastBuildDate>Sat, 11 Feb 2017 11:15:09 -0500</lastBuildDate>
-    <generator>Jekyll v3.3.1</generator>
+    <pubDate>Sun, 12 Feb 2017 18:24:01 -0500</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 18:24:01 -0500</lastBuildDate>
+    <generator>Jekyll v3.4.0</generator>
     
       <item>
         <title>Jupyter notebook on remote cluster</title>
@@ -141,14 +141,17 @@ tar zxvf barrnap-0.7.tar.gz&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         <description>&lt;h3 id=&quot;the-short-version&quot;&gt;THE SHORT VERSION&lt;/h3&gt;
 &lt;p&gt;Recipe for setting up a repository quick and dirty&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# emacs_stuff&quot;&lt;/span&gt; &amp;gt;&amp;gt; README.md
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# my markdown info&quot;&lt;/span&gt; &amp;gt;&amp;gt; README.md
 git init
 git add README.md
 git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;first commit&quot;&lt;/span&gt;
-git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+&lt;span class=&quot;c&quot;&gt;## adding using https protocol&lt;/span&gt;
+git remote add origin https://github.com/MYUSERNAME/MY-NEW-REPO.git
+&lt;span class=&quot;c&quot;&gt;## RECOMMENDED - or using ssh (after you have added a proper ssh key)&lt;/span&gt;
+git remote add origin git@github.com:MYUSERNAME/MY-NEW-REPO
 git push -u origin master
 &lt;span class=&quot;c&quot;&gt;# …or push an existing repository from the command line&lt;/span&gt;
-git remote add origin https://github.com/MYUSERNAME/emacs_stuff.git
+git remote add origin https://github.com/MYUSERNAME/MY-NEW-REPO.git
 git push -u origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;For updating a Jekyll based blog hosted on github pages&lt;/p&gt;
