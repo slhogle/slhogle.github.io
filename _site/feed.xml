@@ -5,9 +5,45 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Feb 2017 18:24:01 -0500</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 18:24:01 -0500</lastBuildDate>
+    <pubDate>Sat, 13 May 2017 21:59:06 -0400</pubDate>
+    <lastBuildDate>Sat, 13 May 2017 21:59:06 -0400</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Slurm no-number array trick</title>
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;INTRODUCTION&lt;/h3&gt;
+&lt;p&gt;Slurm can parallelize jobs very nicely if each file has some form of a number in it’s title. For example if your files look like “MYPREFIX0004.txt, MYPREFIX0005.txt, MYPREFIX0006.txt, ect” you could do:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;mylib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;MYPREFIX&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; %04d &lt;span class=&quot;nv&quot;&gt;$SLURM_ARRAY_TASK_ID&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then just use the $mylib variable in your script and call the script like so:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch --array 5-6 myscript.sbatch&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;which will have the slurm scheduler submit parallel jobs for you to make your jobs run quicker.&lt;/p&gt;
+
+&lt;p&gt;If your file aren’t formatted with a number you can use this workaround.&lt;/p&gt;
+
+&lt;p&gt;Glob the filenames you want to run operations on from whatever directory&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;/mypath/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Create var NUMFILES which will be the length of the submitted array job&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;NUMFILES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${#&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[@]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$NUMFILES&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Create a variable in your script that references an array value using $SLURM_ARRAY_TASK_ID as an index&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;basename &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SLURM_ARRAY_TASK_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; .tab&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#include file extension if you want to cut that off&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Sat, 11 Feb 2017 00:00:00 -0500</pubDate>
+        <link>http://slhogle.github.io/2017/slurm-array-job-trick/</link>
+        <guid isPermaLink="true">http://slhogle.github.io/2017/slurm-array-job-trick/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Jupyter notebook on remote cluster</title>
@@ -636,33 +672,6 @@ diff -y -W 72 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort have&lt
         <pubDate>Thu, 29 May 2014 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2014/bowtie-and-samtools/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2014/bowtie-and-samtools/</guid>
-        
-        
-        <category>bioinformatics_notebook</category>
-        
-      </item>
-    
-      <item>
-        <title>Process substitution with bash</title>
-        <description>&lt;p&gt;From &lt;a href=&quot;http://en.wikipedia.org/wiki/Process_substitution&quot;&gt;Wikipedia&lt;/a&gt; - &lt;em&gt;“Process substitution is a form of inter-process communication that allows the input or output of a command to appear as a file. The command is substituted in-line, where a file name would normally occur, by the command shell. This allows programs that normally only accept files to directly read from or write to another program.”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Say you want to use join to find and count the differences in two files each containing lines of biological sequence but those files are not sorted.&lt;/p&gt;
-
-&lt;p&gt;You could do&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sort seqfile1 &amp;gt; seqfile1.sorted
-sort seqfile2 | join -v 2 - seqfile1.sorted | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This would give you the number of unmatched entries in seqfile1 when comparing it with seqfile2&lt;/p&gt;
-
-&lt;p&gt;One can also do this using process substitution&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;join -v 2 &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sort seqfile2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  | wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Wed, 16 Apr 2014 00:00:00 -0400</pubDate>
-        <link>http://slhogle.github.io/2014/process-substitution-with-bash/</link>
-        <guid isPermaLink="true">http://slhogle.github.io/2014/process-substitution-with-bash/</guid>
         
         
         <category>bioinformatics_notebook</category>

@@ -4,9 +4,6 @@ title: About
 permalink: /about/
 ---
 
-About me
-======
-
 I am currently a Postdoctoral Research Associate in the [Chisholm Laboratory](https://chisholmlab.mit.edu/) at [MIT](http://web.mit.edu/). I recieved my Ph.D from the [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) at [UCSD](http://www.ucsd.edu/), and I completed my undergraduate degree in Chemistry at [Earlham College](http://www.earlham.edu/).
 
 Much of my Ph.D. thesis examined how and why bacteria of the marine _Roseobacter_ lineage utilize exogenous heme and hemoproteins as nutritional iron sources. The impetus behind this work was to gain a better understanding of the role that heme uptake plays in the overall turnover of iron in the ocean and how marine microbes shape the iron cycle by means of remineralization processes. For my postdoctoral research I am using _Prochlorococcus_ as a model system in order to better understand how this abundant and incredibly important organism influences and is influenced by marine trace metal distributions. These projects should provide us with a clearer window into how _Prochlorococcus_ interacts with trace metals and the intersections between trace metal cycles and the marine carbon cycle.
@@ -17,8 +14,7 @@ When I am doing bioinformatics I write code in python, R, and bash.
 
 When I am not doing science I sometimes [DJ and play tunes on the radio](https://soundcloud.com/leatherpurse).
 
-A non-technical(ish) description of my research and why it is important
-======
+## A non-technical(ish) description of my research and why it is important
 
 Bacteria are everywhere. Certain ones can make you sick, while an entire ecosystem of others living in your gut can make you well. Some bacteria have to eat carbon to grow (just like you and me) while others can perform photosynthesis to get their carbon for growth. And just like you and me, bacteria that eat carbon compounds "breath" oxygen and "exhale" carbon dioxide. Even though bacteria are physically very small, there are __SO MANY__ living on the planet that their net effect of eating, growing, breathing, exhaling, and moving around is enormous. As a scientist, I'm interested in bacteria that live in the ocean and eat the carbon compounds produced by marine photosynthesizers.
 
