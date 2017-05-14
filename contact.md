@@ -3,7 +3,6 @@ layout: page
 title: 
 permalink: /contact/
 ---
-### Get in touch
 
 * shogle AT mit dot edu
 * [Github](https://github.com/slhogle)
