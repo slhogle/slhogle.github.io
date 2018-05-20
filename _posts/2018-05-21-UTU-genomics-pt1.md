@@ -2,7 +2,8 @@
 layout:     post
 title:      UTU Microbial Genomics Course: Part I
 date:       2018-05-21
-summary:    
+summary:	UTU Microbial Genomics Course: Part I
+
 ---
 
 ## INTRODUCTION
